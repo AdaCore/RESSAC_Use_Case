@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+Property.BlockPT {
+	 fontName: "Segoe UI";
+	 fillColor: #8080FF;
+	 transparency: 0;
+	 gradient: #CCCCFF vertical;
+	lineColor: #000000;
+	maskLabel: name}
+
+InternalBlockDiagram   Property.BlockPT > Compartment {
+	visible: false}
+
+InternalBlockDiagram   Property.BlockPT > Compartment[kind=structure] {
+	visible: true;
+	collapsed: false;
+	showTitle: false}
+
+Property.BlocUAV {
+	 fontName: "Segoe UI";
+	 fillColor: #538FFF;
+	 transparency: 0;
+	 gradient: #A6C5FF vertical;
+	lineColor: #000000;
+	shadow: false;
+	maskLabel: name}
+
+InternalBlockDiagram   Property.BlocUAV > Compartment {
+	visible: false}
+
+InternalBlockDiagram   Property.BlocUAV > Compartment[kind=structure] {
+	visible: true;
+	collapsed: false;
+	showTitle: false}
+
+Connector.DigitalCom {
+	 fontName: "Segoe UI";
+	 routing: Rectilinear;
+	 lineColor: #00D936;
+	lineWidth: 3}
+
+Connector.DigitalCom > Label:Name {
+	visible: false}
+
+Connector.AnalogCom {
+	 fontName: "Segoe UI";
+	 routing: Rectilinear;
+	 lineColor: #FF0000;
+	lineWidth: 1}
+
+Connector.AnalogCom > Label:Name {
+	visible: false}
+
+Connector.Oblique {
+	fontName: "Segoe UI";
+	routing: Manual;
+	lineColor: #000000}
+
+Connector.Oblique > Label:Name {
+	visible: false}
+
+Connector.InternalConnect {
+	 fontName: "Segoe UI";
+	 routing: Rectilinear;
+	 lineColor: #98A8BF}
+
+Connector.InternalConnect > Label:Name {
+	visible: false}
+
+Port[appliedStereotypes~=FlowPort].IssuePort {
+	 fontName: "Segoe UI";
+	 fillColor: #FF0000;
+	 transparency: 0;
+	lineColor: #000000}
+
+Port[appliedStereotypes~=FlowPort].IssuePort > Label {
+	visible: true;
+	maskLabel: multiplicity name}
