@@ -30,6 +30,10 @@ package MMS.Input is
 
    function USB_Key return Navigation_Parameters_Type;
 
+   function Rotactor_1 return Rotactor_Type;
+
+   function Rotactor_2 return Rotactor_Type;
+
    -------------------------
    -- Physical Parameters --
    -------------------------

@@ -68,12 +68,10 @@ package MMS is
       Primary_Source   : Source_Type;
       Secondary_Source : Source_Type;
    end record;
-   
-   type Source_Capacity_Type is range 1 .. 99_999;
-   
+      
    type Propulsion_Energy_Type is record
-      Primary_Source_Capacity   : Source_Capacity_Type;
-      Secondary_Source_Capacity : Source_Capacity_Type;
+      Primary_Source_Capacity   : Source_Type;
+      Secondary_Source_Capacity : Source_Type;
    end record;
    
    type Torque_Type is delta 0.0001 range -10.0E6 .. 10.0E6; -- ???

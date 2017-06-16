@@ -39,7 +39,13 @@ package MMS.F_PT.Input is
    
    function USB_Key return Navigation_Parameters_Type
      renames MMS.Input.USB_Key;
-
+   
+   function Rotactor_1 return Rotactor_Type
+     renames MMS.Input.Rotactor_1;
+   
+   function Rotactor_2 return Rotactor_Type
+     renames MMS.Input.Rotactor_2;
+   
    function P return Distance_Type
      renames MMS.Input.P;
    

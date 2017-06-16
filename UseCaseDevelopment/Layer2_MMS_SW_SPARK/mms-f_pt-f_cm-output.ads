@@ -12,8 +12,8 @@ package MMS.F_PT.F_CM.Output is
          Mode       => MMS.F_PT.F_CM.Input.Mode_Switch,
          Bay        => MMS.F_PT.F_CM.Input.Bay_Switch,
          Start      => MMS.F_PT.F_CM.Input.Start_Push_Button,
-         Rotactor_1 => 1, --  ???
-         Rotactor_2 => 1)); --  ???
+         Rotactor_1 => MMS.F_PT.F_CM.Input.Rotactor_1,
+         Rotactor_2 => MMS.F_PT.F_CM.Input.Rotactor_2));
       
    function CP_Displays return CP_Displays_Type is
      (CP_Displays_Type'
@@ -26,8 +26,8 @@ package MMS.F_PT.F_CM.Output is
    
    function Propulsion_Energy return Propulsion_Energy_Type is
      (Propulsion_Energy_Type'
-        (Primary_Source_Capacity   => 1, -- ???
-         Secondary_Source_Capacity => 1)); -- ???
+        (Primary_Source_Capacity   => MMS.F_PT.F_CM.Input.Primary_Source,
+         Secondary_Source_Capacity => MMS.F_PT.F_CM.Input.Secondary_Source));
    
    function Mission_Cancelled return Boolean
      renames MMS.F_PT.F_CM.Input.Mission_Cancelled;
