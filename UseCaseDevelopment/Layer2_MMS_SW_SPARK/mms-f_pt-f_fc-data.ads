@@ -8,11 +8,28 @@ package MMS.F_PT.F_FC.Data is
 
    --  From 6.7.2.3
 
-   type F_FC_Table_Type is array (Positive range <>) of Integer;
+   type Gain_Type is new Integer; --  ??? some bounds
 
-   Climb_Gains   : F_FC_Table_Type (1 .. 1);
-   Cruise_Gains  : F_FC_Table_Type (1 .. 1);
-   Descent_Gains : F_FC_Table_Type (1 .. 1);
+   type Gain_Triple is record
+      Kd : Gain_Type;
+      Kp : Gain_Type;
+      Ki : Gain_Type;
+   end record;
+
+   function Climb_Gains
+     (Mass     : Payload_Mass_Type;
+      Altitude : Current_Altitude_Type;
+      Speed    : Current_Speed_Type) return Gain_Triple;
+
+   function Cruise_Gains
+     (Mass     : Payload_Mass_Type;
+      Altitude : Current_Altitude_Type;
+      Speed    : Current_Speed_Type) return Gain_Triple;
+
+   function Descent_Gains
+     (Mass     : Payload_Mass_Type;
+      Altitude : Current_Altitude_Type;
+      Speed    : Current_Speed_Type) return Gain_Triple;
 
    ---------------
    -- Constants --
