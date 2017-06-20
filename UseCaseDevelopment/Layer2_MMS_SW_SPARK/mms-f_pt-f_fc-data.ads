@@ -1,4 +1,4 @@
-package MMS.F_PT.F_FC.Behavior is
+package MMS.F_PT.F_FC.Data is
 
    --  ??? Types need to be precisely defined.
 
@@ -43,4 +43,4 @@ package MMS.F_PT.F_FC.Behavior is
    L  : Integer; --  in m
    M0 : Integer; --  in kg
 
-end MMS.F_PT.F_FC.Behavior;
+end MMS.F_PT.F_FC.Data;

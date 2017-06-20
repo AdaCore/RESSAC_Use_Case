@@ -6,10 +6,10 @@ ACTIVITIES:
     Each sub-component is a child package of its container. Inputs and outputs of components are translated as functions without parameters stored in specific child packages named Comp.Input and Comp.Output. Types for signals are stored at the root of the architecture, namely in mms.ads. They are as precise as we could make them, based on the specifications available.
     Links between inputs and outputs of various components are made through renamings, or through expression functions when the mapping is more complex. Inputs and outputs are grouped together depending on where they are coming from/where they are going to.
     
-  * Checks:
+  * Verifications:
     We have checked by review that:
-    - Inputs and outputs of components are consistent, namely, if a component A has an input to another component B, the B must have an input from A and conversely.
-      + Method: If a function F is in a group of inputs (resp. outputs) of a component Comp1 labelled From Comp2 (resp. To Comp2), where Comp2 is inside the same container as Comp1, check that Comp2.Output (resp. Comp2.Input) as a section To Comp1 (resp. From Comp1).
+    - Inputs and outputs of components are consistent, namely, if a component A has an output to another component B, then B must have an input from A and conversely.
+      + Method: If a function F is in a group of inputs (resp. outputs) of a component Comp1 labelled 'From Comp2' (resp. 'To Comp2'), where Comp2 is inside the same container as Comp1, check that Comp2.Output (resp. Comp2.Input) has a section 'To Comp1' (resp. 'From Comp1') containing a matching output (resp. input). 
       
       + Result: Inconsistencies have been reported.
       
@@ -28,3 +28,24 @@ ACTIVITIES:
       + Result: No inconsistency found.
     
  2 - Review of the specification for translatability in Ada contracts:
+
+  * Design:
+    Each component provides a Run procedure located in a child package Comp.Behavior. This procedure is responsible from updating the internal state of the component at each step. Scheduling, as well as handling of inputs and outputs are not considered here. The procedure Run may have a contract, representing the part of its behavioural specification which is translatable into Ada contracts. Contracts from the specification document are stored in a distinct unit, named Comp.Behavior.Garantees. Parts of specification contracts and of functional behaviours which are not fit for translation into SPARK contracts will be listed here.
+
+  * Report for translationability into Ada contracts:
+    - MMS.F_PT.F_MM:
+      6.6.3
+      Inherited assumptions A, B, C, D, E: Not translated (linked to weather condition).
+      Inherited assumption F: Translated into types (validity of inputs).
+      Inherited guarantees A, B: Translated as postconditions.
+      6.6.3.1
+      A. Additional assumption: Translated into types (validity of inputs).
+      6.6.3.1
+      A. Additional guarantee: Translated as a postcondition.
+
+  * Verifications:
+    The SPARK toolset can be used to check that:
+    - Ada contracts are consistent. If it is a case by case contract, SPARK can chek that all cases are covered and that no two cases can apply to the same inputs. If some properties or some information can only be checked in some cases, these cases can be expressed as preconditions on property or information functions and SPARK will check that they are always used in valid context.
+
+    - Guarantees are implied by the behavioral specification. If both can be expressed as Ada contracts, SPARK can check that, if the behavioural specification of a compoenent is respected by its implementation, then the implementation will also respect the guarantees as stated in the specification contracts.
+     

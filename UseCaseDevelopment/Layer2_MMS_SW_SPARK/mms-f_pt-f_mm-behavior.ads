@@ -39,7 +39,7 @@ is
    function Navigation_Mode return Navigation_Mode_Type with
      Global => State,
      Pre => Power_State = ON
-     and then On_State = RUNNING;
+     and then On_State in INIT | RUNNING;
 
    function Operating_Mode return Navigation_Option_Type with
      Global => State,
@@ -136,12 +136,33 @@ is
    function Mission_Cancellation_Signaled return Boolean with
      Global => State;
 
+   function Mission_Range return Current_Range_Type with
+     Global => State;
+
+   function Operating_Point return Operating_Point_Type with
+     Global => State;
+
    ---------------------------------------
    -- Behavioural Specification of F_MM --
    ---------------------------------------
 
    procedure Run with
      Global         => (In_Out => State),
+     Post           =>
+
+       --  RP mode enables modification of range parameter before take-off.
+
+       (if not (Power_State'Old = ON
+                and then On_State'Old = INIT
+                and then Navigation_Mode'Old = RP)
+        then Mission_Range = Mission_Range'Old)
+
+       --  RP mode enables modification of altitude and speed parameters at any
+       --  time.
+
+     and then
+       (if Navigation_Mode'Old = A
+        then Operating_Point = Operating_Point'Old),
      Contract_Cases =>
        (Power_State = OFF
         and then Power_Off
