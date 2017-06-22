@@ -1,3 +1,5 @@
+with MMS.F_PT.Data;
+
 package MMS.F_PT.F_FC.Data is
 
    --  ??? Types need to be precisely defined.
@@ -8,28 +10,34 @@ package MMS.F_PT.F_FC.Data is
 
    --  From 6.7.2.3
 
-   type Gain_Type is new Integer; --  ??? some bounds
-
-   type Gain_Triple is record
-      Kd : Gain_Type;
-      Kp : Gain_Type;
-      Ki : Gain_Type;
-   end record;
+   Flight_Domain_Mesh : Flight_Domain_Mesh_Type (1 .. 100, 1 .. 100); -- ??? bounds
 
    function Climb_Gains
-     (Mass     : Payload_Mass_Type;
-      Altitude : Current_Altitude_Type;
-      Speed    : Current_Speed_Type) return Gain_Triple;
+     (S : Flight_Speed_Center;
+      A : Flight_Altitude_Center;
+      M : Payload_Mass_Center) return Gain_Triple
+   with
+     Pre => S in Flight_Domain_Mesh'Range (1)
+     and then A in Flight_Domain_Mesh'Range (2)
+     and then M in MMS.F_PT.Data.Payload_Mass_Grid'Range;
 
    function Cruise_Gains
-     (Mass     : Payload_Mass_Type;
-      Altitude : Current_Altitude_Type;
-      Speed    : Current_Speed_Type) return Gain_Triple;
+     (S : Flight_Speed_Center;
+      A : Flight_Altitude_Center;
+      M : Payload_Mass_Center) return Gain_Triple
+   with
+     Pre => S in Flight_Domain_Mesh'Range (1)
+     and then A in Flight_Domain_Mesh'Range (2)
+     and then M in MMS.F_PT.Data.Payload_Mass_Grid'Range;
 
    function Descent_Gains
-     (Mass     : Payload_Mass_Type;
-      Altitude : Current_Altitude_Type;
-      Speed    : Current_Speed_Type) return Gain_Triple;
+     (S : Flight_Speed_Center;
+      A : Flight_Altitude_Center;
+      M : Payload_Mass_Center) return Gain_Triple
+   with
+     Pre => S in Flight_Domain_Mesh'Range (1)
+     and then A in Flight_Domain_Mesh'Range (2)
+     and then M in MMS.F_PT.Data.Payload_Mass_Grid'Range;
 
    ---------------
    -- Constants --
@@ -37,15 +45,16 @@ package MMS.F_PT.F_FC.Data is
 
    --  From 6.7.3.2
 
-   Qdot_MinCl : Integer; --  in angle.s-1
-   Qdot_MaxCl : Integer; --  in angle.s-1
-   Q_MaxCl    : Integer; --  in angle.s-1
-   Qdot_MinCr : Integer; --  in angle.s-1
-   Q_MinCr    : Integer; --  in angle.s-1
-   Pdot_MaxCr : Integer; --  in angle.s-1
-   Qdot_MinDs : Integer; --  in angle.s-1
-   Qdot_MaxDs : Integer; --  in angle.s-1
-   Q_MaxDs    : Integer; --  in angle.s-1
+   Qdot_MinCl : Angular_Speed_Type; --  in angle.s-1
+   Qdot_MaxCl : Angular_Speed_Type; --  in angle.s-1
+   Q_MaxCl    : Angle_Type; --  in angle
+   Qdot_MinCr : Angular_Speed_Type; --  in angle.s-1
+   Qdot_MaxCr : Angular_Speed_Type; --  in angle.s-1
+   Q_MinCr    : Angle_Type; --  in angle
+   Pdot_MaxCr : Current_Speed_Type; --  in km/h
+   Qdot_MinDs : Angular_Speed_Type; --  in angle.s-1
+   Qdot_MaxDs : Angular_Speed_Type; --  in angle.s-1
+   Q_MaxDs    : Angle_Type; --  in angle
 
    Escape_Time : Integer; --  in s
 

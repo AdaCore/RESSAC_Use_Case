@@ -31,7 +31,7 @@ package MMS.F_PT.F_MM.Input is
      renames MMS.F_PT.F_CM.Output.Mode_Switch;
 
    function Bay_Switch return Bay_Switch_Type
-     renames MMS.F_PT.F_CM.Output.Bay_Switch; 
+     renames MMS.F_PT.F_CM.Output.Bay_Switch;
 
    function Payload_Mass return Payload_Mass_Type
      renames MMS.F_PT.F_CM.Output.Payload_Mass;

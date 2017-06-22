@@ -79,25 +79,29 @@ package MMS.F_PT.F_CM.Output is
      renames MMS.F_PT.F_CM.Input.Mode_Switch;
 
    function Bay_Switch return Bay_Switch_Type
-     renames MMS.F_PT.F_CM.Input.Bay_Switch; 
+     renames MMS.F_PT.F_CM.Input.Bay_Switch;
+   
+   function USB_Key return Navigation_Parameters_Type
+     renames MMS.F_PT.F_CM.Input.USB_Key; 
+   
+   ----------------------
+   -- To F_MM and F_FC --
+   ----------------------
 
    function Payload_Mass return Payload_Mass_Type
      renames MMS.F_PT.F_CM.Input.Payload_Mass;
-   
-   function USB_Key return Navigation_Parameters_Type
-     renames MMS.F_PT.F_CM.Input.USB_Key;
    
    -------------
    -- To F_FC --
    -------------
 
-   function P return Distance_Type
-     renames MMS.F_PT.F_CM.Input.P;
+   function P return Current_Range_Type;
+   --  From MMS.F_PT.F_CM.Input.P, conversion needed
    
-   function P_Dot return Speed_Type
-     renames MMS.F_PT.F_CM.Input.P_Dot;
+   function P_Dot return Current_Speed_Type;
+   --  From MMS.F_PT.F_CM.Input.P_Dot, conversion needed
    
-   function Q return Altitude_Type
-     renames MMS.F_PT.F_CM.Input.Q;
+   function Q return Current_Altitude_Type;
+   --  From MMS.F_PT.F_CM.Input.Q, conversion needed
    
 end MMS.F_PT.F_CM.Output;

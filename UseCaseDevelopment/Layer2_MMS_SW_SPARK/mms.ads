@@ -39,7 +39,7 @@ package MMS is
    
    type Bay_Switch_Type is (OPEN, CLOSED);
    
-   type Payload_Mass_Type is delta 0.1 range 1.0 .. 5.0; -- ??? in kg
+   type Payload_Mass_Type is new Integer range 0 .. 98; -- in kg
 
    type Distance_Type is new Float; -- in n.m
    
@@ -47,7 +47,7 @@ package MMS is
    
    type Altitude_Type is new Float; -- in ft
    
-   type Rotactor_Type is range 1 .. 9;
+   type Rotactor_Type is range 0 .. 9;
    
    type CP_Switches_Type is record
       Power      : Boolean;
@@ -75,19 +75,4 @@ package MMS is
    end record;
    
    type Torque_Type is delta 0.0001 range -10.0E6 .. 10.0E6; -- ???
-   
-   type Current_Range_Type is range 1 .. 1_000_000; -- in meters
-   
-   type Current_Speed_Type is range 1 .. 500;  -- in km/h
-   
-   type Current_Altitude_Type is range -200 .. 1_000; -- in meters
-   
-   type Estimated_Total_Mass_Type is delta 0.1 range 5.0 .. 10.0; -- in kg ???
-   
-   type Energy_Level_Type is range 0 .. 500; -- in kj
-   
-   type Operating_Point_Type is record
-      Altitude : Current_Altitude_Type; -- ??? which altitude type
-      Speed    : Current_Speed_Type; --  ??? which speed type
-   end record;
 end MMS;

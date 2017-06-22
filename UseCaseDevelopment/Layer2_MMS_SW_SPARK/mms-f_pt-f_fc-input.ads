@@ -7,14 +7,17 @@ package MMS.F_PT.F_FC.Input is
    -- From F_CM --
    ---------------
 
-   function P return Distance_Type
+   function P return Current_Range_Type
      renames MMS.F_PT.F_CM.Output.P;
    
-   function P_Dot return Speed_Type
+   function P_Dot return Current_Speed_Type
      renames MMS.F_PT.F_CM.Output.P_Dot;
    
-   function Q return Altitude_Type
+   function Q return Current_Altitude_Type
      renames MMS.F_PT.F_CM.Output.Q;
+   
+   function Payload_Mass return Payload_Mass_Type
+     renames MMS.F_PT.F_CM.Output.Payload_Mass;
       
    ---------------
    -- From F_MM --
