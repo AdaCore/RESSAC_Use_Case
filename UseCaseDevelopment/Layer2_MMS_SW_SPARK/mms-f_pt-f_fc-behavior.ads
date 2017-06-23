@@ -6,14 +6,14 @@ package MMS.F_PT.F_FC.Behavior is
    -- Inputs --
    ------------
 
-   function P return Current_Range_Type;
-   function P_Dot return Current_Speed_Type;
+   function P return Distance_Type;
+   function P_Dot return Speed_Type;
+   function Q return Angle_Type;
 
    ----------------------
    -- Estimated Values --
    ----------------------
 
-   function Q_Angle return Angle_Type;
    function Q_Dot return Angular_Speed_Type;
 
    ------------
@@ -34,13 +34,13 @@ package MMS.F_PT.F_FC.Behavior is
      (case Phase_State is
          when CLIMB   =>
             Q_Dot in MMS.F_PT.F_FC.Data.Qdot_MinCl .. MMS.F_PT.F_FC.Data.Qdot_MaxCl
-              and Q_Angle < MMS.F_PT.F_FC.Data.Q_MaxCl,
+              and Q < MMS.F_PT.F_FC.Data.Q_MaxCl,
          when CRUISE  =>
             Q_Dot in MMS.F_PT.F_FC.Data.Qdot_MinCr .. MMS.F_PT.F_FC.Data.Qdot_MaxCr
-              and Q_Angle > MMS.F_PT.F_FC.Data.Q_MinCr
+              and Q > MMS.F_PT.F_FC.Data.Q_MinCr
               and P_Dot < MMS.F_PT.F_FC.Data.Pdot_MaxCr,
          when DESCENT =>
             Q_Dot in MMS.F_PT.F_FC.Data.Qdot_MinDs .. MMS.F_PT.F_FC.Data.Qdot_MaxDs
-              and Q_Angle < MMS.F_PT.F_FC.Data.Q_MaxDs);
+              and Q < MMS.F_PT.F_FC.Data.Q_MaxDs);
 
 end MMS.F_PT.F_FC.Behavior;

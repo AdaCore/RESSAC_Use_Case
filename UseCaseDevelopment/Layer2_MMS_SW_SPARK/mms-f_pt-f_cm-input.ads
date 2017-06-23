@@ -54,7 +54,7 @@ package MMS.F_PT.F_CM.Input is
    function P_Dot return Speed_Type
      renames MMS.F_PT.Input.P_Dot;
    
-   function Q return Altitude_Type
+   function Q return Angle_Type
      renames MMS.F_PT.Input.Q;
    
    ---------------

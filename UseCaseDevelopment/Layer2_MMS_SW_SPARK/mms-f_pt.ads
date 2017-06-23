@@ -6,10 +6,6 @@ package MMS.F_PT is
    
    type Current_Altitude_Type is range -200 .. 1_000; -- in meters
    
-   type Angle_Type is new Float; -- in Angle bounds???
-   
-   type Angular_Speed_Type is new Float; -- in Angle.s-1 bounds???
-   
    type Estimated_Total_Mass_Type is delta 0.1 range 5.0 .. 10.0; -- in kg ???
    
    type Energy_Level_Type is range 0 .. 500; -- in kj

@@ -51,7 +51,7 @@ package MMS.F_PT.F_FC.Data is
    Qdot_MinCr : Angular_Speed_Type; --  in angle.s-1
    Qdot_MaxCr : Angular_Speed_Type; --  in angle.s-1
    Q_MinCr    : Angle_Type; --  in angle
-   Pdot_MaxCr : Current_Speed_Type; --  in km/h
+   Pdot_MaxCr : Speed_Type; --  in km/h
    Qdot_MinDs : Angular_Speed_Type; --  in angle.s-1
    Qdot_MaxDs : Angular_Speed_Type; --  in angle.s-1
    Q_MaxDs    : Angle_Type; --  in angle

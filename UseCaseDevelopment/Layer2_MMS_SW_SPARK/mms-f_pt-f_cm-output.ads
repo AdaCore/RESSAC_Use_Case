@@ -95,13 +95,10 @@ package MMS.F_PT.F_CM.Output is
    -- To F_FC --
    -------------
 
-   function P return Current_Range_Type;
-   --  From MMS.F_PT.F_CM.Input.P, conversion needed
+   function P return Distance_Type renames MMS.F_PT.F_CM.Input.P;
    
-   function P_Dot return Current_Speed_Type;
-   --  From MMS.F_PT.F_CM.Input.P_Dot, conversion needed
+   function P_Dot return Speed_Type renames MMS.F_PT.F_CM.Input.P_Dot;
    
-   function Q return Current_Altitude_Type;
-   --  From MMS.F_PT.F_CM.Input.Q, conversion needed
+   function Q return Angle_Type renames MMS.F_PT.F_CM.Input.Q;
    
 end MMS.F_PT.F_CM.Output;

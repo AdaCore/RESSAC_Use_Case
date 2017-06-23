@@ -42,6 +42,6 @@ package MMS.Input is
 
    function P_Dot return Speed_Type;
 
-   function Q return Altitude_Type;
+   function Q return Angle_Type;
 
 end MMS.Input;

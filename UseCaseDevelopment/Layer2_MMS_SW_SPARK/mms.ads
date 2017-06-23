@@ -41,11 +41,13 @@ package MMS is
    
    type Payload_Mass_Type is new Integer range 0 .. 98; -- in kg
 
-   type Distance_Type is new Float; -- in n.m
+   type Distance_Type is new Float; -- type of P, unit and bounds ???
    
-   type Speed_Type is new Float; -- in k.t
+   type Speed_Type is new Float; -- type of P_Dot, unit and bounds ???
    
-   type Altitude_Type is new Float; -- in ft
+   type Angle_Type is new Float; -- type of Q, unit and bounds ???
+   
+   type Angular_Speed_Type is new Float; -- type of Q_Dot, unit and bounds ???
    
    type Rotactor_Type is range 0 .. 9;
    
