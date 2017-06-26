@@ -3,6 +3,8 @@ with MMS.F_PT.F_MM.Output;
 with MMS.F_PT.F_FC.Output;
 with MMS.F_PT.F_EM.Output;
 
+with Types; use Types;
+
 package MMS.F_PT.F_CM.Input is
    
    ---------------
@@ -41,12 +43,6 @@ package MMS.F_PT.F_CM.Input is
    
    function USB_Key return Navigation_Parameters_Type
      renames MMS.F_PT.Input.USB_Key;
-   
-   function Rotactor_1 return Rotactor_Type
-     renames MMS.F_PT.Input.Rotactor_1;
-   
-   function Rotactor_2 return Rotactor_Type
-     renames MMS.F_PT.Input.Rotactor_2;
    
    function P return Distance_Type
      renames MMS.F_PT.Input.P;

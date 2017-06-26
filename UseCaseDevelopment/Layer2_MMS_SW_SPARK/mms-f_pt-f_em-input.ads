@@ -1,6 +1,8 @@
 with MMS.F_PT.F_FC.Output;
 with MMS.F_PT.F_CM.Output;
 
+with Types; use Types;
+
 package MMS.F_PT.F_EM.Input is
 
    ---------------
@@ -17,7 +19,7 @@ package MMS.F_PT.F_EM.Input is
    -- From F_CM --
    ---------------
    
-   function P_Dot return Current_Speed_Type
+   function P_Dot return Speed_Type
      renames MMS.F_PT.F_CM.Output.P_Dot;
 
 end MMS.F_PT.F_EM.Input;

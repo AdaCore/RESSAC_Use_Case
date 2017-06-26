@@ -1,3 +1,5 @@
+with Types; use Types;
+
 package MMS.F_EL.Output is
 
    ------------

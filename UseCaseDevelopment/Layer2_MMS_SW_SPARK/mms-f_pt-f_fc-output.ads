@@ -1,3 +1,5 @@
+with Types; use Types;
+
 package MMS.F_PT.F_FC.Output is
 
    ----------------------

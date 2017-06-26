@@ -1,5 +1,7 @@
 with MMS.F_PT.F_CM.Input;
 
+with Types; use Types;
+
 package MMS.F_PT.F_CM.Output is
 
    -------------
@@ -12,8 +14,11 @@ package MMS.F_PT.F_CM.Output is
          Mode       => MMS.F_PT.F_CM.Input.Mode_Switch,
          Bay        => MMS.F_PT.F_CM.Input.Bay_Switch,
          Start      => MMS.F_PT.F_CM.Input.Start_Push_Button,
-         Rotactor_1 => MMS.F_PT.F_CM.Input.Rotactor_1,
-         Rotactor_2 => MMS.F_PT.F_CM.Input.Rotactor_2));
+         Rotactor_1 => 
+            Rotactor_Type (MMS.F_PT.F_CM.Input.Payload_Mass / 10),
+         Rotactor_2 => 
+            Rotactor_Type (MMS.F_PT.F_CM.Input.Payload_Mass mod 10)));
+   --  ??? Rotactors are computed from payload mass, which one is which?
       
    function CP_Displays return CP_Displays_Type is
      (CP_Displays_Type'
@@ -83,12 +88,8 @@ package MMS.F_PT.F_CM.Output is
    
    function USB_Key return Navigation_Parameters_Type
      renames MMS.F_PT.F_CM.Input.USB_Key; 
-   
-   ----------------------
-   -- To F_MM and F_FC --
-   ----------------------
 
-   function Payload_Mass return Payload_Mass_Type
+   function Payload_Mass_To_F_MM return Payload_Mass_Type
      renames MMS.F_PT.F_CM.Input.Payload_Mass;
    
    -------------
@@ -100,5 +101,8 @@ package MMS.F_PT.F_CM.Output is
    function P_Dot return Speed_Type renames MMS.F_PT.F_CM.Input.P_Dot;
    
    function Q return Angle_Type renames MMS.F_PT.F_CM.Input.Q;
+
+   function Payload_Mass_To_F_FC return Payload_Mass_Type
+     renames MMS.F_PT.F_CM.Input.Payload_Mass;
    
 end MMS.F_PT.F_CM.Output;

@@ -1,3 +1,5 @@
+with Types; use Types;
+
 package MMS.F_PT.F_FC is
 
    type Flight_Cell_Center_Type is record

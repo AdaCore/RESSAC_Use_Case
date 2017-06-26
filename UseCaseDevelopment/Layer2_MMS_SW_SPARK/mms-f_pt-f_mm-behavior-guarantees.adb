@@ -1,3 +1,5 @@
+with Types; use Types;
+
 package body MMS.F_PT.F_MM.Behavior.Guarantees with SPARK_Mode is
 
    procedure Run is

@@ -1,6 +1,8 @@
 with MMS.Input;
 with MMS.F_PT.Output;
 
+with Types; use Types;
+
 package MMS.F_EL.Input is
 
    --------------
@@ -13,7 +15,7 @@ package MMS.F_EL.Input is
    function P_Dot return Speed_Type
      renames MMS.Input.P_Dot;
    
-   function Q return Altitude_Type
+   function Q return Angle_Type
      renames MMS.Input.Q;
    
    ---------------

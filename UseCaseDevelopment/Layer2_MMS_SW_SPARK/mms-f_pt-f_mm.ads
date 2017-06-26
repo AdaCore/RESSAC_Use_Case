@@ -1,3 +1,5 @@
+with Types; use Types;
+
 package MMS.F_PT.F_MM is
 
    type Viability_Cell_Center_Type is record

@@ -8,11 +8,37 @@
 --   - A single behaviour is specified for each case in the specification.
 --   - There is a behaviour is specified for every case in the specification.
 
+with Types; use Types;
+with External;
+with MMS.F_PT.F_MM.Output;
+
 package MMS.F_PT.F_MM.Behavior with
   SPARK_Mode,
   Abstract_State => State
 is
    pragma Unevaluated_Use_Of_Old (Allow);
+
+   ------------
+   -- Inputs --
+   ------------
+
+   function Navigation_Mode_From_CP return Navigation_Mode_Type with
+     Global => State;
+
+   function Navigation_Mode_From_GS return Navigation_Mode_Type with
+     Global => State;
+
+   function Operating_Point_From_GS_Received return Boolean with
+     Global => State;
+
+   function Operating_Point_From_GS return Operating_Point_Type with
+     Global => State;
+
+   function USB_Key_Present return Boolean with
+     Global => State;
+
+   function Operating_Point_From_USB_Key return Operating_Point_Type with
+     Global => State;
 
    -----------------------------------------
    -- States of the automaton in Figure 3 --
@@ -36,7 +62,10 @@ is
      Pre => Power_State = ON
      and then On_State = RUNNING;
 
-   function Navigation_Mode return Navigation_Mode_Type with
+   function Navigation_Mode return Navigation_Mode_Type
+   is (if Navigation_Mode_From_CP = A then A
+       else Navigation_Mode_From_GS)
+   with
      Global => State,
      Pre => Power_State = ON
      and then On_State in INIT | RUNNING;
@@ -95,7 +124,7 @@ is
      and then On_State = RUNNING
      and then Running_State = LANDING;
 
-   function Operating_Mode_Changed return Boolean with
+   function Operating_Point_Changed return Boolean with
      Global => State,
      Pre => Power_State = ON
      and then On_State = RUNNING
@@ -118,7 +147,11 @@ is
      and then On_State in INIT | RUNNING
      and then (if On_State = RUNNING then Running_State = CRUISE);
 
-   function Mission_Parameters_Defined return Boolean with
+   function Mission_Parameters_Defined return Boolean is
+     (USB_Key_Present
+      or else (Navigation_Mode_From_CP = RP
+               and then Operating_Point_From_GS_Received))
+   with
      Global => State,
      Pre => Power_State = ON
      and then On_State = INIT;
@@ -133,6 +166,10 @@ is
      Pre => Power_State = ON
      and then On_State = CANCELLED;
 
+   -------------
+   -- Outputs --
+   -------------
+
    function Mission_Cancellation_Signaled return Boolean with
      Global => State;
 
@@ -145,6 +182,14 @@ is
    ---------------------------------------
    -- Behavioural Specification of F_MM --
    ---------------------------------------
+
+   procedure Read_Inputs with
+     Global => (In_Out => State,
+                Input  => (External.From_GS, External.From_CP));
+
+   procedure Write_Outputs with
+     Global => (Input  => State,
+                Output => (Output.To_F_CM, Output.To_F_FC, Output.To_F_EL));
 
    procedure Run with
      Global         => (In_Out => State),
@@ -162,7 +207,16 @@ is
 
      and then
        (if Navigation_Mode'Old = A
+        then Operating_Point = Operating_Point'Old)
+
+       --  Freeze the operating mode once landing is activated.
+
+     and then
+       (if Power_State'Old = ON
+        and then On_State'Old = RUNNING
+        and then Running_State = LANDING
         then Operating_Point = Operating_Point'Old),
+
      Contract_Cases =>
        (Power_State = OFF
         and then Power_Off
@@ -273,7 +327,7 @@ is
           (if Running_State = CRUISE then Energy_Compatible_With_Mission)
         and then
           (if Running_State = DESCENT then not Descent_Over)
-        and then Operating_Mode_Changed
+        and then Operating_Point_Changed
         =>
           Power_State = ON
         and then On_State = RUNNING
@@ -284,7 +338,7 @@ is
         and then (Running_State in CLIMB | DESCENT)
         and then Power_On
         and then not Mission_Abort_Received
-        and then (if Navigation_Mode = RP then not Operating_Mode_Changed)
+        and then (if Navigation_Mode = RP then not Operating_Point_Changed)
         and then (if Running_State = DESCENT then not Descent_Over)
         and then Cruise_Altitude_Reached
         =>
@@ -299,7 +353,7 @@ is
         and then not Mission_Abort_Received
         and then
           (if Running_State = CRUISE then Energy_Compatible_With_Mission)
-        and then (if Navigation_Mode = RP then not Operating_Mode_Changed)
+        and then (if Navigation_Mode = RP then not Operating_Point_Changed)
         and then
           (if Running_State in CLIMB | DESCENT then
                  not Cruise_Altitude_Reached)
@@ -336,5 +390,38 @@ is
         =>
           Power_State = ON
         and then On_State = On_State'Old);
+
+private
+
+   procedure Mission_Setup_Management with
+     Global => (In_Out => State),
+     Post => (if Payload_Bay_Closed
+              and then Mission_Parameters_Defined
+              and then Energy_Compatible_With_Mission
+              then Boarding_Completed);
+
+   procedure Operating_Point_Update_Management with
+     Global => (In_Out => State),
+     Contract_Cases =>
+       (Navigation_Mode_From_CP = A
+        or else not Operating_Point_From_GS_Received
+        =>
+          Operating_Point = Operating_Point_From_USB_Key,
+
+        Navigation_Mode_From_CP = RP
+        and then Operating_Point_From_GS_Received
+        and then Power_State = ON
+        and then On_State = RUNNING
+        and then Running_State = LANDING
+        =>
+          Operating_Point = Operating_Point'Old,
+
+        Navigation_Mode_From_CP = RP
+        and then Operating_Point_From_GS_Received
+        and then not (Power_State = ON
+          and then On_State = RUNNING
+          and then Running_State = LANDING)
+        =>
+          Operating_Point = Operating_Point_From_GS);
 
 end MMS.F_PT.F_MM.Behavior;

@@ -2,6 +2,8 @@
 --  is used to verify in SPARK that high level guarantees on F_MM are implied
 --  by its behavioural specification.
 
+with Types; use Types;
+
 package MMS.F_PT.F_MM.Behavior.Guarantees with SPARK_Mode is
    pragma Unevaluated_Use_Of_Old (Allow);
 

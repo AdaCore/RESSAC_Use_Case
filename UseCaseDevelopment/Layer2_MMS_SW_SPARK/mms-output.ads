@@ -1,5 +1,7 @@
 with MMS.F_PT.Output;
 
+with Types; use Types;
+
 package MMS.Output is
 
    -------------------------------------

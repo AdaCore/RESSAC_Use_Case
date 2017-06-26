@@ -1,3 +1,5 @@
+with Types; use Types;
+
 package MMS.F_PT is
    
    type Current_Range_Type is range 1 .. 1_000_000; -- in meters

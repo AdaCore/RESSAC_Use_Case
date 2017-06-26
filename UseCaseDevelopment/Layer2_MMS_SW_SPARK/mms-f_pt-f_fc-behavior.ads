@@ -1,5 +1,7 @@
 with MMS.F_PT.F_FC.Data;
 
+with Types; use Types;
+
 package MMS.F_PT.F_FC.Behavior is
 
    ------------

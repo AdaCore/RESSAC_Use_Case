@@ -1,6 +1,8 @@
 with MMS.F_PT.F_CM.Output;
 with MMS.F_PT.F_MM.Output;
   
+with Types; use Types;
+
 package MMS.F_PT.Output is
    
    -----------
