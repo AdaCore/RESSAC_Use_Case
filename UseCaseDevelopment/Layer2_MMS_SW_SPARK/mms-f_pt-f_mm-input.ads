@@ -36,7 +36,7 @@ package MMS.F_PT.F_MM.Input is
      renames MMS.F_PT.F_CM.Output.Bay_Switch;
 
    function Payload_Mass return Payload_Mass_Type
-     renames MMS.F_PT.F_CM.Output.Payload_Mass_To_F_MM;
+     renames MMS.F_PT.F_CM.Output.Payload_Mass;
    
    function USB_Key return Navigation_Parameters_Type
      renames MMS.F_PT.F_CM.Output.USB_Key;

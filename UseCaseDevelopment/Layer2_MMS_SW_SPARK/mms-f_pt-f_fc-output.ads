@@ -2,26 +2,26 @@ with Types; use Types;
 
 package MMS.F_PT.F_FC.Output is
 
-   ----------------------
-   -- To F_CM and F_EM --
-   ----------------------
+   ---------------------
+   -- To F_CM or F_EM --
+   ---------------------
 
-   function Propulsion_Torque return Torque_Type;
+   function Propulsion_Torque return Torque_Type with Global => Output_State;
    
-   function Braking_Torque return Torque_Type;
+   function Braking_Torque return Torque_Type with Global => Output_State;
    
    -------------
    -- To F_MM --
    -------------
    
-   function Mission_Abort return Boolean; -- ??? not listed in F_FC outputs
+   function Mission_Abort return Boolean with Global => Output_State; -- ??? not listed in F_FC outputs
    
-   function Estimated_Total_Mass return Estimated_Total_Mass_Type;
+   function Estimated_Total_Mass return Estimated_Total_Mass_Type with Global => Output_State;
    
-   function Current_Range return Current_Range_Type;
+   function Current_Range return Current_Range_Type with Global => Output_State;
    
-   function Current_Speed return Current_Speed_Type;
+   function Current_Speed return Current_Speed_Type with Global => Output_State;
    
-   function Current_Altitude return Current_Altitude_Type;
+   function Current_Altitude return Current_Altitude_Type with Global => Output_State;
    
 end MMS.F_PT.F_FC.Output;

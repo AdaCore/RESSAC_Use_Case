@@ -1,6 +1,7 @@
 with Types; use Types;
 
-package MMS.F_PT.F_MM is
+package MMS.F_PT.F_MM with Abstract_State => (Private_State, Output_State) is
+   pragma Elaborate_Body (MMS.F_PT.F_MM);
 
    type Viability_Cell_Center_Type is record
       Distance     : Current_Range_Type;

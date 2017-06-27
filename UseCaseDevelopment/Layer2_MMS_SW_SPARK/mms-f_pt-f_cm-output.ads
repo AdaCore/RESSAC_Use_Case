@@ -22,7 +22,7 @@ package MMS.F_PT.F_CM.Output is
       
    function CP_Displays return CP_Displays_Type is
      (CP_Displays_Type'
-        (Ready            => True, --  This register is not loaded at increment 1
+        (Ready            => True, --  This register is not loaded at increment 1 ???
          Cancelled        => MMS.F_PT.F_CM.Input.Mission_Cancelled,
          Complete         => MMS.F_PT.F_CM.Input.Mission_Complete,
          Aborted          => MMS.F_PT.F_CM.Input.Mission_Aborted,
@@ -89,7 +89,11 @@ package MMS.F_PT.F_CM.Output is
    function USB_Key return Navigation_Parameters_Type
      renames MMS.F_PT.F_CM.Input.USB_Key; 
 
-   function Payload_Mass_To_F_MM return Payload_Mass_Type
+   ----------------------
+   -- To F_MM and F_FC --
+   ----------------------
+
+   function Payload_Mass return Payload_Mass_Type
      renames MMS.F_PT.F_CM.Input.Payload_Mass;
    
    -------------
@@ -101,8 +105,5 @@ package MMS.F_PT.F_CM.Output is
    function P_Dot return Speed_Type renames MMS.F_PT.F_CM.Input.P_Dot;
    
    function Q return Angle_Type renames MMS.F_PT.F_CM.Input.Q;
-
-   function Payload_Mass_To_F_FC return Payload_Mass_Type
-     renames MMS.F_PT.F_CM.Input.Payload_Mass;
    
 end MMS.F_PT.F_CM.Output;

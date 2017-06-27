@@ -58,12 +58,12 @@ package MMS.F_PT.F_FC.Data is
    Qdot_MaxDs : Angular_Speed_Type; --  in angle.s-1
    Q_MaxDs    : Angle_Type; --  in angle
 
-   Escape_Time : Integer; --  in s
+   Escape_Time : Time_Type; --  in s
 
    --  From 6.7.4
 
-   Commutation_Duration : Integer; --  in s
-   Hazard_Duration      : Integer; --  in s
+   Commutation_Duration : Time_Type; --  in s
+   Hazard_Duration      : Time_Type; --  in s
 
    Recovery_Speed : Integer; --  in m.s
 

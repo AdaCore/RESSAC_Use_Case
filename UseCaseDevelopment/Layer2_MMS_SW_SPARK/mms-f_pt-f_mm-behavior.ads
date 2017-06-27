@@ -10,12 +10,8 @@
 
 with Types; use Types;
 with External;
-with MMS.F_PT.F_MM.Output;
 
-package MMS.F_PT.F_MM.Behavior with
-  SPARK_Mode,
-  Abstract_State => State
-is
+package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    pragma Unevaluated_Use_Of_Old (Allow);
 
    ------------
@@ -23,22 +19,31 @@ is
    ------------
 
    function Navigation_Mode_From_CP return Navigation_Mode_Type with
-     Global => State;
+     Global => Private_State;
 
    function Navigation_Mode_From_GS return Navigation_Mode_Type with
-     Global => State;
+     Global => Private_State;
 
    function Operating_Point_From_GS_Received return Boolean with
-     Global => State;
+     Global => Private_State;
 
    function Operating_Point_From_GS return Operating_Point_Type with
-     Global => State;
+     Global => Private_State;
 
    function USB_Key_Present return Boolean with
-     Global => State;
+     Global => Private_State;
 
    function Operating_Point_From_USB_Key return Operating_Point_Type with
-     Global => State;
+     Global => Private_State;
+
+   function Current_Range return Current_Range_Type with
+     Global => Private_State;
+
+   function Current_Speed return Current_Speed_Type with
+     Global => Private_State;
+
+   function Current_Altitude return Current_Altitude_Type with
+     Global => Private_State;
 
    -----------------------------------------
    -- States of the automaton in Figure 3 --
@@ -47,18 +52,18 @@ is
    type Power_State_Type is (ON, OFF);
 
    function Power_State return Power_State_Type with
-     Global => State;
+     Global => Private_State;
 
    type On_State_Type is (INIT, RUNNING, CANCELLED, COMPLETE, ABORTED);
 
    function On_State return On_State_Type with
-     Global => State,
+     Global => Private_State,
      Pre    => Power_State = ON;
 
    type Running_State_Type is (TAKE_OFF, CLIMB, CRUISE, DESCENT, LANDING);
 
    function Running_State return Running_State_Type with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = RUNNING;
 
@@ -66,12 +71,12 @@ is
    is (if Navigation_Mode_From_CP = A then A
        else Navigation_Mode_From_GS)
    with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State in INIT | RUNNING;
 
    function Operating_Mode return Navigation_Option_Type with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = RUNNING
      and then Navigation_Mode = RP;
@@ -80,59 +85,51 @@ is
    -- Guards of the automaton in Figure 3 --
    -----------------------------------------
 
-   function Boarding_Completed return Boolean with
-     Global => State,
-     Pre  => Power_State = ON
-     and then On_State = INIT,
-     Post =>
-       (if Boarding_Completed'Result then
-          Payload_Bay_Closed
-        and then Mission_Parameters_Defined
-        and then Energy_Compatible_With_Mission);
-
    function Power_On return Boolean with
-     Global => State;
+     Global => Private_State;
 
    function Power_Off return Boolean with
-     Global => State,
+     Global => Private_State,
      Post => Power_Off'Result = not Power_On;
 
    function Mission_Abort_Received return Boolean with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON;
 
    function Start_Or_Go_Received return Boolean with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = INIT;
 
    function Take_Off_Over return Boolean with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = RUNNING
      and then Running_State = TAKE_OFF;
 
    function Descent_Over return Boolean with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = RUNNING
      and then Running_State = DESCENT;
 
-   function Landed return Boolean with
-     Global => State,
+   function Landed return Boolean is
+     (Current_Speed = 0 and Current_Altitude = 0)
+   with
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = RUNNING
      and then Running_State = LANDING;
 
    function Operating_Point_Changed return Boolean with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = RUNNING
      and then (Running_State in CLIMB | CRUISE | DESCENT)
      and then Navigation_Mode = RP;
 
    function Cruise_Altitude_Reached return Boolean with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = RUNNING
      and then (Running_State in CLIMB | DESCENT);
@@ -142,7 +139,7 @@ is
    ----------------
 
    function Energy_Compatible_With_Mission return Boolean with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State in INIT | RUNNING
      and then (if On_State = RUNNING then Running_State = CRUISE);
@@ -152,64 +149,82 @@ is
       or else (Navigation_Mode_From_CP = RP
                and then Operating_Point_From_GS_Received))
    with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = INIT;
 
    function Payload_Bay_Closed return Boolean with
-     Global => State,
+     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = INIT;
 
-   function Emergency_Landing return Boolean with
-     Global => State,
-     Pre => Power_State = ON
-     and then On_State = CANCELLED;
+   function Mission_Cancellation_Signaled return Boolean with
+     Global => Private_State;
 
    -------------
    -- Outputs --
    -------------
 
-   function Mission_Cancellation_Signaled return Boolean with
-     Global => State;
+   function Ready_For_Takeoff return Boolean is
+     (Payload_Bay_Closed
+      and then Mission_Parameters_Defined
+      and then Energy_Compatible_With_Mission)
+   with
+   Global => Private_State,
+   Pre  => Power_State = ON
+     and then On_State = INIT;
+
+   function Emergency_Landing return Boolean with
+     Global => Private_State,
+     Pre => Power_State = ON
+     and then On_State = CANCELLED;
 
    function Mission_Range return Current_Range_Type with
-     Global => State;
+     Global => Private_State;
 
    function Operating_Point return Operating_Point_Type with
-     Global => State;
+     Global => Private_State;
 
    ---------------------------------------
    -- Behavioural Specification of F_MM --
    ---------------------------------------
 
    procedure Read_Inputs with
-     Global => (In_Out => State,
-                Input  => (External.From_GS, External.From_CP));
+   --  Read values of inputs once and for all and update the current state
+     Global => (In_Out => Private_State,
+                Input  => External.State);
 
    procedure Write_Outputs with
-     Global => (Input  => State,
-                Output => (Output.To_F_CM, Output.To_F_FC, Output.To_F_EL));
+   --  Compute values of outputs from the current state
+     Global => (Input  => Private_State,
+                Output => Output_State);
 
    procedure Run with
-     Global         => (In_Out => State),
+   -- Do:
+   --  - Compute the new state of the automaton
+
+     Global         => (In_Out => Private_State),
      Post           =>
+       Operating_Point_Changed = (Operating_Point /= Operating_Point'Old)
 
        --  RP mode enables modification of range parameter before take-off.
 
+     and then
        (if not (Power_State'Old = ON
                 and then On_State'Old = INIT
                 and then Navigation_Mode'Old = RP)
         then Mission_Range = Mission_Range'Old)
 
        --  RP mode enables modification of altitude and speed parameters at any
-       --  time.
+       --  time (but not at landing, it is frozen...).
 
      and then
-       (if Navigation_Mode'Old = A
+       (if (Power_State'Old = ON
+            and then On_State'Old in INIT | RUNNING
+            and then Navigation_Mode'Old = A)
         then Operating_Point = Operating_Point'Old)
 
-       --  Freeze the operating mode once landing is activated.
+       --  The operating point is frozen once landing is activated.
 
      and then
        (if Power_State'Old = ON
@@ -246,7 +261,7 @@ is
         and then Power_On
         and then On_State = INIT
         and then not Mission_Abort_Received
-        and then not Boarding_Completed
+        and then not Ready_For_Takeoff
         =>
           Power_State = ON
         and then On_State = INIT,
@@ -255,7 +270,7 @@ is
         and then Power_On
         and then On_State = INIT
         and then not Mission_Abort_Received
-        and then Boarding_Completed
+        and then Ready_For_Takeoff
         and then not Start_Or_Go_Received
         =>
           Power_State = ON
@@ -265,7 +280,7 @@ is
         and then Power_On
         and then On_State = INIT
         and then not Mission_Abort_Received
-        and then Boarding_Completed
+        and then Ready_For_Takeoff
         and then Start_Or_Go_Received
         =>
           Power_State = ON
@@ -393,15 +408,10 @@ is
 
 private
 
-   procedure Mission_Setup_Management with
-     Global => (In_Out => State),
-     Post => (if Payload_Bay_Closed
-              and then Mission_Parameters_Defined
-              and then Energy_Compatible_With_Mission
-              then Boarding_Completed);
-
    procedure Operating_Point_Update_Management with
-     Global => (In_Out => State),
+   --  Compute the value of Operating_Point
+
+     Global => (In_Out => Private_State),
      Contract_Cases =>
        (Navigation_Mode_From_CP = A
         or else not Operating_Point_From_GS_Received
@@ -410,18 +420,11 @@ private
 
         Navigation_Mode_From_CP = RP
         and then Operating_Point_From_GS_Received
-        and then Power_State = ON
-        and then On_State = RUNNING
-        and then Running_State = LANDING
         =>
-          Operating_Point = Operating_Point'Old,
-
-        Navigation_Mode_From_CP = RP
-        and then Operating_Point_From_GS_Received
-        and then not (Power_State = ON
-          and then On_State = RUNNING
-          and then Running_State = LANDING)
-        =>
-          Operating_Point = Operating_Point_From_GS);
+          (if Power_State = ON
+           and then On_State = RUNNING
+           and then Running_State = LANDING
+           then Operating_Point = Operating_Point'Old
+           else Operating_Point = Operating_Point_From_GS));
 
 end MMS.F_PT.F_MM.Behavior;

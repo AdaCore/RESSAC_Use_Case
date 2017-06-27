@@ -1,9 +1,6 @@
 with Types; use Types;
 
-package External with Abstract_State =>
-  ((From_GS with External => Async_Writers),
-   (From_CP with External => Async_Writers),
-   (From_P_P with External => Async_Writers)) is
+package External with Abstract_State => (State with External => Async_Writers) is
 
    ------------------------------------------------------
    -- Ground-based Mission Preparation and Supervision --
@@ -11,23 +8,23 @@ package External with Abstract_State =>
 
    function Navigation_Parameters return Navigation_Parameters_Type with
      Volatile_Function,
-     Global => From_GS;
+     Global => State;
 
    function Navigation_Mode return Navigation_Mode_Type with
      Volatile_Function,
-     Global => From_GS;
+     Global => State;
 
    function Navigation_Option return Navigation_Option_Type with
      Volatile_Function,
-     Global => From_GS;
+     Global => State;
 
    function Go return Boolean with
      Volatile_Function,
-     Global => From_GS;
+     Global => State;
 
    function Emergency_Landing return Boolean with
      Volatile_Function,
-     Global => From_GS;
+     Global => State;
 
    --------------------------------------------------
    -- AV-based Mission Preparation (Control Panel) --
@@ -35,27 +32,27 @@ package External with Abstract_State =>
 
    function On_OFF_Push_Button return Boolean with
      Volatile_Function,
-     Global => From_CP;
+     Global => State;
 
    function Start_Push_Button return Boolean with
      Volatile_Function,
-     Global => From_CP;
+     Global => State;
 
    function Mode_Switch return Navigation_Mode_Type with
      Volatile_Function,
-     Global => From_CP;
+     Global => State;
 
    function Bay_Switch return Bay_Switch_Type with
      Volatile_Function,
-     Global => From_CP;
+     Global => State;
 
    function Payload_Mass return Payload_Mass_Type with
      Volatile_Function,
-     Global => From_CP;
+     Global => State;
 
    function USB_Key return Navigation_Parameters_Type with
      Volatile_Function,
-     Global => From_CP;
+     Global => State;
 
    -------------------------
    -- Physical Parameters --
@@ -63,14 +60,14 @@ package External with Abstract_State =>
 
    function P return Distance_Type with
      Volatile_Function,
-     Global => From_P_P;
+     Global => State;
 
    function P_Dot return Speed_Type with
      Volatile_Function,
-     Global => From_P_P;
+     Global => State;
 
    function Q return Angle_Type with
      Volatile_Function,
-     Global => From_P_P;
+     Global => State;
 
 end External;

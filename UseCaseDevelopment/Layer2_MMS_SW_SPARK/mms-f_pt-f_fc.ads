@@ -1,6 +1,7 @@
 with Types; use Types;
 
-package MMS.F_PT.F_FC is
+package MMS.F_PT.F_FC with Abstract_State => (Private_State, Output_State) is
+   pragma Elaborate_Body (MMS.F_PT.F_FC);
 
    type Flight_Cell_Center_Type is record
       Speed    : Current_Speed_Type;
@@ -21,5 +22,7 @@ package MMS.F_PT.F_FC is
       Kp : Gain_Type;
       Ki : Gain_Type;
    end record;
+
+   type Time_Type is new Integer; --  in s ??? some bounds
 
 end MMS.F_PT.F_FC;
