@@ -1,32 +1,32 @@
 ACTIVITIES:
  1 - Identification and validation of inputs / outputs:
- 
+
   * Design:
     The specification is structured into a component based architecture. Each component and sub-component has identified inputs and outputs, which may have types, bounds... Information flows through these signals between components.
     Each sub-component is a child package of its container. Inputs and outputs of components are translated as functions without parameters stored in specific child packages named Comp.Input and Comp.Output. Types for signals are stored at the root of the architecture, namely in mms.ads. They are as precise as we could make them, based on the specifications available.
     Links between inputs and outputs of various components are made through renamings, or through expression functions when the mapping is more complex. Inputs and outputs are grouped together depending on where they are coming from/where they are going to.
-    
+
   * Verifications:
     We have checked by review that:
     - Inputs and outputs of components are consistent, namely, if a component A has an output to another component B, then B must have an input from A and conversely.
-      + Method: If a function F is in a group of inputs (resp. outputs) of a component Comp1 labelled 'From Comp2' (resp. 'To Comp2'), where Comp2 is inside the same container as Comp1, check that Comp2.Output (resp. Comp2.Input) has a section 'To Comp1' (resp. 'From Comp1') containing a matching output (resp. input). 
-      
+      + Method: If a function F is in a group of inputs (resp. outputs) of a component Comp1 labelled 'From Comp2' (resp. 'To Comp2'), where Comp2 is inside the same container as Comp1, check that Comp2.Output (resp. Comp2.Input) has a section 'To Comp1' (resp. 'From Comp1') containing a matching output (resp. input).
+
       + Result: Inconsistencies have been reported.
-      
+
     - Types (as well as bounds and units) are consistent between sources and destinations.
       + Method: This is enforced through static typing by turning the destination of a signal as a renaming of its origin.
-      
+
       + Assumptions: When no information was supplied, we have made the following choices:
         * Payload_Mass_Type is in kg with a precision of 0.1 and bounds of 1.0 and 5.0.
         * [...]
-    
+
     - The component structure is well-formed, namely, information does not flow through the edge of components.
       + Method: This can be verified by reviewing use clauses inserted at the beginning of inputs or outputs packages. More precisely
         * An input package Comp.Subcomp.Input can only reference outputs of siblings Comp.*.Output or inputs of parent Comp.Input.
         * An output package Comp.Output can only reference its own inputs Comp.Input or outputs of its children Comp.Subcomp.Output.
 
       + Result: No inconsistency found.
-    
+
  2 - Review of the specification for translatability in Ada contracts:
 
   * Design:
@@ -43,9 +43,15 @@ ACTIVITIES:
       6.6.3.1
       A. Additional guarantee: Translated as a postcondition.
 
+    - MMS.F_PT.F_EM:
+      6.8.3.1
+      Assumptions A, B: Not translated (linked with AV, mechanical body behavior)
+      6.8.3.2
+      Guarantee A: Not translated (linked with weather conditions)
+      Guarantees B, C: Not translated (linked with actual embedded energy which is not measurable)
+
   * Verifications:
     The SPARK toolset can be used to check that:
     - Ada contracts are consistent. If it is a case by case contract, SPARK can check that all cases are covered and that no two cases can apply to the same inputs. If some properties or some information can only be checked in some cases, these cases can be expressed as preconditions on property or information functions and SPARK will check that they are always used in valid context.
 
     - Guarantees are implied by the behavioral specification. If both can be expressed as Ada contracts, SPARK can check that, if the behavioural specification of a component is respected by its implementation, then the implementation will also respect the guarantees as stated in the specification contracts.
-     
