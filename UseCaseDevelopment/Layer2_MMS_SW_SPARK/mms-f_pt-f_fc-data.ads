@@ -2,7 +2,7 @@ with MMS.F_PT.Data;
 
 with Types; use Types;
 
-package MMS.F_PT.F_FC.Data is
+package MMS.F_PT.F_FC.Data with SPARK_Mode is
 
    --  ??? Types need to be precisely defined.
 
@@ -12,7 +12,7 @@ package MMS.F_PT.F_FC.Data is
 
    --  From 6.7.2.3
 
-   Flight_Domain_Mesh : Flight_Domain_Mesh_Type (1 .. 100, 1 .. 100); -- ??? bounds
+   Flight_Domain_Mesh : constant Flight_Domain_Mesh_Type (1 .. 100, 1 .. 100); -- ??? bounds
 
    function Climb_Gains
      (S : Flight_Speed_Center;
@@ -47,28 +47,58 @@ package MMS.F_PT.F_FC.Data is
 
    --  From 6.7.3.2
 
-   Qdot_MinCl : Angular_Speed_Type; --  in angle.s-1
-   Qdot_MaxCl : Angular_Speed_Type; --  in angle.s-1
-   Q_MaxCl    : Angle_Type; --  in angle
-   Qdot_MinCr : Angular_Speed_Type; --  in angle.s-1
-   Qdot_MaxCr : Angular_Speed_Type; --  in angle.s-1
-   Q_MinCr    : Angle_Type; --  in angle
-   Pdot_MaxCr : Speed_Type; --  in km/h
-   Qdot_MinDs : Angular_Speed_Type; --  in angle.s-1
-   Qdot_MaxDs : Angular_Speed_Type; --  in angle.s-1
-   Q_MaxDs    : Angle_Type; --  in angle
+   Qdot_MinCl : constant Angular_Speed_Type; --  in angle.s-1
+   Qdot_MaxCl : constant Angular_Speed_Type; --  in angle.s-1
+   Q_MaxCl    : constant Angle_Type; --  in angle
+   Qdot_MinCr : constant Angular_Speed_Type; --  in angle.s-1
+   Qdot_MaxCr : constant Angular_Speed_Type; --  in angle.s-1
+   Q_MinCr    : constant Angle_Type; --  in angle
+   Pdot_MaxCr : constant Speed_Type; --  in km/h
+   Qdot_MinDs : constant Angular_Speed_Type; --  in angle.s-1
+   Qdot_MaxDs : constant Angular_Speed_Type; --  in angle.s-1
+   Q_MaxDs    : constant Angle_Type; --  in angle
 
-   Escape_Time : Time_Type; --  in s
+   Escape_Time : constant Time_Type; --  in s
 
    --  From 6.7.4
 
-   Commutation_Duration : Time_Type; --  in s
-   Hazard_Duration      : Time_Type; --  in s
+   Commutation_Duration : constant Time_Type; --  in s
+   Hazard_Duration      : constant Time_Type; --  in s
 
-   Recovery_Speed : Integer; --  in m.s
+   Recovery_Speed : constant Integer; --  in m.s
 
-   J0 : Integer; --  in kg.m2
-   L  : Integer; --  in m
-   M0 : Integer; --  in kg
+   J0 : constant Integer; --  in kg.m2
+   L  : constant Integer; --  in m
+   M0 : constant Integer; --  in kg
+
+private
+   pragma SPARK_Mode (Off);
+
+   Flight_Domain_Mesh : constant Flight_Domain_Mesh_Type (1 .. 100, 1 .. 100) :=
+     (others => (others => <>));
+
+   Qdot_MinCl : constant Angular_Speed_Type := 0.0; --  in angle.s-1
+   Qdot_MaxCl : constant Angular_Speed_Type := 0.0; --  in angle.s-1
+   Q_MaxCl    : constant Angle_Type := 0.0; --  in angle
+   Qdot_MinCr : constant Angular_Speed_Type := 0.0; --  in angle.s-1
+   Qdot_MaxCr : constant Angular_Speed_Type := 0.0; --  in angle.s-1
+   Q_MinCr    : constant Angle_Type := 0.0; --  in angle
+   Pdot_MaxCr : constant Speed_Type := 0.0; --  in km/h
+   Qdot_MinDs : constant Angular_Speed_Type := 0.0; --  in angle.s-1
+   Qdot_MaxDs : constant Angular_Speed_Type := 0.0; --  in angle.s-1
+   Q_MaxDs    : constant Angle_Type := 0.0; --  in angle
+
+   Escape_Time : constant Time_Type := 0; --  in s
+
+   --  From 6.7.4
+
+   Commutation_Duration : constant Time_Type := 0; --  in s
+   Hazard_Duration      : constant Time_Type := 0; --  in s
+
+   Recovery_Speed : constant Integer := 0; --  in m.s
+
+   J0 : constant Integer := 0; --  in kg.m2
+   L  : constant Integer := 0; --  in m
+   M0 : constant Integer := 0; --  in kg
 
 end MMS.F_PT.F_FC.Data;

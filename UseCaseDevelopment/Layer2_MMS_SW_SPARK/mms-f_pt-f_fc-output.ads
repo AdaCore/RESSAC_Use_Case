@@ -24,4 +24,6 @@ package MMS.F_PT.F_FC.Output is
    
    function Current_Altitude return Current_Altitude_Type with Global => Output_State;
    
+   function Current_Flight_Phase return Flight_Phase_Type with Global => Output_State;
+   
 end MMS.F_PT.F_FC.Output;

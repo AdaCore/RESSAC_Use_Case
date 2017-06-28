@@ -16,15 +16,16 @@ package MMS.F_PT.F_MM.Behavior.Guarantees with SPARK_Mode is
        and then On_State = RUNNING
        and then Running_State = TAKE_OFF);
 
-   function Energy_Check_Succeed return Boolean is
+   function Initial_Energy_Check_Succeeded return Boolean is
      (Power_State = ON
       and then On_State = INIT
       and then Energy_Compatible_With_Mission);
 
-   function Energy_Check_Fail return Boolean is
+   function In_Flight_Energy_Check_Failed return Boolean is
      (Power_State = ON
       and then On_State = RUNNING
-      and then Running_State = CRUISE
+      and then Running_State = FLIGHT
+      and then Current_Flight_Phase = CRUISE
       and then not Energy_Compatible_With_Mission);
 
    function Mission_Cancelled return Boolean is
@@ -42,7 +43,7 @@ package MMS.F_PT.F_MM.Behavior.Guarantees with SPARK_Mode is
       --  incompatible with mission completion.
 
       (if In_Take_Off_State and then not In_Take_Off_State'Old then
-         Energy_Check_Succeed'Old)
+         Initial_Energy_Check_Succeeded'Old)
 
       --  6.6.3.B Any mission cancellation is signaled to CP and GS.
 
@@ -55,6 +56,6 @@ package MMS.F_PT.F_MM.Behavior.Guarantees with SPARK_Mode is
 
       and then
        (if Mission_Cancelled and then not Mission_Cancelled'Old then
-           Energy_Check_Fail'Old);
+           In_Flight_Energy_Check_Failed'Old);
 
 end MMS.F_PT.F_MM.Behavior.Guarantees;

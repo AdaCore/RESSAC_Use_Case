@@ -22,4 +22,6 @@ package MMS.F_PT is
    type Payload_Mass_Grid_Type is array (Payload_Mass_Center range <>)
      of Payload_Mass_Type;
 
+   type Flight_Phase_Type is (CLIMB, CRUISE, DESCENT);
+
 end MMS.F_PT;

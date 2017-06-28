@@ -64,6 +64,9 @@ package MMS.F_PT.F_MM.Input is
    function Current_Altitude return Current_Altitude_Type
      renames MMS.F_PT.F_FC.Output.Current_Altitude;
    
+   function Current_Flight_Phase return Flight_Phase_Type
+     renames MMS.F_PT.F_FC.Output.Current_Flight_Phase;
+   
    ---------------
    -- From F_EM --
    ---------------

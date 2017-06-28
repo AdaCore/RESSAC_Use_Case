@@ -45,6 +45,12 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    function Current_Altitude return Current_Altitude_Type with
      Global => Private_State;
 
+   function Current_Flight_Phase return Flight_Phase_Type with
+     Global => Private_State,
+     Pre    => Power_State = ON
+     and then On_State = RUNNING
+     and then Running_State = FLIGHT;
+
    -----------------------------------------
    -- States of the automaton in Figure 3 --
    -----------------------------------------
@@ -60,7 +66,7 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
      Global => Private_State,
      Pre    => Power_State = ON;
 
-   type Running_State_Type is (TAKE_OFF, CLIMB, CRUISE, DESCENT, LANDING);
+   type Running_State_Type is (TAKE_OFF, FLIGHT, LANDING);
 
    function Running_State return Running_State_Type with
      Global => Private_State,
@@ -111,7 +117,8 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
      Global => Private_State,
      Pre => Power_State = ON
      and then On_State = RUNNING
-     and then Running_State = DESCENT;
+     and then Running_State = FLIGHT
+     and then Current_Flight_Phase = DESCENT;
 
    function Landed return Boolean is
      (Current_Speed = 0 and Current_Altitude = 0)
@@ -121,19 +128,6 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
      and then On_State = RUNNING
      and then Running_State = LANDING;
 
-   function Operating_Point_Changed return Boolean with
-     Global => Private_State,
-     Pre => Power_State = ON
-     and then On_State = RUNNING
-     and then (Running_State in CLIMB | CRUISE | DESCENT)
-     and then Navigation_Mode = RP;
-
-   function Cruise_Altitude_Reached return Boolean with
-     Global => Private_State,
-     Pre => Power_State = ON
-     and then On_State = RUNNING
-     and then (Running_State in CLIMB | DESCENT);
-
    ----------------
    -- Properties --
    ----------------
@@ -142,7 +136,8 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
      Global => Private_State,
      Pre => Power_State = ON
      and then On_State in INIT | RUNNING
-     and then (if On_State = RUNNING then Running_State = CRUISE);
+     and then (if On_State = RUNNING then
+                 Running_State = FLIGHT and then Current_Flight_Phase = CRUISE);
 
    function Mission_Parameters_Defined return Boolean is
      (USB_Key_Present
@@ -205,11 +200,9 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
      Global         => (In_Out => Private_State),
      Post           =>
-       Operating_Point_Changed = (Operating_Point /= Operating_Point'Old)
 
        --  RP mode enables modification of range parameter before take-off.
 
-     and then
        (if not (Power_State'Old = ON
                 and then On_State'Old = INIT
                 and then Navigation_Mode'Old = RP)
@@ -296,7 +289,7 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
         =>
           Power_State = ON
         and then On_State = RUNNING
-        and then Running_State = CLIMB,
+        and then Running_State = FLIGHT,
 
         Power_State = ON
         and then On_State = RUNNING
@@ -311,7 +304,8 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
         Power_State = ON
         and then On_State = RUNNING
-        and then Running_State = CRUISE
+        and then Running_State = FLIGHT
+        and then Current_Flight_Phase = CRUISE
         and then Power_On
         and then not Mission_Abort_Received
         and then not Energy_Compatible_With_Mission
@@ -323,7 +317,8 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
         Power_State = ON
         and then On_State = RUNNING
-        and then Running_State = DESCENT
+        and then Running_State = FLIGHT
+        and then Current_Flight_Phase = DESCENT
         and then Power_On
         and then not Mission_Abort_Received
         and then Descent_Over
@@ -334,49 +329,17 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
         Power_State = ON
         and then On_State = RUNNING
-        and then (Running_State in CLIMB | CRUISE | DESCENT)
-        and then Power_On
-        and then not Mission_Abort_Received
-        and then Navigation_Mode = RP
-        and then
-          (if Running_State = CRUISE then Energy_Compatible_With_Mission)
-        and then
-          (if Running_State = DESCENT then not Descent_Over)
-        and then Operating_Point_Changed
-        =>
-          Power_State = ON
-        and then On_State = RUNNING
-        and then (Running_State in CLIMB | DESCENT),
-
-        Power_State = ON
-        and then On_State = RUNNING
-        and then (Running_State in CLIMB | DESCENT)
-        and then Power_On
-        and then not Mission_Abort_Received
-        and then (if Navigation_Mode = RP then not Operating_Point_Changed)
-        and then (if Running_State = DESCENT then not Descent_Over)
-        and then Cruise_Altitude_Reached
-        =>
-          Power_State = ON
-        and then On_State = RUNNING
-        and then Running_State = CRUISE,
-
-        Power_State = ON
-        and then On_State = RUNNING
-        and then (Running_State in CLIMB | DESCENT | CRUISE)
+        and then Running_State = FLIGHT
         and then Power_On
         and then not Mission_Abort_Received
         and then
-          (if Running_State = CRUISE then Energy_Compatible_With_Mission)
-        and then (if Navigation_Mode = RP then not Operating_Point_Changed)
+          (if Current_Flight_Phase = CRUISE then Energy_Compatible_With_Mission)
         and then
-          (if Running_State in CLIMB | DESCENT then
-                 not Cruise_Altitude_Reached)
-        and then (if Running_State = DESCENT then not Descent_Over)
+          (if Current_Flight_Phase = DESCENT then not Descent_Over)
         =>
           Power_State = ON
         and then On_State = RUNNING
-        and then Running_State = Running_State'Old,
+        and then Running_State = FLIGHT,
 
         Power_State = ON
         and then On_State = RUNNING
