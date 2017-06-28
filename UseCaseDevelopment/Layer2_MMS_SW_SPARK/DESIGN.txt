@@ -30,9 +30,9 @@ ACTIVITIES:
  2 - Review of the specification for translatability in Ada contracts:
 
   * Design:
-    Each component provides a Run procedure located in a child package Comp.Behavior. This procedure is responsible from updating the internal state of the component at each step. Scheduling, as well as handling of inputs and outputs are not considered here. The procedure Run may have a contract, representing the part of its behavioural specification which is translatable into Ada contracts. Contracts from the specification document are stored in a distinct unit, named Comp.Behavior.Garantees. Parts of specification contracts and of functional behaviours which are not fit for translation into SPARK contracts will be listed here.
+    Each component provides a Run procedure located in a child package Comp.Behavior. This procedure is responsible from updating the internal state of the component at each step. Scheduling, as well as handling of inputs and outputs are not considered here. The procedure Run may have a contract, representing the part of its behavioural specification which is translatable into Ada contracts. Contracts from the specification document are stored in a distinct unit, named Comp.Behavior.Guarantees. Parts of specification contracts and of functional behaviours which are not fit for translation into SPARK contracts will be listed here.
 
-  * Report for translationability into Ada contracts:
+  * Report for translatability into Ada contracts:
     - MMS.F_PT.F_MM:
       6.6.3
       Inherited assumptions A, B, C, D, E: Not translated (linked to weather condition).
@@ -45,7 +45,7 @@ ACTIVITIES:
 
   * Verifications:
     The SPARK toolset can be used to check that:
-    - Ada contracts are consistent. If it is a case by case contract, SPARK can chek that all cases are covered and that no two cases can apply to the same inputs. If some properties or some information can only be checked in some cases, these cases can be expressed as preconditions on property or information functions and SPARK will check that they are always used in valid context.
+    - Ada contracts are consistent. If it is a case by case contract, SPARK can check that all cases are covered and that no two cases can apply to the same inputs. If some properties or some information can only be checked in some cases, these cases can be expressed as preconditions on property or information functions and SPARK will check that they are always used in valid context.
 
-    - Guarantees are implied by the behavioral specification. If both can be expressed as Ada contracts, SPARK can check that, if the behavioural specification of a compoenent is respected by its implementation, then the implementation will also respect the guarantees as stated in the specification contracts.
+    - Guarantees are implied by the behavioral specification. If both can be expressed as Ada contracts, SPARK can check that, if the behavioural specification of a component is respected by its implementation, then the implementation will also respect the guarantees as stated in the specification contracts.
      
