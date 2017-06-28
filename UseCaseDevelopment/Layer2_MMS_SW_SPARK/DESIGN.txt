@@ -50,6 +50,10 @@ ACTIVITIES:
       Guarantee A: Not translated (linked with weather conditions)
       Guarantees B, C: Not translated (linked with actual embedded energy which is not measurable)
 
+    - MMS.F_EL:
+      7.3.2:
+      Guarantees A, B: Not tranlated (linked to weather conditions)
+
   * Verifications:
     The SPARK toolset can be used to check that:
     - Ada contracts are consistent. If it is a case by case contract, SPARK can check that all cases are covered and that no two cases can apply to the same inputs. If some properties or some information can only be checked in some cases, these cases can be expressed as preconditions on property or information functions and SPARK will check that they are always used in valid context.
