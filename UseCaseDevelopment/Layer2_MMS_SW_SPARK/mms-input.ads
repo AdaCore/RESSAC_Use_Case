@@ -7,13 +7,13 @@ package MMS.Input is
    -- Ground-based Mission Preparation and Supervision --
    ------------------------------------------------------
 
-   function Navigation_Parameters return Navigation_Parameters_Type
+   function Navigation_Parameters return Navigation_Parameters_Type_Option
      renames External.Navigation_Parameters;
 
-   function Navigation_Mode return Navigation_Mode_Type
+   function Navigation_Mode return Navigation_Mode_Type_Option
      renames External.Navigation_Mode;
 
-   function Navigation_Option return Navigation_Option_Type
+   function Navigation_Option return Navigation_Option_Type_Option
      renames External.Navigation_Option;
 
    function Go return Boolean renames External.Go;
@@ -39,7 +39,7 @@ package MMS.Input is
    function Payload_Mass return Payload_Mass_Type
      renames External.Payload_Mass;
 
-   function USB_Key return Navigation_Parameters_Type
+   function USB_Key return Navigation_Parameters_Type_Option
      renames External.USB_Key;
 
    -------------------------

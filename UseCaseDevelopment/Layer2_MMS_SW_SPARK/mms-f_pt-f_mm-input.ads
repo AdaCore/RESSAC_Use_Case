@@ -11,13 +11,13 @@ package MMS.F_PT.F_MM.Input is
    -- From F_CM --
    ---------------
 
-   function Navigation_Parameters return Navigation_Parameters_Type 
+   function Navigation_Parameters return Navigation_Parameters_Type_Option
      renames MMS.F_PT.F_CM.Output.Navigation_Parameters;
 
-   function Navigation_Mode return Navigation_Mode_Type
+   function Navigation_Mode return Navigation_Mode_Type_Option
      renames MMS.F_PT.F_CM.Output.Navigation_Mode;
    
-   function Navigation_Option return Navigation_Option_Type
+   function Navigation_Option return Navigation_Option_Type_Option
      renames MMS.F_PT.F_CM.Output.Navigation_Option;
 
    function Go return Boolean
@@ -38,7 +38,7 @@ package MMS.F_PT.F_MM.Input is
    function Payload_Mass return Payload_Mass_Type
      renames MMS.F_PT.F_CM.Output.Payload_Mass;
    
-   function USB_Key return Navigation_Parameters_Type
+   function USB_Key return Navigation_Parameters_Type_Option
      renames MMS.F_PT.F_CM.Output.USB_Key;
    
    -----------------------

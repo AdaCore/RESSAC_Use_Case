@@ -59,13 +59,13 @@ package MMS.F_PT.F_CM.Output is
    -- To F_MM --
    -------------
 
-   function Navigation_Parameters return Navigation_Parameters_Type 
+   function Navigation_Parameters return Navigation_Parameters_Type_Option
      renames MMS.F_PT.F_CM.Input.Navigation_Parameters;
 
-   function Navigation_Mode return Navigation_Mode_Type
+   function Navigation_Mode return Navigation_Mode_Type_Option
      renames MMS.F_PT.F_CM.Input.Navigation_Mode;
    
-   function Navigation_Option return Navigation_Option_Type
+   function Navigation_Option return Navigation_Option_Type_Option
      renames MMS.F_PT.F_CM.Input.Navigation_Option;
 
    function Go return Boolean
@@ -86,7 +86,7 @@ package MMS.F_PT.F_CM.Output is
    function Bay_Switch return Bay_Switch_Type
      renames MMS.F_PT.F_CM.Input.Bay_Switch;
    
-   function USB_Key return Navigation_Parameters_Type
+   function USB_Key return Navigation_Parameters_Type_Option
      renames MMS.F_PT.F_CM.Input.USB_Key; 
 
    ----------------------

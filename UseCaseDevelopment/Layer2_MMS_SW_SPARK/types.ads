@@ -16,9 +16,36 @@ package Types is
       Altitude : Altitude_Input_Type;
    end record;
 
+   type Navigation_Parameters_Type_Option (Present : Boolean := False) is record
+      case Present is
+      when True  =>
+         Content : Navigation_Parameters_Type;
+      when False =>
+         null;
+      end case;
+   end record;
+
    type Navigation_Mode_Type is (RP, A);
 
+   type Navigation_Mode_Type_Option (Present : Boolean := False) is record
+      case Present is
+      when True  =>
+         Content : Navigation_Mode_Type;
+      when False =>
+         null;
+      end case;
+   end record;
+
    type Navigation_Option_Type is (SPEED, ALTITUDE, ENERGY);
+
+   type Navigation_Option_Type_Option (Present : Boolean := False) is record
+      case Present is
+      when True  =>
+         Content : Navigation_Option_Type;
+      when False =>
+         null;
+      end case;
+   end record;
 
    type Bay_Switch_Type is (OPEN, CLOSED);
 
@@ -26,11 +53,9 @@ package Types is
 
    type Distance_Type is new Float; -- type of P, unit and bounds ???
 
-   type Speed_Type is new Float; -- type of P_Dot, unit and bounds ???
+   type Speed_Type is new Float; -- type of P_Dot and Q_Dot, in angle.s-1, bounds ???
 
    type Angle_Type is new Float; -- type of Q, unit and bounds ???
-
-   type Angular_Speed_Type is new Float; -- type of Q_Dot, unit and bounds ???
 
    type Rotactor_Type is range 0 .. 9;
 

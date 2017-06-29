@@ -6,15 +6,15 @@ package External with Abstract_State => (State with External => Async_Writers) i
    -- Ground-based Mission Preparation and Supervision --
    ------------------------------------------------------
 
-   function Navigation_Parameters return Navigation_Parameters_Type with
+   function Navigation_Parameters return Navigation_Parameters_Type_Option with
      Volatile_Function,
      Global => State;
 
-   function Navigation_Mode return Navigation_Mode_Type with
+   function Navigation_Mode return Navigation_Mode_Type_Option with
      Volatile_Function,
      Global => State;
 
-   function Navigation_Option return Navigation_Option_Type with
+   function Navigation_Option return Navigation_Option_Type_Option with
      Volatile_Function,
      Global => State;
 
@@ -50,7 +50,7 @@ package External with Abstract_State => (State with External => Async_Writers) i
      Volatile_Function,
      Global => State;
 
-   function USB_Key return Navigation_Parameters_Type with
+   function USB_Key return Navigation_Parameters_Type_Option with
      Volatile_Function,
      Global => State;
 

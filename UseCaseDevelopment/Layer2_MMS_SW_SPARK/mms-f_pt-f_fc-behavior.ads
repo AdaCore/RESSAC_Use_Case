@@ -35,7 +35,7 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
    -- Estimated Values --
    ----------------------
 
-   function Q_Dot return Angular_Speed_Type with Global => Private_State;
+   function Q_Dot return Speed_Type with Global => Private_State;
 
    ------------
    -- States --

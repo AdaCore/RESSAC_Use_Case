@@ -19,14 +19,14 @@ package MMS.F_PT.F_MM.Behavior.Guarantees with SPARK_Mode is
    function Initial_Energy_Check_Succeeded return Boolean is
      (Power_State = ON
       and then On_State = INIT
-      and then Energy_Compatible_With_Mission);
+      and then Initial_Energy_Compatible_With_Mission);
 
    function In_Flight_Energy_Check_Failed return Boolean is
      (Power_State = ON
       and then On_State = RUNNING
       and then Running_State = FLIGHT
       and then Current_Flight_Phase = CRUISE
-      and then not Energy_Compatible_With_Mission);
+      and then not In_Flight_Energy_Compatible_With_Mission);
 
    function Mission_Cancelled return Boolean is
       (Power_State = On
