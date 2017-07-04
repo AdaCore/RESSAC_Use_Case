@@ -50,6 +50,13 @@ ACTIVITIES:
       Guarantee A: Not translated (linked with weather conditions)
       Guarantees B, C: Not translated (linked with actual embedded energy which is not measurable)
 
+    - MMS.F_PT.F_CM:
+      6.9.3.1:
+      Assumptions A. B, C, E: Not translated (linked with AV's electrical and mechanical behavior)
+      6.9.3.2:
+      Guarantees A, B: Not translated
+      Guaranted C: Not translated (arbitration has been moved from F_CM)
+
     - MMS.F_EL:
       7.3.2:
       Guarantees A, B: Not tranlated (linked to weather conditions)
