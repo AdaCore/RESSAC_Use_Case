@@ -16,7 +16,7 @@ package MMS.F_EL.Behavior with SPARK_Mode is
    -- Estimated Values --
    ----------------------
 
-   function Q_Dot return Angular_Speed_Type with Global => Private_State;
+   function Q_Dot return Speed_Type with Global => Private_State;
    
    ---------------------------------------
    -- Behavioural Specification of F_EL --

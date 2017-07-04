@@ -30,10 +30,10 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    function Payload_Mass_Given return Boolean with
      Pre => Power_State = ON;
    --  ???  Should we assume that Payload_Mass is always given after takeoff?
+   --  same question for usb key
 
    function Payload_Mass return Payload_Mass_Type with
-     Pre => Power_State = ON
-     and then Payload_Mass_Given;
+     Pre => Power_State = ON;
 
    function Navigation_Mode_From_CP return Navigation_Mode_Type;
 
@@ -78,6 +78,22 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
      and then On_State = RUNNING
      and then Running_State = FLIGHT;
 
+   function Energy_Level return Energy_Level_Type with
+     Pre => Power_State = ON;
+
+   function Mission_Parameters_Defined return Boolean is
+     (USB_Key_Present
+      or else (Navigation_Mode_From_CP = RP
+               and then Navigation_Parameters_From_GS_Received));
+
+   function Init_Completed return Boolean is
+     (Payload_Bay_Closed
+      and then Payload_Mass_Given
+      and then Mission_Parameters_Defined)
+   with
+   Pre    => Power_State = ON
+     and then On_State = INIT;
+
    -----------------------------------------
    -- States of the automaton in Figure 3 --
    -----------------------------------------
@@ -87,7 +103,7 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    function Power_State return Power_State_Type with
      Global => Private_State;
 
-   type On_State_Type is (INIT, RUNNING, CANCELLED, COMPLETE, ABORTED);
+   type On_State_Type is (INIT, RUNNING, COMPLETE, ABORTED);
 
    function On_State return On_State_Type with
      Global => Private_State,
@@ -99,6 +115,13 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
      Global => Private_State,
      Pre => Power_State = ON
      and then On_State = RUNNING;
+
+   type Init_State_Type is (PREPARATION, READY, CANCELLED);
+
+   function Init_State return Init_State_Type with
+     Global => Private_State,
+     Pre => Power_State = ON
+     and then On_State = INIT;
 
    -----------------------------
    -- Properties and Entities --
@@ -126,14 +149,14 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
      and then Running_State = LANDING;
 
    function Mission_Range_From_Navigation_Parameters
-     return Current_Range_Type;
---   with Pre => Mission_Parameters_Defined;
+     return Current_Range_Type
+   with Pre => Mission_Parameters_Defined;
    --  Fetch distance from State.Navigation_Parameters and do the appropriate
    --  conversion.
 
    function Operating_Point_From_Navigation_Parameters
-     return Operating_Point_Type;
---   with Pre => Mission_Parameters_Defined;
+     return Operating_Point_Type
+   with Pre => Mission_Parameters_Defined;
    --  Fetch altitude and speed from State.Navigation_Parameters and do the
    --  appropriate conversions.
 
@@ -149,53 +172,38 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
      and then Navigation_Mode = RP;
 
    function Initial_Energy_Compatible_With_Mission return Boolean with
-     Global => Private_State,
-     Pre => Power_State = ON
-     and then On_State = INIT;
-  --   and then Mission_Parameters_Defined
-  --   and then Payload_Mass_Given;
+     Global => Private_State;
 
    function In_Flight_Energy_Compatible_With_Mission return Boolean with
-     Global => Private_State,
-     Pre => Power_State = ON
-     and then On_State = RUNNING
-     and then Running_State = FLIGHT;
- --    and then Current_Flight_Phase = CRUISE;
-
-   function Mission_Parameters_Defined return Boolean is
-     (USB_Key_Present
-      or else (Navigation_Mode_From_CP = RP
-               and then Navigation_Parameters_From_GS_Received));
-
-   function Ready_For_Takeoff return Boolean is
-     (Payload_Bay_Closed
-      and then Payload_Mass_Given
-      and then Mission_Parameters_Defined
-      and then Initial_Energy_Compatible_With_Mission)
-   with
-   Global => (Private_State, Input_State),
-   Pre  => Power_State = ON
-     and then On_State = INIT;
-   --  ??? Should be sent to F_CM but the corresponding flag is disabled for
-   --  now...
+     Global => Private_State;
 
    function Emergency_Landing return Boolean is
-     (On_State = CANCELLED)
+     (On_State = ABORTED)
    with
      Global => Private_State,
      Pre    => Power_State = ON;
-   --  ??? Should be ABORTED maybe?
 
    function Mission_Range return Current_Range_Type with
-     Global => Private_State;
-   --  Pre => Mission_Parameters_Defined;
+     Global => (Input => Private_State, Proof_In => Input_State),
+     Pre => Mission_Parameters_Defined;
 
    function Operating_Point return Operating_Point_Type with
-     Global => Private_State;
-   --  Pre => Mission_Parameters_Defined;
+     Global => (Input => Private_State, Proof_In => Input_State),
+     Pre => Mission_Parameters_Defined;
 
-   function Mission_Cancellation_Signaled return Boolean with
-     Global => Private_State;
+   function Mission_Aborted_Signaled return Boolean with
+     Global => Private_State,
+     Pre    => Power_State = ON;
+
+   function Mission_Cancelled_Signaled return Boolean with
+     Global => Private_State,
+     Pre    => Power_State = ON
+     and then On_State = INIT;
+
+   function Aborted_For_Energy_Reasons return Boolean with
+     Global => Private_State,
+     Pre    => Power_State = ON
+     and then On_State = ABORTED;
 
    ---------------------------------------
    -- Behavioural Specification of F_MM --
@@ -254,7 +262,8 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
         and then Power_On
         =>
           Power_State = ON
-        and then On_State = INIT,
+        and then On_State = INIT
+        and then Init_State = PREPARATION,
 
         Power_State = ON
         and then Power_Off
@@ -267,37 +276,52 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
         and then Mission_Abort_Received
         =>
           Power_State = ON
-        and then On_State = ABORTED,
+        and then On_State = ABORTED
+        and then Aborted_For_Energy_Reasons = False
+        and then Mission_Aborted_Signaled,
 
         Power_State = ON
         and then Power_On
         and then On_State = INIT
         and then not Mission_Abort_Received
-        and then not Ready_For_Takeoff
+        and then not Init_Completed
         =>
           Power_State = ON
-        and then On_State = INIT,
+        and then On_State = INIT
+        and then Init_State = PREPARATION,
 
         Power_State = ON
         and then Power_On
         and then On_State = INIT
         and then not Mission_Abort_Received
-        and then Ready_For_Takeoff
+        and then Init_Completed
         and then not Start_Or_Go_Received
         =>
           Power_State = ON
-        and then On_State = INIT,
+        and then On_State = INIT
+        and then
+          (if Initial_Energy_Compatible_With_Mission then
+             Init_State = READY
+           else
+             Init_State = CANCELLED
+             and then Mission_Cancelled_Signaled),
 
         Power_State = ON
         and then Power_On
         and then On_State = INIT
         and then not Mission_Abort_Received
-        and then Ready_For_Takeoff
+        and then Init_Completed
         and then Start_Or_Go_Received
         =>
-          Power_State = ON
-        and then On_State = RUNNING
-        and then Running_State = TAKE_OFF,
+          (if Initial_Energy_Compatible_With_Mission then
+                 Power_State = ON
+             and then On_State = RUNNING
+             and then Running_State = TAKE_OFF
+           else
+             Power_State = ON
+             and then On_State = INIT
+             and then Init_State = CANCELLED
+             and then Mission_Cancelled_Signaled),
 
         Power_State = ON
         and then On_State = RUNNING
@@ -324,42 +348,27 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
         Power_State = ON
         and then On_State = RUNNING
         and then Running_State = FLIGHT
-        and then Current_Flight_Phase = CRUISE
         and then Power_On
         and then not Mission_Abort_Received
-        and then not In_Flight_Energy_Compatible_With_Mission
         =>
-          Power_State = ON
-        and then On_State = CANCELLED
-        and then Mission_Cancellation_Signaled
-        and then Emergency_Landing,
-
-        Power_State = ON
-        and then On_State = RUNNING
-        and then Running_State = FLIGHT
-        and then Current_Flight_Phase = DESCENT
-        and then Power_On
-        and then not Mission_Abort_Received
-        and then Descent_Over
-        =>
-          Power_State = ON
-        and then On_State = RUNNING
-        and then Running_State = LANDING,
-
-        Power_State = ON
-        and then On_State = RUNNING
-        and then Running_State = FLIGHT
-        and then Power_On
-        and then not Mission_Abort_Received
-        and then
-          (if Current_Flight_Phase = CRUISE then
-                 In_Flight_Energy_Compatible_With_Mission)
-        and then
-          (if Current_Flight_Phase = DESCENT then not Descent_Over)
-        =>
-          Power_State = ON
-        and then On_State = RUNNING
-        and then Running_State = FLIGHT,
+          (if Current_Flight_Phase = CRUISE
+             and then not In_Flight_Energy_Compatible_With_Mission
+           then
+               Power_State = ON
+             and then On_State = ABORTED
+             and then Aborted_For_Energy_Reasons = True
+             and then Mission_Aborted_Signaled
+             and then Emergency_Landing
+           elsif Current_Flight_Phase = DESCENT
+             and then Descent_Over
+           then
+               Power_State = ON
+             and then On_State = RUNNING
+             and then Running_State = LANDING
+           else
+               Power_State = ON
+             and then On_State = RUNNING
+             and then Running_State = FLIGHT),
 
         Power_State = ON
         and then On_State = RUNNING
@@ -384,7 +393,7 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
         Power_State = ON
         and then Power_On
-        and then (On_State in CANCELLED .. ABORTED)
+        and then (On_State in COMPLETE .. ABORTED)
         =>
           Power_State = ON
         and then On_State = On_State'Old);
@@ -455,13 +464,16 @@ private
    function Current_Flight_Phase return Flight_Phase_Type is
      (State.Input_Current_Flight_Phase);
 
+   function Energy_Level return Energy_Level_Type is
+     (State.Input_Energy_Level);
+
    -------------------
    -- Tasks of F_MM --
    -------------------
 
    function Navigation_Parameters return Navigation_Parameters_Type is
-     (State.Navigation_Parameters);
- --  with Pre => Mission_Parameters_Defined;
+     (State.Navigation_Parameters)
+   with Pre => Mission_Parameters_Defined;
 
    procedure Management_Of_Navigation_Mode with
    --  Compute the value of Navigation_Mode / Options / Parameters (see 6.9.4)
@@ -517,8 +529,6 @@ private
    --  Assemble the mission profile
 
      Pre  => Power_State = ON,
-   --  and then Mission_Parameters_Defined
-  --   and then Payload_Mass_Given,
      Post => Mission_Profile'Result =
         (Mass     => Payload_Mass,
          Distance => Current_Range,
@@ -544,9 +554,7 @@ private
      (Neighbour : Mission_Profile_Type) return Mission_Profile_Distance_Type
    with
      Pre => Power_State = ON
-     and then On_State in INIT | RUNNING;
-   --  and then Mission_Parameters_Defined
-   --  and then Payload_Mass_Given;
+       and then On_State in INIT | RUNNING;
    --  Compute the distance between Mission_Profile and its Neighbour.
 
    function Nearest_Neighbours return Neighbour_Mission_Profile_Array_Type with
@@ -556,8 +564,6 @@ private
 
      Pre  => Power_State = ON
      and then On_State in INIT | RUNNING,
-  --   and then Mission_Parameters_Defined
-  --   and then Payload_Mass_Given,
      Post =>
        (for all Neighbour_Center of Nearest_Neighbours'Result =>
           Neighbour_Center.Mission_Profile.M in
@@ -618,16 +624,38 @@ private
                                              A => Neighbour.A,
                                              S => Neighbour.S));
 
-   procedure Mission_Viability_Logic with
-   --  Compute the value of Initial_Energy_Compatible_With_Mission and
-   --  In_Flight_Energy_Compatible_With_Mission.
+   function Interpolated_Energy_Level return Energy_Level_Type;
+   --  Compute the interpolation of the energy levels of the neighbours of
+   --  Mission_Profile by distance-based averaging.
+
+   procedure Initial_Mission_Viability_Logic with
+   --  Compute the value of Initial_Energy_Compatible_With_Mission. It should
+   --  be computed when Init_Completed is True.
+
+     Pre  => Power_State = ON
+     and then On_State = INIT
+     and then Init_Completed,
+     Post => Initial_Energy_Compatible_With_Mission =
+
+   --  In A mode, use a 30% energy margin.
+
+       ((if Navigation_Mode = A then Interpolated_Energy_Level * 13 / 10
+
+   --  In RP mode, use a 10% energy margin.
+
+         else Interpolated_Energy_Level * 11 / 10) >= Energy_Level);
+
+   procedure In_Flight_Mission_Viability_Logic with
+   --  Compute the value of In_Flight_Energy_Compatible_With_Mission. It should
+   --  be repeated at a periodic rate of F_Viability.
+   --  Set In_Flight_Energy_Compatible_With_Mission to True if Energy_Level is
+   --  at least the Interpolated_Energy_Level plus an enery margin. When
+   --  EstimatedTotalMass increases, and even more so if it increases quickly,
+   --  F_MM applies greater safety margins (see #17).
 
      Pre => Power_State = ON
-     and then On_State in INIT | RUNNING
-     and then (if On_State = INIT
-               then Mission_Parameters_Defined
-                 and then Payload_Mass_Given
-               else Running_State = FLIGHT
-                 and then Current_Flight_Phase = CRUISE);
+     and then On_State = RUNNING
+     and then Running_State = FLIGHT
+     and then Current_Flight_Phase = CRUISE;
 
 end MMS.F_PT.F_MM.Behavior;

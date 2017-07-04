@@ -22,7 +22,7 @@ package MMS.F_PT.F_CM.Output is
       
    function CP_Displays return CP_Displays_Type is
      (CP_Displays_Type'
-        (Ready            => True, --  This register is not loaded at increment 1 ???
+        (Ready            => MMS.F_PT.F_CM.Input.Ready_For_Takeoff,
          Cancelled        => MMS.F_PT.F_CM.Input.Mission_Cancelled,
          Complete         => MMS.F_PT.F_CM.Input.Mission_Complete,
          Aborted          => MMS.F_PT.F_CM.Input.Mission_Aborted,

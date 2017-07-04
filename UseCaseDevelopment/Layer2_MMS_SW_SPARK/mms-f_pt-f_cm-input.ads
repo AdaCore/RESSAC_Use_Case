@@ -66,6 +66,9 @@ package MMS.F_PT.F_CM.Input is
    function Mission_Cancelled return Boolean
      renames MMS.F_PT.F_MM.Output.Mission_Cancelled;
    
+   function Ready_For_Takeoff return Boolean
+     renames MMS.F_PT.F_MM.Output.Ready_For_Takeoff;
+   
    ---------------
    -- From F_EM --
    ---------------

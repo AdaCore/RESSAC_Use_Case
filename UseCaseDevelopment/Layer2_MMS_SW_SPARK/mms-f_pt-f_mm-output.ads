@@ -12,6 +12,8 @@ package MMS.F_PT.F_MM.Output is
    
    function Mission_Aborted return Boolean with Global => Output_State;
    
+   function Ready_For_Takeoff return Boolean with Global => Output_State;
+   
    -------------
    -- To F_EL --
    --------------
