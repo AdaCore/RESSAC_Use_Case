@@ -2,9 +2,24 @@ with Types; use Types;
 
 package MMS.F_PT.F_MM with
   SPARK_Mode,
-  Abstract_State => (Private_State, Output_State, Input_State)
+  Abstract_State =>
+    (Navigation_Parameter_State,
+     Operating_Point_State,
+     Viability_Logic_State,
+     Mission_Termination_State,
+     Private_State,
+     Output_State,
+     Input_State)
 is
    pragma Elaborate_Body (MMS.F_PT.F_MM);
+
+   type Power_State_Type is (ON, OFF);
+
+   type On_State_Type is (INIT, RUNNING, COMPLETE, ABORTED);
+
+   type Running_State_Type is (TAKE_OFF, FLIGHT, LANDING);
+
+   type Init_State_Type is (PREPARATION, READY, CANCELLED);
 
    type Viability_Cell_Center_Type is record
       Distance     : Current_Range_Type;
@@ -48,7 +63,22 @@ is
       Distance        : Mission_Profile_Distance_Type;
    end record;
 
-   type Neighbour_Mission_Profile_Array_Type is array (Positive range 1 .. 16)
+   type Num_Of_Neighbours is new Positive range 1 .. 16;
+
+   type Neighbour_Mission_Profile_Array_Type is array
+     (Num_Of_Neighbours range <>)
      of Neighbour_Mission_Profile_Type;
+
+   type Neighbour_Mission_Profiles (Size : Num_Of_Neighbours) is record
+     Neighbours : Neighbour_Mission_Profile_Array_Type (1 .. Size);
+   end record;
+
+   type Energy_Level_Array_Type is array
+     (Num_Of_Neighbours range <>)
+     of Energy_Level_Type;
+
+   type Energy_Levels (Size : Num_Of_Neighbours) is record
+     Neighbours : Energy_Level_Array_Type (1 .. Size);
+   end record;
 
 end MMS.F_PT.F_MM;

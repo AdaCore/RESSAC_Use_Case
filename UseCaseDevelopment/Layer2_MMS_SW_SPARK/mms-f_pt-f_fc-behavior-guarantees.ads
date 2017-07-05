@@ -15,10 +15,10 @@ package MMS.F_PT.F_FC.Behavior.Guarantees with SPARK_Mode is
    range BRAKING .. WAITING_PROP;
 
    function Engine_State_In_Braking return Boolean is
-     (Mission_State = RUNNING and then Engine_State in Braking_State_Type);
+     (Mission_State = FLIGHT and then Engine_State in Braking_State_Type);
 
    function Engine_State_In_Propulsion return Boolean is
-     (Mission_State = RUNNING and then Engine_State in Propulsion_State_Type);
+     (Mission_State = FLIGHT and then Engine_State in Propulsion_State_Type);
 
    -----------------------------------
    -- High-Level Garantees for F_FC --

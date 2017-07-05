@@ -48,22 +48,53 @@ package MMS.F_PT.F_MM.State is
    -- Private_State --
    -------------------
 
-   Navigation_Mode : Navigation_Mode_Type with Part_Of => Private_State;
+   Power_State : Power_State_Type with Part_Of => Private_State;
 
-   Operating_Mode : Navigation_Option_Type with Part_Of => Private_State;
+   On_State : On_State_Type with Part_Of => Private_State;
+
+   Init_State : Init_State_Type with Part_Of => Private_State;
+
+   Running_State : Running_State_Type with Part_Of => Private_State;
+
+   Aborted_For_Energy_Reasons : Boolean with Part_Of => Private_State;
+
+   --------------------------------
+   -- Navigation_Parameter_State --
+   --------------------------------
+
+   Navigation_Mode : Navigation_Mode_Type with
+     Part_Of => Navigation_Parameter_State;
+
+   Operating_Mode : Navigation_Option_Type with
+     Part_Of => Navigation_Parameter_State;
 
    Navigation_Parameters : Navigation_Parameters_Type with
-     Part_Of => Private_State;
+     Part_Of => Navigation_Parameter_State;
 
-   Operating_Point : Operating_Point_Type with Part_Of => Private_State;
+   ---------------------------
+   -- Operating_Point_State --
+   ---------------------------
+
+   Mission_Range  : Current_Range_Type with Part_Of => Operating_Point_State;
+
+   Operating_Point : Operating_Point_Type with
+     Part_Of => Operating_Point_State;
+
+   ---------------------------
+   -- Viability_Logic_State --
+   ---------------------------
 
    Initial_Energy_Compatible_With_Mission : Boolean with
-     Part_Of => Private_State;
+     Part_Of => Viability_Logic_State;
 
    In_Flight_Energy_Compatible_With_Mission : Boolean with
-     Part_Of => Private_State;
+     Part_Of => Viability_Logic_State;
 
-   Descent_Over : Boolean with Part_Of => Private_State;
+   -------------------------------
+   -- Mission_Termination_State --
+   -------------------------------
+
+   Descent_Over : Boolean with Part_Of => Mission_Termination_State;
 
    ------------------
    -- Output_State --

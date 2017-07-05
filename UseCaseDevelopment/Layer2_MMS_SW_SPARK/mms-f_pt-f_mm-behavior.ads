@@ -24,186 +24,191 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    function Power_On return Boolean;
 
    function Payload_Bay_Closed return Boolean with
-     Pre => Power_State = ON
-     and then On_State = INIT;
+     Pre => Power_On;
 
    function Payload_Mass_Given return Boolean with
-     Pre => Power_State = ON;
+     Pre => Power_On;
    --  ???  Should we assume that Payload_Mass is always given after takeoff?
    --  same question for usb key
 
    function Payload_Mass return Payload_Mass_Type with
-     Pre => Power_State = ON;
+     Pre => Power_On;
 
-   function Navigation_Mode_From_CP return Navigation_Mode_Type;
+   function Navigation_Mode_From_CP return Navigation_Mode_Type with
+     Pre => Power_On;
 
-   function Navigation_Mode_From_GS_Received return Boolean;
+   function Navigation_Mode_From_GS_Received return Boolean with
+     Pre => Power_On;
 
    function Navigation_Mode_From_GS return Navigation_Mode_Type with
-     Pre => Navigation_Mode_From_GS_Received;
+     Pre => Power_On and then Navigation_Mode_From_GS_Received;
 
-   function Operating_Mode_From_CP return Navigation_Option_Type;
+   function Operating_Mode_From_CP return Navigation_Option_Type with
+     Pre => Power_On;
 
-   function Operating_Mode_From_GS_Received return Boolean;
+   function Operating_Mode_From_GS_Received return Boolean with
+     Pre => Power_On;
 
    function Operating_Mode_From_GS return Navigation_Option_Type with
-     Pre => Operating_Mode_From_GS_Received;
+     Pre => Power_On and then Operating_Mode_From_GS_Received;
 
-   function Navigation_Parameters_From_GS_Received return Boolean;
+   function Navigation_Parameters_From_GS_Received return Boolean with
+     Pre => Power_On;
 
    function Navigation_Parameters_From_GS return Navigation_Parameters_Type with
-     Pre => Navigation_Parameters_From_GS_Received;
+     Pre => Power_On and then Navigation_Parameters_From_GS_Received;
 
-   function USB_Key_Present return Boolean;
+   function USB_Key_Present return Boolean with
+     Pre => Power_On;
 
    function Navigation_Parameters_From_USB_Key return Navigation_Parameters_Type
    with
-     Pre => USB_Key_Present;
+     Pre => Power_On and then USB_Key_Present;
 
    function Mission_Abort_Received return Boolean with
-     Pre => Power_State = ON;
+     Pre => Power_On;
 
    function Start_Or_Go_Received return Boolean with
-     Pre => Power_State = ON
-     and then On_State = INIT;
+     Pre => Power_On;
 
-   function Current_Range return Current_Range_Type;
+   function Current_Range return Current_Range_Type with
+   Pre => Power_On;
 
-   function Current_Speed return Current_Speed_Type;
+   function Current_Speed return Current_Speed_Type with
+   Pre => Power_On;
 
-   function Current_Altitude return Current_Altitude_Type;
+   function Current_Altitude return Current_Altitude_Type with
+   Pre => Power_On;
 
    function Current_Flight_Phase return Flight_Phase_Type with
-     Pre => Power_State = ON
-     and then On_State = RUNNING
-     and then Running_State = FLIGHT;
+     Pre => Power_On;
 
    function Energy_Level return Energy_Level_Type with
-     Pre => Power_State = ON;
+     Pre => Power_On;
 
    function Mission_Parameters_Defined return Boolean is
      (USB_Key_Present
       or else (Navigation_Mode_From_CP = RP
-               and then Navigation_Parameters_From_GS_Received));
+               and then Navigation_Parameters_From_GS_Received))
+   with
+   Pre => Power_On;
 
    function Init_Completed return Boolean is
      (Payload_Bay_Closed
       and then Payload_Mass_Given
       and then Mission_Parameters_Defined)
    with
-   Pre    => Power_State = ON
-     and then On_State = INIT;
+   Pre => Power_On;
 
    -----------------------------------------
    -- States of the automaton in Figure 3 --
    -----------------------------------------
 
-   type Power_State_Type is (ON, OFF);
-
-   function Power_State return Power_State_Type with
-     Global => Private_State;
-
-   type On_State_Type is (INIT, RUNNING, COMPLETE, ABORTED);
+   function Power_State return Power_State_Type;
 
    function On_State return On_State_Type with
-     Global => Private_State,
      Pre    => Power_State = ON;
 
-   type Running_State_Type is (TAKE_OFF, FLIGHT, LANDING);
-
    function Running_State return Running_State_Type with
-     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = RUNNING;
 
-   type Init_State_Type is (PREPARATION, READY, CANCELLED);
-
    function Init_State return Init_State_Type with
-     Global => Private_State,
      Pre => Power_State = ON
      and then On_State = INIT;
+
+   function Aborted_For_Energy_Reasons return Boolean with
+     Pre    => Power_State = ON
+     and then On_State = ABORTED;
 
    -----------------------------
    -- Properties and Entities --
    -----------------------------
 
-   function Power_Off return Boolean is (not Power_On);
+   function Navigation_Mode return Navigation_Mode_Type with
+     Pre    => Power_On;
 
-   function Take_Off_Over return Boolean with
-     Global => Private_State,
-     Pre => Power_State = ON
-     and then On_State = RUNNING
-     and then Running_State = TAKE_OFF;
+   function Operating_Mode return Navigation_Option_Type with
+     Pre    => Power_On;
 
-   function Descent_Over return Boolean with
-     Global => Private_State,
-     Pre => Power_State = ON
-     and then On_State = RUNNING
-     and then Running_State = FLIGHT;
-
-   function Landed return Boolean is
-     (Current_Speed = 0 and Current_Altitude = 0)
-   with
-     Pre => Power_State = ON
-     and then On_State = RUNNING
-     and then Running_State = LANDING;
+   function Navigation_Parameters return Navigation_Parameters_Type
+   with Pre => Power_On
+     and then Mission_Parameters_Defined;
 
    function Mission_Range_From_Navigation_Parameters
      return Current_Range_Type
-   with Pre => Mission_Parameters_Defined;
-   --  Fetch distance from State.Navigation_Parameters and do the appropriate
+   with Global =>
+       (Input => Operating_Point_State, Proof_In => Input_State),
+     Pre => Power_On
+     and then Mission_Parameters_Defined;
+   --  Fetch distance from Navigation_Parameters and do the appropriate
    --  conversion.
 
    function Operating_Point_From_Navigation_Parameters
      return Operating_Point_Type
-   with Pre => Mission_Parameters_Defined;
-   --  Fetch altitude and speed from State.Navigation_Parameters and do the
+   with Global =>
+       (Input => Operating_Point_State, Proof_In => Input_State),
+     Pre => Power_On
+     and then Mission_Parameters_Defined;
+   --  Fetch altitude and speed from Navigation_Parameters and do the
    --  appropriate conversions.
 
-   function Navigation_Mode return Navigation_Mode_Type with
-     Global => Private_State,
-     Pre    => Power_State = ON
-     and then On_State in INIT | RUNNING;
-
-   function Operating_Mode return Navigation_Option_Type with
-     Global => Private_State,
-     Pre    => Power_State = ON
-     and then On_State = RUNNING
-     and then Navigation_Mode = RP;
-
-   function Initial_Energy_Compatible_With_Mission return Boolean with
-     Global => Private_State;
-
-   function In_Flight_Energy_Compatible_With_Mission return Boolean with
-     Global => Private_State;
-
-   function Emergency_Landing return Boolean is
-     (On_State = ABORTED)
-   with
-     Global => Private_State,
-     Pre    => Power_State = ON;
-
    function Mission_Range return Current_Range_Type with
-     Global => (Input => Private_State, Proof_In => Input_State),
-     Pre => Mission_Parameters_Defined;
+     Pre    => Power_On
+     and then Power_State = On
+     and then On_State in INIT | RUNNING
+     and then Mission_Parameters_Defined;
 
    function Operating_Point return Operating_Point_Type with
-     Global => (Input => Private_State, Proof_In => Input_State),
-     Pre => Mission_Parameters_Defined;
+     Pre    =>  Power_On
+     and then Power_State = On
+     and then On_State in INIT | RUNNING
+     and then Mission_Parameters_Defined;
+
+   function Initial_Energy_Compatible_With_Mission return Boolean
+   with
+     Pre => Power_On
+     and then Power_State = ON
+     and then On_State = INIT
+     and then Init_Completed;
+
+   function In_Flight_Energy_Compatible_With_Mission return Boolean
+   with
+     Pre => Power_On
+     and then Power_State = ON
+     and then On_State = RUNNING
+     and then Running_State = FLIGHT
+     and then Current_Flight_Phase = CRUISE;
+
+   function Take_Off_Over return Boolean with
+     Pre => Power_On
+     and then Power_State = ON
+     and then On_State = RUNNING
+     and then Running_State = TAKE_OFF;
+
+   function Descent_Over return Boolean with
+     Pre => Power_On
+     and then Power_State = ON
+     and then On_State = RUNNING
+     and then Running_State = FLIGHT
+     and then Current_Flight_Phase = DESCENT;
+
+   function Landed return Boolean is
+     (Current_Speed = 0 and Current_Altitude = 0)
+   with
+     Pre => Power_On
+     and then Power_State = ON
+     and then On_State = RUNNING
+     and then Running_State = LANDING;
+
+   function Emergency_Landing return Boolean with
+     Global => Output_State;
 
    function Mission_Aborted_Signaled return Boolean with
-     Global => Private_State,
-     Pre    => Power_State = ON;
+     Global => Output_State;
 
    function Mission_Cancelled_Signaled return Boolean with
-     Global => Private_State,
-     Pre    => Power_State = ON
-     and then On_State = INIT;
-
-   function Aborted_For_Energy_Reasons return Boolean with
-     Global => Private_State,
-     Pre    => Power_State = ON
-     and then On_State = ABORTED;
+     Global => Output_State;
 
    ---------------------------------------
    -- Behavioural Specification of F_MM --
@@ -217,44 +222,305 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    procedure Write_Outputs with
    --  Compute values of outputs from the current state
      Global => (Input  => Private_State,
-                Output => Output_State);
+                Output => Output_State),
+     Post   =>
+       (if Power_State = ON and then On_State = ABORTED then
+          Emergency_Landing
+        and then Mission_Aborted_Signaled)
+     and then
+       (if Power_State = ON
+        and then On_State = INIT
+        and then Init_State = CANCELLED
+        then Mission_Cancelled_Signaled);
 
-   procedure Run with
-   -- Do:
-   --  - Compute the new state of the automaton
+   -------------------
+   -- Tasks of F_MM --
+   -------------------
 
-     Global         => (In_Out => Private_State, Input => Input_State),
-     Post           =>
+   ------------------------------------------------------------
+   --  Management of Navigation Modes / Options / Parameters --
+   ------------------------------------------------------------
 
-       --  RP mode enables modification of range parameter before take-off.
+   procedure Management_Of_Navigation_Modes_Options_Parameters with
+   --  Compute the value of Navigation_Mode / Options / Parameters (see 6.9.4)
 
-       (if not (Power_State'Old = ON
-                and then On_State'Old = INIT
-                and then Navigation_Mode'Old = RP)
+     Global => (Input  => (Input_State, Private_State),
+                Output => Navigation_Parameter_State),
+     Pre    => Power_On,
+     Post   => Navigation_Mode =
+
+     --  In case of conflict on the navigation mode, CP prevails over GS.
+
+     (if Navigation_Mode_From_CP = A
+      or else not Navigation_Mode_From_GS_Received
+      then Navigation_Mode_From_CP
+
+     --  If CP states the mode to RC then GS can choose the navigation mode.
+
+      else Navigation_Mode_From_GS)
+
+     and then Operating_Mode =
+       (if Navigation_Mode = A
+        or else not Operating_Mode_From_GS_Received
+        then Operating_Mode_From_CP
+        else Operating_Mode_From_GS)
+
+     and then
+         (if Mission_Parameters_Defined then
+            Navigation_Parameters =
+              (if Navigation_Mode_From_CP = A
+               or else not Navigation_Parameters_From_GS_Received
+               then Navigation_Parameters_From_USB_Key
+               else Navigation_Parameters_From_GS));
+
+   ---------------------------------------
+   -- Operating Point Update Management --
+   ---------------------------------------
+
+   procedure Operating_Point_Update_Management with
+   --  Compute the value of Operating_Point and Mission_Range
+
+
+     Global => (Input  =>
+                  (Input_State, Private_State, Navigation_Parameter_State),
+                In_Out => Operating_Point_State),
+     Pre    => Power_On
+       and then Mission_Parameters_Defined
+       and then Power_State = ON
+       and then On_State in INIT | RUNNING,
+
+     --  F_MM ensures freeze of the operating point once landing is activated.
+
+     Post   =>
+         (if Power_State = ON
+           and then On_State = RUNNING
+           and then Running_State = LANDING
+          then Operating_Point = Operating_Point'Old
+          else Operating_Point = Operating_Point_From_Navigation_Parameters)
+
+         --  RP mode enables modification of range parameter before take-off.
+
+    and then
+       (if Navigation_Mode = RP
         then Mission_Range = Mission_Range'Old
-        elsif Mission_Parameters_Defined
-        then Mission_Range = Mission_Range_From_Navigation_Parameters)
+        else Mission_Range = Mission_Range_From_Navigation_Parameters);
 
-       --  RP mode enables modification of altitude and speed parameters at any
-       --  time (but not at landing, it is frozen...).
+   ------------------------------
+   --  Mission_Viability_Logic --
+   ------------------------------
 
-     and then
-       (if (Power_State'Old = ON
-            and then On_State'Old in INIT | RUNNING
-            and then Navigation_Mode'Old = A)
-        then Operating_Point = Operating_Point'Old)
+   function Mission_Profile return Mission_Profile_Type with
+     Global => Viability_Logic_State;
 
-       --  The operating point is frozen once landing is activated.
+   function Appropriate_Tabulating_Function return Viability_Domain_Mesh_Type
+   with
+     Global => Viability_Logic_State;
 
-     and then
-       (if Power_State'Old = ON
-        and then On_State'Old = RUNNING
-        and then Running_State = LANDING
-        then Operating_Point = Operating_Point'Old),
+   function Distance_With_Neighbour
+     (Neighbour : Mission_Profile_Type) return Mission_Profile_Distance_Type
+   with
+    Global => Viability_Logic_State;
+   --  Compute the distance between Mission_Profile and its Neighbour.
 
+   function Nearest_Neighbours return Neighbour_Mission_Profiles with
+    Global => Viability_Logic_State;
+
+   function Extract_Energy_Level_For_Neighbours return Energy_Levels
+   with
+    Global => Viability_Logic_State;
+
+   function Interpolated_Energy_Level return Energy_Level_Type with
+    Global => Viability_Logic_State;
+   --  Compute the interpolation of the energy levels of the neighbours of
+   --  Mission_Profile by distance-based averaging.
+
+   procedure Mission_Viability_Logic with
+     Global => (Input  =>
+                  (Input_State,
+                   Private_State,
+                   Navigation_Parameter_State,
+                   Operating_Point_State),
+                 In_Out => Viability_Logic_State),
+     Pre    => Power_State = ON,
+     Post   =>
+
+   --  1. Assembling mission profile.
+
+       Mission_Profile =
+        (Mass     => Payload_Mass,
+         Distance => Current_Range,
+         Altitude => Current_Altitude,
+         Speed    => Current_Speed)
+
+   --  2. Selecting tabulating function that corresponds to navigation mode.
+
+     and then Appropriate_Tabulating_Function =
+         (if On_State = INIT and then Navigation_Mode = A
+          then Data.Amode_Initial_Domain_Mesh
+          elsif On_State = INIT and then Navigation_Mode = RP
+          then Data.RPmode_Initial_Domain_Mesh
+          elsif Navigation_Mode = A
+          then Data.Amode_Cruise_Domain_Mesh
+          else Data.RPmode_Cruise_Domain_Mesh)
+
+   --  3. Computing the nearest neighbours of Mission_Profile in
+   --  Appropriate_Tabulating_Function, and the distance of Mission_Profile to
+   --  its nearest neignbours.
+
+       and then
+       (for all Neighbour_Center of Nearest_Neighbours.Neighbours =>
+          Neighbour_Center.Mission_Profile.M in
+            MMS.F_PT.Data.Payload_Mass_Grid'Range
+        and then Neighbour_Center.Mission_Profile.D in
+          Appropriate_Tabulating_Function'Range (1)
+        and then Neighbour_Center.Mission_Profile.A in
+          Appropriate_Tabulating_Function'Range (2)
+        and then Neighbour_Center.Mission_Profile.S in
+          Appropriate_Tabulating_Function'Range (3)
+        and then Neighbour_Center.Distance =
+          Distance_With_Neighbour
+            (Mission_Profile_Type'
+               (Mass     =>
+                   MMS.F_PT.Data.Payload_Mass_Grid
+                     (Neighbour_Center.Mission_Profile.M),
+                Distance =>
+                  Appropriate_Tabulating_Function
+                    (Neighbour_Center.Mission_Profile.D,
+                     Neighbour_Center.Mission_Profile.A,
+                     Neighbour_Center.Mission_Profile.S).Distance,
+                Altitude =>
+                  Appropriate_Tabulating_Function
+                    (Neighbour_Center.Mission_Profile.D,
+                     Neighbour_Center.Mission_Profile.A,
+                     Neighbour_Center.Mission_Profile.S).Altitude,
+                Speed    =>
+                  Appropriate_Tabulating_Function
+                    (Neighbour_Center.Mission_Profile.D,
+                     Neighbour_Center.Mission_Profile.A,
+                     Neighbour_Center.Mission_Profile.S).Speed)))
+
+   --  4. Extracting energy level for the neighbours.
+
+   and then Extract_Energy_Level_For_Neighbours.Size =
+       Nearest_Neighbours.Size
+   and then
+       (for all I in 1 .. Extract_Energy_Level_For_Neighbours.Size =>
+          Extract_Energy_Level_For_Neighbours.Neighbours (I) =
+         (if On_State = INIT and then Navigation_Mode = A
+          then Data.Viability_Amode_Initial
+            (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+             D => Nearest_Neighbours.Neighbours (I).Mission_Profile.D,
+             A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+             S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S)
+          elsif On_State = INIT and then Navigation_Mode = RP
+          then Data.Viability_RPmode_Initial
+            (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+             D => Nearest_Neighbours.Neighbours (I).Mission_Profile.D,
+             A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+             S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S)
+          elsif Navigation_Mode = A
+          then Data.Viability_Amode_Cruise
+            (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+             D => Nearest_Neighbours.Neighbours (I).Mission_Profile.D,
+             A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+             S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S)
+          else Data.Viability_RPmode_Cruise
+            (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+             D => Nearest_Neighbours.Neighbours (I).Mission_Profile.D,
+             A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+             S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S)))
+
+   --  5. Compute MP's enery level by interpolation of its neighbours
+   --     Set appropriate value to Interpolated_Energy_Level
+          ;
+
+   procedure Initial_Mission_Viability_Logic with
+   --  Compute the value of Initial_Energy_Compatible_With_Mission. It should
+   --  be computed when Init_Completed is True.
+
+     Global => (Input  =>
+                  (Input_State,
+                   Private_State,
+                   Navigation_Parameter_State,
+                   Operating_Point_State),
+                 In_Out => Viability_Logic_State),
+     Pre  => Power_On
+     and then Power_State = ON
+     and then On_State = INIT
+     and then Init_Completed,
+
+     Post => Initial_Energy_Compatible_With_Mission =
+
+   --  In A mode, use a 30% energy margin.
+
+       ((if Navigation_Mode = A then Interpolated_Energy_Level * 13 / 10
+
+   --  In RP mode, use a 10% energy margin.
+
+         else Interpolated_Energy_Level * 11 / 10) >= Energy_Level);
+
+   procedure In_Flight_Mission_Viability_Logic with
+   --  Compute the value of In_Flight_Energy_Compatible_With_Mission. It should
+   --  be repeated at a periodic rate of F_Viability.
+   --  Set In_Flight_Energy_Compatible_With_Mission to True if Energy_Level is
+   --  at least the Interpolated_Energy_Level plus an enery margin. When
+   --  EstimatedTotalMass increases, and even more so if it increases quickly,
+   --  F_MM applies greater safety margins (see #17).
+
+     Global => (Input  =>
+                  (Input_State,
+                   Private_State,
+                   Navigation_Parameter_State,
+                   Operating_Point_State),
+                 In_Out => Viability_Logic_State),
+     Pre => Power_On
+     and then Power_State = ON
+     and then On_State = RUNNING
+     and then Running_State = FLIGHT
+     and then Current_Flight_Phase = CRUISE;
+
+   ---------------------------------
+   -- Mission Termination Control --
+   ---------------------------------
+
+   function Current_Glide_Distance return Current_Range_Type with
+    Global => Mission_Termination_State;
+   --  Compute the glide distance associated with Current_Altitude using the
+   --  Glide_Distance_Domain_Mesh table and the Glide_Distance tabulated
+   --  function.
+
+   procedure Mission_Termination_Control with
+   --  Monitor Current_Range and activate landing.
+
+     Global => (Input  =>
+                  (Input_State,
+                   Private_State,
+                   Navigation_Parameter_State,
+                   Operating_Point_State),
+                 In_Out => Mission_Termination_State),
+
+     Pre  => Power_On
+     and then Power_State = ON
+     and then On_State = RUNNING
+     and then Running_State = FLIGHT
+     and then Current_Flight_Phase = DESCENT,
+     Post => Descent_Over =
+       (Mission_Range - Current_Range < Current_Glide_Distance);
+
+   --------------------------------
+   -- Update the State Automaton --
+   --------------------------------
+
+   procedure Update_States with
+     Global => (Input  =>
+                  (Input_State,
+                   Navigation_Parameter_State,
+                   Operating_Point_State,
+                   Viability_Logic_State,
+                   Mission_Termination_State),
+                In_Out => Private_State),
      Contract_Cases =>
-       (Power_State = OFF
-        and then Power_Off
+       (not Power_On
         =>
           Power_State = OFF,
 
@@ -266,19 +532,13 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
         and then Init_State = PREPARATION,
 
         Power_State = ON
-        and then Power_Off
-        =>
-          Power_State = OFF,
-
-        Power_State = ON
         and then Power_On
         and then (On_State in INIT | RUNNING)
         and then Mission_Abort_Received
         =>
           Power_State = ON
         and then On_State = ABORTED
-        and then Aborted_For_Energy_Reasons = False
-        and then Mission_Aborted_Signaled,
+        and then Aborted_For_Energy_Reasons = False,
 
         Power_State = ON
         and then Power_On
@@ -296,15 +556,11 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
         and then not Mission_Abort_Received
         and then Init_Completed
         and then not Start_Or_Go_Received
+        and then Initial_Energy_Compatible_With_Mission
         =>
           Power_State = ON
         and then On_State = INIT
-        and then
-          (if Initial_Energy_Compatible_With_Mission then
-             Init_State = READY
-           else
-             Init_State = CANCELLED
-             and then Mission_Cancelled_Signaled),
+        and then Init_State = READY,
 
         Power_State = ON
         and then Power_On
@@ -312,16 +568,22 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
         and then not Mission_Abort_Received
         and then Init_Completed
         and then Start_Or_Go_Received
+        and then Initial_Energy_Compatible_With_Mission
         =>
-          (if Initial_Energy_Compatible_With_Mission then
-                 Power_State = ON
-             and then On_State = RUNNING
-             and then Running_State = TAKE_OFF
-           else
-             Power_State = ON
-             and then On_State = INIT
-             and then Init_State = CANCELLED
-             and then Mission_Cancelled_Signaled),
+          Power_State = ON
+        and then On_State = RUNNING
+        and then Running_State = TAKE_OFF,
+
+        Power_State = ON
+        and then Power_On
+        and then On_State = INIT
+        and then not Mission_Abort_Received
+        and then Init_Completed
+        and then not Initial_Energy_Compatible_With_Mission
+        =>
+          Power_State = ON
+        and then On_State = INIT
+        and then Init_State = CANCELLED,
 
         Power_State = ON
         and then On_State = RUNNING
@@ -350,25 +612,40 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
         and then Running_State = FLIGHT
         and then Power_On
         and then not Mission_Abort_Received
+        and then Current_Flight_Phase = CRUISE
+        and then not In_Flight_Energy_Compatible_With_Mission
         =>
-          (if Current_Flight_Phase = CRUISE
-             and then not In_Flight_Energy_Compatible_With_Mission
-           then
-               Power_State = ON
-             and then On_State = ABORTED
-             and then Aborted_For_Energy_Reasons = True
-             and then Mission_Aborted_Signaled
-             and then Emergency_Landing
-           elsif Current_Flight_Phase = DESCENT
-             and then Descent_Over
-           then
-               Power_State = ON
-             and then On_State = RUNNING
-             and then Running_State = LANDING
-           else
-               Power_State = ON
-             and then On_State = RUNNING
-             and then Running_State = FLIGHT),
+          Power_State = ON
+        and then On_State = ABORTED
+        and then Aborted_For_Energy_Reasons = True
+        and then Mission_Aborted_Signaled
+        and then Emergency_Landing,
+
+        Power_State = ON
+        and then On_State = RUNNING
+        and then Running_State = FLIGHT
+        and then Power_On
+        and then not Mission_Abort_Received
+        and then Current_Flight_Phase = DESCENT
+        and then Descent_Over
+        =>
+          Power_State = ON
+        and then On_State = RUNNING
+        and then Running_State = LANDING,
+
+        Power_State = ON
+        and then On_State = RUNNING
+        and then Running_State = FLIGHT
+        and then Power_On
+        and then not Mission_Abort_Received
+        and then
+          (if Current_Flight_Phase = CRUISE then
+              In_Flight_Energy_Compatible_With_Mission
+           elsif Current_Flight_Phase = DESCENT then not Descent_Over)
+        =>
+          Power_State = ON
+        and then On_State = RUNNING
+        and then Running_State = FLIGHT,
 
         Power_State = ON
         and then On_State = RUNNING
@@ -467,195 +744,50 @@ private
    function Energy_Level return Energy_Level_Type is
      (State.Input_Energy_Level);
 
-   -------------------
-   -- Tasks of F_MM --
-   -------------------
+   ------------------------------------
+   --  Definitions of Internal State --
+   ------------------------------------
+
+   function Power_State return Power_State_Type is
+     (State.Power_State);
+
+   function On_State return On_State_Type is
+     (State.On_State);
+
+   function Running_State return Running_State_Type is
+     (State.Running_State);
+
+   function Init_State return Init_State_Type is
+     (State.Init_State);
+
+   function Aborted_For_Energy_Reasons return Boolean is
+     (State.Aborted_For_Energy_Reasons);
+
+   function Take_Off_Over return Boolean is (True);
+   -- ??? When is take off over?
+
+   function Descent_Over return Boolean is
+     (State.Descent_Over);
 
    function Navigation_Parameters return Navigation_Parameters_Type is
-     (State.Navigation_Parameters)
-   with Pre => Mission_Parameters_Defined;
+     (State.Navigation_Parameters);
 
-   procedure Management_Of_Navigation_Mode with
-   --  Compute the value of Navigation_Mode / Options / Parameters (see 6.9.4)
+   function Navigation_Mode return Navigation_Mode_Type is
+     (State.Navigation_Mode);
 
-     Post   => Navigation_Mode =
+   function Operating_Mode return Navigation_Option_Type is
+     (State.Operating_Mode);
 
-     --  In case of conflict on the navigation mode, CP prevails over GS.
+   function Initial_Energy_Compatible_With_Mission return Boolean is
+     (State.Initial_Energy_Compatible_With_Mission);
 
-     (if Navigation_Mode_From_CP = A
-      or else not Navigation_Mode_From_GS_Received
-      then Navigation_Mode_From_CP
+   function In_Flight_Energy_Compatible_With_Mission return Boolean is
+     (State.In_Flight_Energy_Compatible_With_Mission);
 
-     --  If CP states the mode to RC then GS can choose the navigation mode.
+   function Mission_Range return Current_Range_Type is
+     (State.Mission_Range);
 
-      else Navigation_Mode_From_GS)
-
-     and then Operating_Mode =
-       (if Navigation_Mode = A
-        or else not Operating_Mode_From_GS_Received
-        then Operating_Mode_From_CP
-        else Operating_Mode_From_GS)
-
-     and then
-         (if Mission_Parameters_Defined then
-            Navigation_Parameters =
-              (if Navigation_Mode = A
-               or else not Navigation_Parameters_From_GS_Received
-               then Navigation_Parameters_From_USB_Key
-               else Navigation_Parameters_From_GS));
-
-   procedure Operating_Point_Update_Management with
-   --  Compute the value of Operating_Point
-
-     Pre    =>
-       Mission_Parameters_Defined
-       and then Power_State = ON
-       and then On_State in INIT | RUNNING,
-
-     --  F_MM ensures freeze of the operating point once landing is activated.
-
-     Post   =>
-         (if Power_State = ON
-           and then On_State = RUNNING
-           and then Running_State = LANDING
-          then Operating_Point = Operating_Point'Old
-          else Operating_Point = Operating_Point_From_Navigation_Parameters);
-
-   ------------------------------
-   --  Mission_Viability_Logic --
-   ------------------------------
-
-   function Mission_Profile return Mission_Profile_Type with
-   --  Assemble the mission profile
-
-     Pre  => Power_State = ON,
-     Post => Mission_Profile'Result =
-        (Mass     => Payload_Mass,
-         Distance => Current_Range,
-         Altitude => Current_Altitude,
-         Speed    => Current_Speed);
-
-   function Appropriate_Tabulating_Function return Viability_Domain_Mesh_Type
-   --  Select the tabulated function corresponding to the navigation mode
-
-   with
-     Pre  => Power_State = ON
-     and then On_State in INIT | RUNNING,
-     Post => Appropriate_Tabulating_Function'Result =
-         (if On_State = INIT and then Navigation_Mode = A
-          then Data.Amode_Initial_Domain_Mesh
-          elsif On_State = INIT and then Navigation_Mode = RP
-          then Data.RPmode_Initial_Domain_Mesh
-          elsif Navigation_Mode = A
-          then Data.Amode_Cruise_Domain_Mesh
-          else Data.RPmode_Cruise_Domain_Mesh);
-
-   function Distance_With_Neighbour
-     (Neighbour : Mission_Profile_Type) return Mission_Profile_Distance_Type
-   with
-     Pre => Power_State = ON
-       and then On_State in INIT | RUNNING;
-   --  Compute the distance between Mission_Profile and its Neighbour.
-
-   function Nearest_Neighbours return Neighbour_Mission_Profile_Array_Type with
-   --  Compute the nearest neighbous of Mission_Profile in
-   --  Appropriate_Tabulating_Function, and the distance of Mission_Profile to
-   --  its nearest neignbours.
-
-     Pre  => Power_State = ON
-     and then On_State in INIT | RUNNING,
-     Post =>
-       (for all Neighbour_Center of Nearest_Neighbours'Result =>
-          Neighbour_Center.Mission_Profile.M in
-            MMS.F_PT.Data.Payload_Mass_Grid'Range
-        and then Neighbour_Center.Mission_Profile.D in
-          Appropriate_Tabulating_Function'Range (1)
-        and then Neighbour_Center.Mission_Profile.A in
-          Appropriate_Tabulating_Function'Range (2)
-        and then Neighbour_Center.Mission_Profile.S in
-          Appropriate_Tabulating_Function'Range (3)
-        and then Neighbour_Center.Distance =
-          Distance_With_Neighbour
-            (Mission_Profile_Type'
-               (Mass     =>
-                   MMS.F_PT.Data.Payload_Mass_Grid
-                     (Neighbour_Center.Mission_Profile.M),
-                Distance =>
-                  Appropriate_Tabulating_Function
-                    (Neighbour_Center.Mission_Profile.D,
-                     Neighbour_Center.Mission_Profile.A,
-                     Neighbour_Center.Mission_Profile.S).Distance,
-                Altitude =>
-                  Appropriate_Tabulating_Function
-                    (Neighbour_Center.Mission_Profile.D,
-                     Neighbour_Center.Mission_Profile.A,
-                     Neighbour_Center.Mission_Profile.S).Altitude,
-                Speed    =>
-                  Appropriate_Tabulating_Function
-                    (Neighbour_Center.Mission_Profile.D,
-                     Neighbour_Center.Mission_Profile.A,
-                     Neighbour_Center.Mission_Profile.S).Speed)));
-
-   function Extract_Energy_Level_For_Neighbour
-     (Neighbour : Center_Mission_Profile_Type) return Energy_Level_Type
-   --  Extract energy level for the neighbour.
-
-   with
-     Pre  => Power_State = ON
-     and then On_State in INIT | RUNNING,
-     Post => Extract_Energy_Level_For_Neighbour'Result =
-         (if On_State = INIT and then Navigation_Mode = A
-          then Data.Viability_Amode_Initial (M => Neighbour.M,
-                                             D => Neighbour.D,
-                                             A => Neighbour.A,
-                                             S => Neighbour.S)
-          elsif On_State = INIT and then Navigation_Mode = RP
-          then Data.Viability_RPmode_Initial (M => Neighbour.M,
-                                              D => Neighbour.D,
-                                              A => Neighbour.A,
-                                              S => Neighbour.S)
-          elsif Navigation_Mode = A
-          then Data.Viability_Amode_Cruise (M => Neighbour.M,
-                                            D => Neighbour.D,
-                                            A => Neighbour.A,
-                                            S => Neighbour.S)
-          else Data.Viability_RPmode_Cruise (M => Neighbour.M,
-                                             D => Neighbour.D,
-                                             A => Neighbour.A,
-                                             S => Neighbour.S));
-
-   function Interpolated_Energy_Level return Energy_Level_Type;
-   --  Compute the interpolation of the energy levels of the neighbours of
-   --  Mission_Profile by distance-based averaging.
-
-   procedure Initial_Mission_Viability_Logic with
-   --  Compute the value of Initial_Energy_Compatible_With_Mission. It should
-   --  be computed when Init_Completed is True.
-
-     Pre  => Power_State = ON
-     and then On_State = INIT
-     and then Init_Completed,
-     Post => Initial_Energy_Compatible_With_Mission =
-
-   --  In A mode, use a 30% energy margin.
-
-       ((if Navigation_Mode = A then Interpolated_Energy_Level * 13 / 10
-
-   --  In RP mode, use a 10% energy margin.
-
-         else Interpolated_Energy_Level * 11 / 10) >= Energy_Level);
-
-   procedure In_Flight_Mission_Viability_Logic with
-   --  Compute the value of In_Flight_Energy_Compatible_With_Mission. It should
-   --  be repeated at a periodic rate of F_Viability.
-   --  Set In_Flight_Energy_Compatible_With_Mission to True if Energy_Level is
-   --  at least the Interpolated_Energy_Level plus an enery margin. When
-   --  EstimatedTotalMass increases, and even more so if it increases quickly,
-   --  F_MM applies greater safety margins (see #17).
-
-     Pre => Power_State = ON
-     and then On_State = RUNNING
-     and then Running_State = FLIGHT
-     and then Current_Flight_Phase = CRUISE;
+   function Operating_Point return Operating_Point_Type  is
+     (State.Operating_Point);
 
 end MMS.F_PT.F_MM.Behavior;

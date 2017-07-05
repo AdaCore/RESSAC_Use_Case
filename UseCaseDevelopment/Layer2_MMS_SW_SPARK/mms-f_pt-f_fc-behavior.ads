@@ -19,7 +19,7 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
 
    function Start_Landing return Boolean with
      Global => Private_State,
-     Pre    => Mission_State = RUNNING;
+     Pre    => Mission_State = FLIGHT;
 
    function Operating_Point return Operating_Point_Type with
      Global => Private_State;
@@ -41,21 +41,21 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
    -- States --
    ------------
 
-   type Mission_State_Type is (INIT, RUNNING, ABORTED, COMPLETE);
+   type Mission_State_Type is (INIT, FLIGHT, LANDING, ABORTED, COMPLETE);
 
    function Mission_State return Mission_State_Type with
      Global => Private_State;
 
    function Flight_Phase_State return Flight_Phase_Type with
      Global => Private_State,
-     Pre    => Mission_State = RUNNING;
+     Pre    => Mission_State = FLIGHT;
 
    type Engine_State_Type is
      (PROPULSION, WAITING_BRAK, BRAKING, WAITING_PROP);
 
    function Engine_State return Engine_State_Type with
      Global => Private_State,
-     Pre    => Mission_State = RUNNING;
+     Pre    => Mission_State = FLIGHT;
 
    ----------------
    -- Properties --
@@ -75,20 +75,30 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
          when DESCENT =>
             Q_Dot in MMS.F_PT.F_FC.Data.Qdot_MinDs .. MMS.F_PT.F_FC.Data.Qdot_MaxDs
               and Q < MMS.F_PT.F_FC.Data.Q_MaxDs)
-   with Pre => Mission_State = RUNNING;
+   with Pre => Mission_State = FLIGHT;
 
    function Time_Since_In_Safety_Escape return Time_Type with
      Global => Private_State,
-     Pre    => (Mission_State = RUNNING and then not In_Safety_Envelope)
+     Pre    => (Mission_State = FLIGHT and then not In_Safety_Envelope)
      or else Mission_State = ABORTED;
 
    function Fast_Evolving_Safety_Escape return Boolean with
      Global => Private_State,
-     Pre    => Mission_State = RUNNING and then not In_Safety_Envelope;
+     Pre    => Mission_State = FLIGHT and then not In_Safety_Envelope;
 
    function Time_Since_Stopped return Time_Type with
      Global => Private_State,
-     Pre    => Mission_State = RUNNING;
+     Pre    => Mission_State = FLIGHT;
+
+   -------------
+   -- Outputs --
+   -------------
+
+   function Propulsion_Torque return Torque_Type with
+     Global => Private_State;
+
+   function Braking_Torque return Torque_Type with
+     Global => Private_State;
 
    ---------------------------------------
    -- Behavioural Specification of F_FC --
@@ -115,7 +125,7 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
        (Mission_State = INIT
         and then Start_Take_Off
         =>
-          Mission_State = RUNNING
+          Mission_State = FLIGHT
         and then Engine_State = PROPULSION,
 
         Mission_State = INIT
@@ -123,17 +133,23 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
         =>
           Mission_State = INIT,
 
-        Mission_State = RUNNING
+        Mission_State = FLIGHT
         and then Start_Landing
         =>
-          Mission_State = COMPLETE,
+          Mission_State = LANDING,
 
-        Mission_State = RUNNING
+        Mission_State = FLIGHT
         and then not Start_Landing
         =>
           (if Time_Since_In_Safety_Escape > MMS.F_PT.F_FC.Data.Escape_Time then
                Mission_State = ABORTED
-           else Mission_State = RUNNING),
+           else Mission_State = FLIGHT),
+
+        Mission_State = LANDING
+        =>
+          (if P_Dot = 0.0 and then Q_Dot = 0.0 then
+               Mission_State = COMPLETE
+           else Mission_State = LANDING),
 
         (Mission_State in COMPLETE | ABORTED)
         =>
@@ -158,7 +174,7 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
         --  6.7.4 Propulsion braking mutual exclusion
 
        and then
-       (if Mission_State = RUNNING and then Mission_State'Old = RUNNING then
+       (if Mission_State = FLIGHT and then Mission_State'Old = FLIGHT then
           (case Engine_State'Old is
            when PROPULSION   =>
              (if not In_Safety_Envelope
@@ -191,6 +207,13 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
                 elsif Time_Since_Stopped > MMS.F_PT.F_FC.Data.Commutation_Duration
                 then Engine_State = BRAKING
                 else Engine_State = WAITING_BRAK
-                  and then Time_Since_Stopped > Time_Since_Stopped'Old)));
+                  and then Time_Since_Stopped > Time_Since_Stopped'Old)))
+
+     and then
+       (if Mission_State = FLIGHT and then Engine_State /= PROPULSION then
+          Propulsion_Torque = 0.0)
+     and then
+       (if Mission_State = FLIGHT and then Engine_State /= BRAKING then
+          Braking_Torque = 0.0);
 
 end MMS.F_PT.F_FC.Behavior;
