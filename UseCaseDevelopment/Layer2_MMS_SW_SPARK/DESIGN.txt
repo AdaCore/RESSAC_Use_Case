@@ -42,6 +42,8 @@ ACTIVITIES:
       A. Additional assumption: Translated into types (validity of inputs).
       6.6.3.1
       A. Additional guarantee: Translated as a postcondition.
+      6.6.4
+      Behavioural Specification: Mostly translated as contracts. Parts involving calculations or update frequencies have been kept as comments. Notably missing, external and internal disturbances (linked to weather conditions and AV behavior).
 
     - MMS.F_PT.F_EM:
       6.8.3.1
@@ -60,6 +62,15 @@ ACTIVITIES:
     - MMS.F_EL:
       7.3.2:
       Guarantees A, B: Not tranlated (linked to weather conditions)
+
+    - MMS.F_FC:
+      6.7.3.1:
+      Assumption A: Not tranlated (linked to measurements)
+      Assumption B: Input safety assumptions are automatic
+      Assumption C: Not translated, F_FC does not have the necessary inputs.
+      6.7.3.2:
+      Guarantees A, B, C: Not translated (linked to weather conditions and mechanical body behavior)
+      Guarantees D, E: Translated as postconditions.
 
   * Verifications:
     The SPARK toolset can be used to check that:

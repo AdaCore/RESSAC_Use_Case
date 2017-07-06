@@ -41,12 +41,14 @@ package body MMS.F_PT.F_MM.Behavior.Guarantees with SPARK_Mode is
 
                if On_State = RUNNING then
                   In_Flight_Mission_Viability_Logic;
+
                   In_Flight_Energy_Test_Done := True;
                   Energy_Test_Succeded :=
                     In_Flight_Energy_Compatible_With_Mission;
 
                else
                   Initial_Mission_Viability_Logic;
+
                   Initial_Energy_Test_Done := True;
                   Energy_Test_Succeded :=
                     Initial_Energy_Compatible_With_Mission;

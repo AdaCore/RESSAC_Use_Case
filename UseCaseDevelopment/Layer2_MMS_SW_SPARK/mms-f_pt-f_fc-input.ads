@@ -39,5 +39,8 @@ package MMS.F_PT.F_FC.Input is
    
    function Mission_Range return Current_Range_Type
      renames MMS.F_PT.F_MM.Output.Mission_Range; 
+   
+   function Emergency_Landing return Boolean 
+     renames MMS.F_PT.F_MM.Output.Emergency_Landing;
 
 end MMS.F_PT.F_FC.Input;

@@ -14,9 +14,9 @@ package MMS.F_PT.F_MM.Output is
    
    function Ready_For_Takeoff return Boolean with Global => Output_State;
    
-   -------------
-   -- To F_EL --
-   --------------
+   ----------------------
+   -- To F_EL and F_CM --
+   ----------------------
 
    function Emergency_Landing return Boolean with Global => Output_State;
    

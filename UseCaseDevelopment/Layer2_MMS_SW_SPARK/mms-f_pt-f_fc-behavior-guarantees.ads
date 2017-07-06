@@ -15,10 +15,12 @@ package MMS.F_PT.F_FC.Behavior.Guarantees with SPARK_Mode is
    range BRAKING .. WAITING_PROP;
 
    function Engine_State_In_Braking return Boolean is
-     (Mission_State = FLIGHT and then Engine_State in Braking_State_Type);
+     (Mission_State in FLIGHT | LANDING
+      and then Engine_State in Braking_State_Type);
 
    function Engine_State_In_Propulsion return Boolean is
-     (Mission_State = FLIGHT and then Engine_State in Propulsion_State_Type);
+     (Mission_State in FLIGHT | LANDING
+      and then Engine_State in Propulsion_State_Type);
 
    -----------------------------------
    -- High-Level Garantees for F_FC --
@@ -27,7 +29,7 @@ package MMS.F_PT.F_FC.Behavior.Guarantees with SPARK_Mode is
    procedure Run with
      Post =>
 
-     --  6.7.3.2.D Propulsion and  braking torque actions are in mutual
+     --  6.7.3.2.D Propulsion and braking torque actions are in mutual
      --  exclusion.
 
      (if (Engine_State_In_Propulsion'Old and then Engine_State_In_Braking)
@@ -40,6 +42,7 @@ package MMS.F_PT.F_FC.Behavior.Guarantees with SPARK_Mode is
 
      and then
        (if Mission_State = ABORTED and then Mission_State'Old /= ABORTED
+           and then Aborted_With_Propulsion_Available
         then Time_Since_In_Safety_Escape > MMS.F_PT.F_FC.Data.Escape_Time);
 
 end MMS.F_PT.F_FC.Behavior.Guarantees;
