@@ -2,6 +2,9 @@ with Types; use Types;
 
 package MMS.F_PT.F_FC with
   Abstract_State => (Input_State,
+                     Safety_Escape_State,
+                     Operating_Mode_State,
+                     AV_State_Vector_State,
                      Trajectory_State,
                      Private_State,
                      Mutual_Exclusion_State,
@@ -33,8 +36,6 @@ is
    end record;
 
    type Time_Type is new Integer; --  in s ??? some bounds
-
-   type Mission_State_Type is (INIT, FLIGHT, LANDING, ABORTED, COMPLETE);
 
    type Engine_State_Type is
      (PROPULSION, WAITING_BRAK, BRAKING, WAITING_PROP);

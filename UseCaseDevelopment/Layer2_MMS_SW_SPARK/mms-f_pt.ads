@@ -22,6 +22,10 @@ package MMS.F_PT is
    type Payload_Mass_Grid_Type is array (Payload_Mass_Center range <>)
      of Payload_Mass_Type;
 
+   type On_State_Type is (INIT, RUNNING, COMPLETE, ABORTED);
+
+   type Running_State_Type is (TAKE_OFF, FLIGHT, LANDING);
+
    type Flight_Phase_Type is (CLIMB, CRUISE, DESCENT);
 
 end MMS.F_PT;

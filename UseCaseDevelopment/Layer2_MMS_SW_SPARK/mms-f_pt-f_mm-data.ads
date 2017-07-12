@@ -70,4 +70,9 @@ package MMS.F_PT.F_MM.Data is
      (AI : Glide_Altitude_Center) return Current_Range_Type
    with Pre => AI in Glide_Distance_Domain_Mesh'Range;
 
+   --  Issue #28
+
+   Altitude_ref_TakeOff : Current_Altitude_Type;
+   Speed_ref_TakeOff    : Current_Speed_Type;
+
 end MMS.F_PT.F_MM.Data;

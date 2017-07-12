@@ -15,10 +15,6 @@ is
 
    type Power_State_Type is (ON, OFF);
 
-   type On_State_Type is (INIT, RUNNING, COMPLETE, ABORTED);
-
-   type Running_State_Type is (TAKE_OFF, FLIGHT, LANDING);
-
    type Init_State_Type is (PREPARATION, READY, CANCELLED);
 
    type Viability_Cell_Center_Type is record
