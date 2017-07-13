@@ -39,7 +39,7 @@ package MMS.F_PT.Input is
    function Payload_Mass return Payload_Mass_Type
      renames MMS.Input.Payload_Mass;
    
-   function USB_Key return Navigation_Parameters_Type_Option
+   function USB_Key return USB_Key_Type_Option
      renames MMS.Input.USB_Key;
    
    function P return Distance_Type

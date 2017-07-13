@@ -47,6 +47,20 @@ package Types is
       end case;
    end record;
 
+   type USB_Key_Type is record
+      Navigation_Parameters : Navigation_Parameters_Type;
+      Navigation_Option     : Navigation_Option_Type;
+   end record;
+
+   type USB_Key_Type_Option (Present : Boolean := False) is record
+      case Present is
+      when True  =>
+         Content : USB_Key_Type;
+      when False =>
+         null;
+      end case;
+   end record;
+
    type Bay_Switch_Type is (OPEN, CLOSED);
 
    type Payload_Mass_Type is new Integer range 0 .. 98; -- in kg

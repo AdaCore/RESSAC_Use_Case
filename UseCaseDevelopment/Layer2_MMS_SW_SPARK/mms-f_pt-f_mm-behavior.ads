@@ -28,11 +28,9 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
    function Payload_Mass_Given return Boolean with
      Pre => Power_On;
-   --  ???  Should we assume that Payload_Mass is always given after takeoff?
-   --  same question for usb key
 
    function Payload_Mass return Payload_Mass_Type with
-     Pre => Power_On;
+     Pre => Power_On and then Payload_Mass_Given;
 
    function Navigation_Mode_From_CP return Navigation_Mode_Type with
      Pre => Power_On;
@@ -43,8 +41,8 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    function Navigation_Mode_From_GS return Navigation_Mode_Type with
      Pre => Power_On and then Navigation_Mode_From_GS_Received;
 
-   function Operating_Mode_From_CP return Navigation_Option_Type with
-     Pre => Power_On;
+   function Operating_Mode_From_USB_Key return Navigation_Option_Type with
+     Pre => Power_On and then USB_Key_Present;
 
    function Operating_Mode_From_GS_Received return Boolean with
      Pre => Power_On;
@@ -89,9 +87,10 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    function Mission_Parameters_Defined return Boolean is
      (USB_Key_Present
       or else (Navigation_Mode_From_CP = RP
-               and then Navigation_Parameters_From_GS_Received))
+               and then Navigation_Parameters_From_GS_Received
+               and then Operating_Mode_From_GS_Received))
    with
-   Pre => Power_On;
+   Pre  => Power_On;
 
    function Init_Completed return Boolean is
      (Payload_Bay_Closed
@@ -121,6 +120,12 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
      Pre    => Power_State = ON
      and then On_State = ABORTED;
 
+   function State_Invariant return Boolean is
+     (Power_On = (Power_State = On)
+      and then (if Power_State = On and then On_State = RUNNING then
+                     Init_Completed));
+   --  Global assumptions, should be maintained by the task main loop.
+
    -----------------------------
    -- Properties and Entities --
    -----------------------------
@@ -128,8 +133,13 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    function Navigation_Mode return Navigation_Mode_Type with
      Pre    => Power_On;
 
+   function Operating_Mode_From_Parameters return Navigation_Option_Type with
+     Pre    => Power_On
+     and then Mission_Parameters_Defined;
+
    function Operating_Mode return Navigation_Option_Type with
-     Pre    => Power_On;
+     Pre    => Power_On
+     and then Mission_Parameters_Defined;
 
    function Navigation_Parameters return Navigation_Parameters_Type
    with Pre => Power_On
@@ -180,11 +190,24 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
      and then Running_State = FLIGHT
      and then Current_Flight_Phase = CRUISE;
 
-   function Take_Off_Over return Boolean with
+   function Current_Altitude_Close_Enough_To_ref_TakeOff return Boolean with
+     Global => Input_State;
+   --  Return True if Current_Altitude is close enough to Altitude_ref_TakeOff
+
+   function Current_Speed_Close_Enough_To_ref_TakeOff return Boolean with
+     Global => Input_State;
+   --  Return True if Current_Altitude is close enough to Speed_ref_TakeOff
+
+   function Take_Off_Over return Boolean is
+     (if Operating_Mode = ALTITUDE then
+         Current_Altitude_Close_Enough_To_ref_TakeOff
+      else Current_Speed_Close_Enough_To_ref_TakeOff)
+   with
      Pre => Power_On
      and then Power_State = ON
      and then On_State = RUNNING
-     and then Running_State = TAKE_OFF;
+     and then Running_State = TAKE_OFF
+     and then Mission_Parameters_Defined;
 
    function Descent_Over return Boolean with
      Pre => Power_On
@@ -216,8 +239,33 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
    procedure Read_Inputs with
    --  Read values of inputs once and for all and update the current state
-     Global => (Output => Input_State,
-                Input  => External.State);
+     Global => (In_Out => Input_State,
+                Input  => (External.State, Private_State)),
+     Post =>
+
+   --  Only update inputs when new values are received.
+
+     (if USB_Key_Present'Old then USB_Key_Present)
+     and then (if Navigation_Parameters_From_GS_Received'Old
+               then Navigation_Parameters_From_GS_Received)
+     and then (if Operating_Mode_From_GS_Received'Old
+               then Operating_Mode_From_GS_Received)
+
+   --  Information from CP can only be changed before take-off.
+
+     and then (if Power_State = On and then On_State = RUNNING
+               then Navigation_Mode_From_CP = Navigation_Mode_From_CP'Old
+               and then Payload_Bay_Closed = Payload_Bay_Closed'Old
+               and then Payload_Mass_Given = Payload_Mass_Given'Old
+               and then
+                 (if Payload_Mass_Given then Payload_Mass = Payload_Mass'Old)
+               and then
+                 (if USB_Key_Present then
+                      USB_Key_Present'Old
+                  and then Navigation_Parameters_From_USB_Key =
+                    Navigation_Parameters_From_USB_Key'Old
+                  and then Operating_Mode_From_USB_Key =
+                    Operating_Mode_From_USB_Key'Old));
 
    procedure Write_Outputs with
    --  Compute values of outputs from the current state
@@ -259,19 +307,31 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
       else Navigation_Mode_From_GS)
 
-     and then Operating_Mode =
-       (if Navigation_Mode = A
-        or else not Operating_Mode_From_GS_Received
-        then Operating_Mode_From_CP
-        else Operating_Mode_From_GS)
-
      and then
          (if Mission_Parameters_Defined then
-            Navigation_Parameters =
+
+            Operating_Mode_From_Parameters =
               (if Navigation_Mode_From_CP = A
-               or else not Navigation_Parameters_From_GS_Received
-               then Navigation_Parameters_From_USB_Key
-               else Navigation_Parameters_From_GS));
+               or else not Operating_Mode_From_GS_Received
+               then Operating_Mode_From_USB_Key
+               else Operating_Mode_From_GS)
+
+              --  During take-off, the most energy efficient mode is computed once and
+          --  for all from the viability tables.
+
+          and then Operating_Mode =
+            (if Operating_Mode_From_Parameters = ENERGY
+             and then Power_State = ON
+             and then On_State = RUNNING
+             and then Running_State = TAKE_OFF
+             then Data.Energy_Mode_ref_TakeOff
+             else Operating_Mode_From_Parameters)
+
+          and then Navigation_Parameters =
+            (if Navigation_Mode_From_CP = A
+             or else not Navigation_Parameters_From_GS_Received
+             then Navigation_Parameters_From_USB_Key
+             else Navigation_Parameters_From_GS));
 
    ---------------------------------------
    -- Operating Point Update Management --
@@ -289,21 +349,36 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
        and then Power_State = ON
        and then On_State in INIT | RUNNING,
 
-     --  F_MM ensures freeze of the operating point once landing is activated.
-
      Post   =>
-         (if Power_State = ON
-           and then On_State = RUNNING
+
+         --  F_MM ensures freeze of the operating point once landing is
+         --  activated.
+
+         (if On_State = RUNNING
            and then Running_State = LANDING
           then Operating_Point = Operating_Point'Old
+
+          --  Take-Off preset operating point (Altitude_ref_TakeOff and
+          --  Speed_ref_TakeOff) (see #28).
+
+          elsif On_State = RUNNING
+           and then Running_State = TAKE_OFF
+          then Operating_Point =
+              Operating_Point_Type'(Altitude => Data.Altitude_ref_TakeOff,
+                                    Speed    => Data.Speed_ref_TakeOff)
+
+          --  During flight, RP mode enables modification of the operating
+          --  point.
+
           else Operating_Point = Operating_Point_From_Navigation_Parameters)
 
          --  RP mode enables modification of range parameter before take-off.
 
     and then
        (if Navigation_Mode = RP
-        then Mission_Range = Mission_Range'Old
-        else Mission_Range = Mission_Range_From_Navigation_Parameters);
+           and then On_State = INIT
+        then Mission_Range = Mission_Range_From_Navigation_Parameters
+        else Mission_Range = Mission_Range'Old);
 
    ------------------------------
    --  Mission_Viability_Logic --
@@ -519,6 +594,9 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
                    Viability_Logic_State,
                    Mission_Termination_State),
                 In_Out => Private_State),
+     Pre            =>
+       (if Power_On and then Power_State = On and then On_State = RUNNING then
+          Init_Completed),
      Contract_Cases =>
        (not Power_On
         =>
@@ -702,8 +780,8 @@ private
    function Navigation_Mode_From_GS return Navigation_Mode_Type is
      (State.Input_Navigation_Mode.Content);
 
-   function Operating_Mode_From_CP return Navigation_Option_Type is
-     (ALTITUDE); --  ??? what is the default operating mode in A mode?
+   function Operating_Mode_From_USB_Key return Navigation_Option_Type is
+     (State.Input_USB_Key.Content.Navigation_Option);
 
    function Operating_Mode_From_GS_Received return Boolean is
      (State.Input_Navigation_Option.Present);
@@ -721,7 +799,7 @@ private
      (State.Input_USB_Key.Present);
 
    function Navigation_Parameters_From_USB_Key return Navigation_Parameters_Type is
-     (State.Input_USB_Key.Content);
+     (State.Input_USB_Key.Content.Navigation_Parameters);
 
    function Mission_Abort_Received return Boolean is
      (State.Input_Mission_Abort);
@@ -763,9 +841,6 @@ private
    function Aborted_For_Energy_Reasons return Boolean is
      (State.Aborted_For_Energy_Reasons);
 
-   function Take_Off_Over return Boolean is (True);
-   -- ??? When is take off over?
-
    function Descent_Over return Boolean is
      (State.Descent_Over);
 
@@ -774,6 +849,9 @@ private
 
    function Navigation_Mode return Navigation_Mode_Type is
      (State.Navigation_Mode);
+
+   function Operating_Mode_From_Parameters return Navigation_Option_Type is
+     (State.Operating_Mode_From_Parameters);
 
    function Operating_Mode return Navigation_Option_Type is
      (State.Operating_Mode);

@@ -37,6 +37,7 @@ SPARK_Mode,
                        Aborted_For_Energy_Reasons),
                     Navigation_Parameter_State =>
                       (Navigation_Mode,
+                       Operating_Mode_From_Parameters,
                        Operating_Mode,
                        Navigation_Parameters),
                     Operating_Point_State =>

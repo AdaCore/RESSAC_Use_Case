@@ -39,7 +39,7 @@ package MMS.Input is
    function Payload_Mass return Payload_Mass_Type
      renames External.Payload_Mass;
 
-   function USB_Key return Navigation_Parameters_Type_Option
+   function USB_Key return USB_Key_Type_Option
      renames External.USB_Key;
 
    -------------------------

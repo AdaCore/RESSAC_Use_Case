@@ -37,13 +37,15 @@ package MMS.F_PT.F_MM.Behavior.Guarantees with SPARK_Mode is
    -----------------------------------
 
    procedure Run with
-     Post =>
+     Pre  => State_Invariant,
+     Post => State_Invariant
 
       --  6.6.3.A Viability guarantee: no take-off if energy aboard is
       --  incompatible with mission completion.
 
-      (if In_Take_Off_State and then not In_Take_Off_State'Old then
-         Initial_Energy_Test_Succeeded)
+      and then
+       (if In_Take_Off_State and then not In_Take_Off_State'Old then
+          Initial_Energy_Test_Succeeded)
 
       --  6.6.3.B Any mission cancellation is signaled to CP and GS.
 
@@ -69,7 +71,7 @@ package MMS.F_PT.F_MM.Behavior.Guarantees with SPARK_Mode is
           and then Mission_Parameters_Defined
         then
           USB_Key_Present
-        and then Operating_Mode = Operating_Mode_From_CP
+        and then Operating_Mode_From_Parameters = Operating_Mode_From_USB_Key
         and then Navigation_Parameters = Navigation_Parameters_From_USB_Key);
 
 end MMS.F_PT.F_MM.Behavior.Guarantees;

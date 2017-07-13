@@ -11,6 +11,8 @@ package MMS.F_PT is
    type Estimated_Total_Mass_Type is delta 0.1 range 5.0 .. 10.0; -- in kg ???
    
    type Energy_Level_Type is range 0 .. 500; -- in kj
+
+   subtype Speed_Or_Altitude is Navigation_Option_Type range SPEED .. ALTITUDE;
    
    type Operating_Point_Type is record
       Altitude : Current_Altitude_Type; -- ??? which altitude type

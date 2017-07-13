@@ -26,7 +26,7 @@ package MMS.F_PT.F_MM.State is
 
    Input_Payload_Mass : Payload_Mass_Type with Part_Of => Input_State;
 
-   Input_USB_Key : Navigation_Parameters_Type_Option with
+   Input_USB_Key : USB_Key_Type_Option with
      Part_Of => Input_State;
 
    Input_Mission_Abort : Boolean with Part_Of => Input_State;
@@ -63,6 +63,9 @@ package MMS.F_PT.F_MM.State is
    --------------------------------
 
    Navigation_Mode : Navigation_Mode_Type with
+     Part_Of => Navigation_Parameter_State;
+
+   Operating_Mode_From_Parameters : Navigation_Option_Type with
      Part_Of => Navigation_Parameter_State;
 
    Operating_Mode : Navigation_Option_Type with

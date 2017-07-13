@@ -91,7 +91,7 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
               and Q < MMS.F_PT.F_FC.Data.Q_MaxDs)
    with Pre => On_State = RUNNING;
 
-   function Selected_Option return Navigation_Option_Type with
+   function Selected_Option return Speed_Or_Altitude with
      Global => (Input    => Operating_Mode_State,
                 Proof_In => Private_State),
      Pre    => On_State = RUNNING;
@@ -193,8 +193,7 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
      Global => (Input  => Input_State,
                 In_Out => Operating_Mode_State),
      Pre    => On_State = RUNNING,
-     Post   => Selected_Option in SPEED | ALTITUDE
-     and then
+     Post   =>
        (if Already_Running
         and then not Operating_Mode_Changed
         and then not Operating_Point_Changed
@@ -236,7 +235,8 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
         and then not Emergency_Landing
         and then Start_Take_Off
         =>
-          On_State = RUNNING,
+          On_State = RUNNING
+        and then Running_State = TAKE_OFF,
 
         On_State = INIT
         and then not Emergency_Landing
@@ -261,10 +261,42 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
           (if Running_State = LANDING then
               not (P_Dot = 0.0 and then Q_Dot = 0.0))
         and then
+          (if Running_State = FLIGHT then not Start_Landing)
+        and then
+          (if Running_State = TAKE_OFF then not Operating_Point_Changed)
+        and then
           (if not In_Safety_Envelope then
                Time_Since_In_Safety_Escape <= MMS.F_PT.F_FC.Data.Escape_Time)
         =>
-          On_State = RUNNING,
+          On_State = RUNNING
+        and then Running_State = Running_State'Old,
+
+        On_State = RUNNING
+        and then not Emergency_Landing
+        and then Running_State = TAKE_OFF
+        and then Operating_Point_Changed
+        and then
+          (if not In_Safety_Envelope then
+               Time_Since_In_Safety_Escape <= MMS.F_PT.F_FC.Data.Escape_Time)
+        =>
+
+        --  A change in the Operating_Point means that the Take_Off phase is
+        --  over, see #28.
+
+          On_State = RUNNING
+        and then Running_State = FLIGHT,
+
+
+        On_State = RUNNING
+        and then not Emergency_Landing
+        and then Running_State = FLIGHT
+        and then Start_Landing
+        and then
+          (if not In_Safety_Envelope then
+               Time_Since_In_Safety_Escape <= MMS.F_PT.F_FC.Data.Escape_Time)
+        =>
+          On_State = RUNNING
+        and then Running_State = LANDING,
 
         On_State = RUNNING
         and then not Emergency_Landing
@@ -285,6 +317,12 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
    -------------------------------------------
    -- Propulsion / Braking Mutual Exclusion --
    -------------------------------------------
+
+   subtype Propulsion_State_Type is Engine_State_Type
+   range PROPULSION .. WAITING_BRAK;
+
+   subtype Braking_State_Type is Engine_State_Type
+   range BRAKING .. WAITING_PROP;
 
    function Go_To_Braking return Boolean is
      (not In_Safety_Envelope
@@ -372,45 +410,61 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
 
    function Set_Point_Altitude return Current_Altitude_Type with
      Global => (Input    => Trajectory_State,
-                Proof_In => Private_State),
+                Proof_In => (Private_State,
+                             Operating_Mode_State,
+                             Mutual_Exclusion_State)),
      Pre    => On_State = RUNNING;
 
    function Intermediate_Set_Point_Altitude return Current_Altitude_Type with
      Global => (Input    => Trajectory_State,
-                Proof_In => Private_State),
+                Proof_In => (Private_State,
+                             Operating_Mode_State,
+                             Mutual_Exclusion_State)),
      Pre    => On_State = RUNNING;
 
    function Close_To_Set_Point_Altitude return Boolean with
      Global => (Input    => Trajectory_State,
-                Proof_In => Private_State),
+                Proof_In => (Private_State,
+                             Operating_Mode_State,
+                             Mutual_Exclusion_State)),
      Pre    => On_State = RUNNING;
    --  True if we are close enough to the set point. Used to avoid Zeno effect.
 
    function Intermediate_Set_Point_Altitude_Reached return Boolean with
      Global => (Input    => Trajectory_State,
-                Proof_In => Private_State),
+                Proof_In => (Private_State,
+                             Operating_Mode_State,
+                             Mutual_Exclusion_State)),
      Pre    => On_State = RUNNING and then Already_Running;
    --  True if we have reached the previous intermediate set point.
 
    function Set_Point_Speed return Current_Speed_Type with
      Global => (Input    => Trajectory_State,
-                Proof_In => Private_State),
+                Proof_In => (Private_State,
+                             Operating_Mode_State,
+                             Mutual_Exclusion_State)),
      Pre    => On_State = RUNNING;
 
    function Intermediate_Set_Point_Speed return Current_Speed_Type with
      Global => (Input    => Trajectory_State,
-                Proof_In => Private_State),
+                Proof_In => (Private_State,
+                             Operating_Mode_State,
+                             Mutual_Exclusion_State)),
      Pre    => On_State = RUNNING;
 
    function Close_To_Set_Point_Speed return Boolean with
      Global => (Input    => Trajectory_State,
-                Proof_In => Private_State),
+                Proof_In => (Private_State,
+                             Operating_Mode_State,
+                             Mutual_Exclusion_State)),
      Pre    => On_State = RUNNING;
    --  True if we are close enough to the set point. Used to avoid Zeno effect.
 
    function Intermediate_Set_Point_Speed_Reached return Boolean with
      Global => (Input    => Trajectory_State,
-                Proof_In => Private_State),
+                Proof_In => (Private_State,
+                             Operating_Mode_State,
+                             Mutual_Exclusion_State)),
      Pre    => On_State = RUNNING and then Already_Running;
    --  True if we have reached the previous intermediate set point.
 
@@ -419,62 +473,83 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
                 Proof_In => Private_State),
      Pre    => On_State = RUNNING and then Running_State = LANDING;
 
+   function Close_To_Set_Point return Boolean is
+     (if Selected_Option = ALTITUDE then Close_To_Set_Point_Altitude
+      else Close_To_Set_Point_Speed)
+   with Pre => On_State = RUNNING;
+
    procedure Reference_Trajectory_Computation with
      --  Computed at each cycle. Slower rates are possible but not too slow.
 
-     Global => (Input  => (Input_State, Private_State),
+     Global => (Input  => (Input_State, Private_State, Operating_Mode_State),
                 In_Out => Trajectory_State),
      Pre    => On_State = RUNNING,
      Post   =>
 
-       --  For landing, a distance objective is added to the zero-altitude
-       --  objective. Landing must occur at range completion.
-       --  ??? How is it used by the PID?
+   --  For landing, the target, or preset operating point, or (final) reference
+   --  value, is more complicated than for the other phases.
+   --  For all phases except landing there is only one target: either a Speed
+   --  value or an Altitude value. But for landing there are three of them:
+   --  - Current_Range ~ Mission_Range, i.e (Current_Range - Mission_Range
+   --     =< DeliveryPrecisionUpperBound).
+   --  - Current_Altitude = 0
+   --  - Current_Speed = 0
+   --  (see #29)
 
-       (if Running_State = FLIGHT then
-          Set_Point_Altitude = Operating_Point.Altitude
-          and then Set_Point_Speed = Operating_Point.Speed
-        else
+       (if Running_State = LANDING then
           Set_Point_Altitude = 0
           and then Set_Point_Speed = 0
-          and then Set_Point_Distance = Mission_Range)
+          and then Set_Point_Distance = Mission_Range
+        else
+          (Set_Point_Altitude = Operating_Point.Altitude
+           and then Set_Point_Speed = Operating_Point.Speed))
 
      --  Instead of giving the true set-point to propulsion control, it gives
      --  half of the change amplitude. When current intermediate set-point is
      --  reached, a new one is computed (zeno like aspects to be addressed for
-     --  convergence.
+     --  convergence).
      --  Module is reset by any operating point change.
 
      and then
-       (if not Already_Running
-        or else (Running_State = FLIGHT and then Operating_Point_Changed)
-        or else (Intermediate_Set_Point_Speed_Reached
-                 and then not Close_To_Set_Point_Speed) then
-          Intermediate_Set_Point_Speed =
-                (Set_Point_Speed + Current_Speed) / 2
-        elsif Close_To_Set_Point_Speed then
-          Intermediate_Set_Point_Speed = Set_Point_Speed
-        else Intermediate_Set_Point_Speed = Intermediate_Set_Point_Speed'Old)
+       Intermediate_Set_Point_Speed =
+          (if not Already_Running
+           or else Operating_Point_Changed
+           or else (Intermediate_Set_Point_Speed_Reached
+                    and then not Close_To_Set_Point_Speed)
+           then
+             (Set_Point_Speed + Current_Speed) / 2
+           elsif Close_To_Set_Point_Speed then Set_Point_Speed
+           else Intermediate_Set_Point_Speed'Old)
 
      and then
-       (if not Already_Running
-        or else (Running_State = FLIGHT and then Operating_Point_Changed)
-        or else (Intermediate_Set_Point_Altitude_Reached
-                 and then not Close_To_Set_Point_Altitude) then
-          Intermediate_Set_Point_Altitude =
-                (Set_Point_Altitude + Current_Altitude) / 2
-        elsif Close_To_Set_Point_Altitude then
-          Intermediate_Set_Point_Altitude = Set_Point_Altitude
-        else Intermediate_Set_Point_Altitude = Intermediate_Set_Point_Altitude'Old)
+       Intermediate_Set_Point_Altitude =
+          (if not Already_Running
+           or else Operating_Point_Changed
+           or else (Intermediate_Set_Point_Altitude_Reached
+                    and then not Close_To_Set_Point_Altitude)
+           then (Set_Point_Altitude + Current_Altitude) / 2
+           elsif Close_To_Set_Point_Altitude then Set_Point_Altitude
+           else Intermediate_Set_Point_Altitude'Old)
 
     --  Changes in the operating point provoque termination of the current
     --  cruise phase and activate a transient climb or descent phase to
     --  capture the new operating point (see 6.6.4 4. Cruise).
-    --  ??? How is the current Flight_Phase computed ?
 
-     and then
-       (if Running_State = FLIGHT and then Operating_Point_Changed then
-          Flight_Phase in CLIMB | DESCENT);
+     and then Flight_Phase =
+       (if Running_State = LANDING then
+          DESCENT
+        elsif not Already_Running
+           or else Operating_Point_Changed
+           or else not Close_To_Set_Point
+        then
+            (if (Selected_Option = ALTITUDE
+                 and then Current_Altitude < Set_Point_Altitude)
+             or else
+               (Selected_Option = SPEED
+                and then Current_Speed < Set_Point_Speed)
+             then CLIMB
+             else DESCENT)
+        else CRUISE);
 
    procedure Gain_Scheduling with
      Global => (Input  => (Input_State,

@@ -72,7 +72,8 @@ package MMS.F_PT.F_MM.Data is
 
    --  Issue #28
 
-   Altitude_ref_TakeOff : Current_Altitude_Type;
-   Speed_ref_TakeOff    : Current_Speed_Type;
+   Altitude_ref_TakeOff    : Current_Altitude_Type;
+   Speed_ref_TakeOff       : Current_Speed_Type;
+   Energy_Mode_ref_TakeOff : Speed_Or_Altitude;
 
 end MMS.F_PT.F_MM.Data;

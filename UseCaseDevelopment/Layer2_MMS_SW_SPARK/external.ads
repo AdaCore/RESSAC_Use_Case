@@ -50,7 +50,7 @@ package External with Abstract_State => (State with External => Async_Writers) i
      Volatile_Function,
      Global => State;
 
-   function USB_Key return Navigation_Parameters_Type_Option with
+   function USB_Key return USB_Key_Type_Option with
      Volatile_Function,
      Global => State;
 

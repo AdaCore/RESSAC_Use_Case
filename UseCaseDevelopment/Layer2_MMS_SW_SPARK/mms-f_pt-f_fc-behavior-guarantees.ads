@@ -8,12 +8,6 @@ package MMS.F_PT.F_FC.Behavior.Guarantees with SPARK_Mode is
    -- High-Level Properties on F_FC --
    -----------------------------------
 
-   subtype Propulsion_State_Type is Engine_State_Type
-   range PROPULSION .. WAITING_BRAK;
-
-   subtype Braking_State_Type is Engine_State_Type
-   range BRAKING .. WAITING_PROP;
-
    function Engine_State_In_Braking return Boolean is
      (On_State = RUNNING
       and then Engine_State in Braking_State_Type);
