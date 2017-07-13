@@ -65,7 +65,7 @@ package MMS.F_PT.F_FC.Data with SPARK_Mode is
    Commutation_Duration : constant Time_Type; --  in s
    Hazard_Duration      : constant Time_Type; --  in s
 
-   Recovery_Speed : constant Integer; --  in m.s
+   Recovery_Speed : constant Current_Speed_Type; --  in m.s
 
    J0 : constant Integer; --  in kg.m2
    L  : constant Integer; --  in m
@@ -95,7 +95,7 @@ private
    Commutation_Duration : constant Time_Type := 0;
    Hazard_Duration      : constant Time_Type := 0;
 
-   Recovery_Speed : constant Integer := 0;
+   Recovery_Speed : constant Current_Speed_Type := 0;
 
    J0 : constant Integer := 0;
    L  : constant Integer := 0;

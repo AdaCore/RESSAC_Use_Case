@@ -4,7 +4,7 @@ package MMS.F_PT is
    
    type Current_Range_Type is range 1 .. 1_000_000; -- in meters
    
-   type Current_Speed_Type is range 1 .. 500;  -- in km/h
+   type Current_Speed_Type is range 0 .. 500;  -- in km/h
    
    type Current_Altitude_Type is range -200 .. 1_000; -- in meters
    

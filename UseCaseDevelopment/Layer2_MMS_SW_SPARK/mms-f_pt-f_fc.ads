@@ -35,9 +35,47 @@ is
       Ki : Gain_Type;
    end record;
 
+   subtype Error_Type is Gain_Type'Base; --  ??? what is the type of a PID error?
+
    type Time_Type is new Integer; --  in s ??? some bounds
 
    type Engine_State_Type is
      (PROPULSION, WAITING_BRAK, BRAKING, WAITING_PROP);
+
+   type Mission_Profile_Type is record
+      Mass     : Payload_Mass_Type;
+      Altitude : Current_Altitude_Type;
+      Speed    : Current_Speed_Type;
+   end record;
+
+   type Center_Mission_Profile_Type is record
+      M : Payload_Mass_Center;
+      A : Flight_Altitude_Center;
+      S : Flight_Speed_Center;
+   end record;
+
+   type Mission_Profile_Distance_Type is new Natural;
+
+   type Neighbour_Mission_Profile_Type is record
+      Mission_Profile : Center_Mission_Profile_Type;
+      Distance        : Mission_Profile_Distance_Type;
+   end record;
+
+   type Num_Of_Neighbours is new Positive range 1 .. 8;
+
+   type Neighbour_Mission_Profile_Array_Type is array
+     (Num_Of_Neighbours range <>)
+     of Neighbour_Mission_Profile_Type;
+
+   type Neighbour_Mission_Profiles (Size : Num_Of_Neighbours) is record
+     Neighbours : Neighbour_Mission_Profile_Array_Type (1 .. Size);
+   end record;
+
+   type Gain_Triple_Array_Type is array (Num_Of_Neighbours range <>)
+     of Gain_Triple;
+
+   type Gain_Triples (Size : Num_Of_Neighbours) is record
+     Neighbours : Gain_Triple_Array_Type (1 .. Size);
+   end record;
 
 end MMS.F_PT.F_FC;

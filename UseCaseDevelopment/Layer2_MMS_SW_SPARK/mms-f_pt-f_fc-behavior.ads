@@ -1,6 +1,7 @@
 with MMS.F_PT.F_FC.Data;
 with External;
 with Types; use Types;
+with MMS.F_PT.Data;
 
 package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
    pragma Unevaluated_Use_Of_Old (Allow);
@@ -31,6 +32,9 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
      Global => Input_State;
 
    function Emergency_Landing return Boolean with
+     Global => Input_State;
+
+   function Payload_Mass return Payload_Mass_Type with
      Global => Input_State;
 
    --------------------------
@@ -551,13 +555,131 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
              else DESCENT)
         else CRUISE);
 
+   ---------------------
+   -- Gain Scheduling --
+   ---------------------
+
+   function Mission_Profile return Mission_Profile_Type with
+     Global => Gain_Scheduling_State;
+
+   function Distance_With_Neighbour
+     (Neighbour : Mission_Profile_Type) return Mission_Profile_Distance_Type
+   with
+    Global => Gain_Scheduling_State;
+   --  Compute the distance between Mission_Profile and its Neighbour.
+
+   function Nearest_Neighbours return Neighbour_Mission_Profiles with
+    Global => Gain_Scheduling_State;
+
+   function Extract_Gain_Triple_For_Neighbours return Gain_Triples with
+    Global => Gain_Scheduling_State;
+
+   function Interpolated_Gain_Triple return Gain_Triple with
+    Global => Gain_Scheduling_State;
+   --  Compute the interpolation of the energy levels of the neighbours of
+   --  Mission_Profile by distance-based averaging.
+
    procedure Gain_Scheduling with
      Global => (Input  => (Input_State,
                            Trajectory_State,
                            Private_State,
                            Mutual_Exclusion_State),
                 In_Out => Gain_Scheduling_State),
-     Pre    => On_State = RUNNING;
+     Pre    => On_State = RUNNING,
+     Post   =>
+
+   --  1. Assembling mission profile.
+
+       Mission_Profile =
+        (Mass     => Payload_Mass,
+         Altitude => Current_Altitude,
+         Speed    => Current_Speed)
+
+   --  2. Computing the nearest neighbours of Mission_Profile in
+   --  Flight_Domain_Mesh, and the distance of Mission_Profile to its nearest
+   --  neignbours.
+
+       and then
+       (for all Neighbour_Center of Nearest_Neighbours.Neighbours =>
+          Neighbour_Center.Mission_Profile.M in
+            MMS.F_PT.Data.Payload_Mass_Grid'Range
+        and then Neighbour_Center.Mission_Profile.S in
+          Data.Flight_Domain_Mesh'Range (1)
+        and then Neighbour_Center.Mission_Profile.A in
+          Data.Flight_Domain_Mesh'Range (2)
+        and then Neighbour_Center.Distance =
+          Distance_With_Neighbour
+            (Mission_Profile_Type'
+               (Mass     =>
+                   MMS.F_PT.Data.Payload_Mass_Grid
+                     (Neighbour_Center.Mission_Profile.M),
+                Altitude =>
+                  Data.Flight_Domain_Mesh
+                    (Neighbour_Center.Mission_Profile.S,
+                     Neighbour_Center.Mission_Profile.A).Altitude,
+                Speed    =>
+                  Data.Flight_Domain_Mesh
+                    (Neighbour_Center.Mission_Profile.S,
+                     Neighbour_Center.Mission_Profile.A).Speed)))
+
+   --  3. Extracting gain triples for the neighbours.
+
+   and then Extract_Gain_Triple_For_Neighbours.Size =
+       Nearest_Neighbours.Size
+   and then
+       (for all I in 1 .. Extract_Gain_Triple_For_Neighbours.Size =>
+          Extract_Gain_Triple_For_Neighbours.Neighbours (I) =
+         (case Flight_Phase is
+          when CLIMB   =>
+           Data.Climb_Gains
+            (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+             A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+             S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S),
+          when CRUISE  =>
+           Data.Cruise_Gains
+            (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+             A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+             S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S),
+          when DESCENT =>
+           Data.Descent_Gains
+            (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+             A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+             S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S)))
+
+   --  4. Compute MP's gain triple by interpolation of its neighbours
+   --     Set appropriate value to Interpolated_Gain_Triple.
+          ;
+
+   ------------------------
+   -- Propulsion Control --
+   ------------------------
+
+   function Propulsion_Altitude_Error return Current_Altitude_Type'Base is
+     (Current_Altitude - Intermediate_Set_Point_Altitude)
+   with Pre => On_State = RUNNING;
+
+   function Propulsion_Speed_Error return Current_Speed_Type'Base is
+     (Current_Speed - Intermediate_Set_Point_Speed)
+   with Pre => On_State = RUNNING;
+
+   function Propulsion_Error return Error_Type with
+     Global => (Proof_In => Private_State,
+                Input    => Propulsion_State);
+   --  In Flight and maybe also Take-Off phase, should be
+   --  Propulsion_Altitude_Error if Selected_Mode is ALTITUDE and
+   --  Propulsion_Speed_Error otherwise, but I am confused about the units...
+   --  In Landing phase, should depend on speed, altitude, and also distance,
+   --  see #29.
+
+   function Propulsion_Integral_Error return Error_Type with
+     Global => (Proof_In => Private_State,
+                Input    => Propulsion_State);
+   --  Cumulative past error during the last Ti seconds
+
+   function Propulsion_Derivative_Error return Error_Type with
+     Global => (Proof_In => Private_State,
+                Input    => Propulsion_State);
+   --  Error variation at current time
 
    procedure Propulsion_Control with
      Global => (Input  => (Input_State,
@@ -567,7 +689,34 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
                            Mutual_Exclusion_State),
                 In_Out => Propulsion_State),
      Pre    => On_State = RUNNING
-     and then Engine_State = PROPULSION;
+     and then Engine_State = PROPULSION,
+     Post   => Propulsion_Torque =
+       Torque_Type (Interpolated_Gain_Triple.Kp * Propulsion_Error) +
+       Torque_Type (Interpolated_Gain_Triple.Ki * Propulsion_Integral_Error) +
+       Torque_Type (Interpolated_Gain_Triple.Kd * Propulsion_Derivative_Error);
+
+   ---------------------
+   -- Braking Control --
+   ---------------------
+
+   function Braking_Speed_Error return Current_Speed_Type'Base is
+     (Current_Speed - Data.Recovery_Speed)
+   with Pre => On_State = RUNNING;
+
+   function Braking_Error return Error_Type with
+     Global => (Proof_In => Private_State,
+                Input    => Braking_State);
+   --  Should be Braking_Speed_Error, but I am confused about the units...
+
+   function Braking_Integral_Error return Error_Type with
+     Global => (Proof_In => Private_State,
+                Input    => Braking_State);
+   --  Cumulative past error during the last Ti seconds
+
+   function Braking_Derivative_Error return Error_Type with
+     Global => (Proof_In => Private_State,
+                Input    => Braking_State);
+   --  Error variation at current time
 
    procedure Braking_Control with
      Global => (Input  => (Input_State,
@@ -577,6 +726,10 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
                            Mutual_Exclusion_State),
                 In_Out => Braking_State),
      Pre    => On_State = RUNNING
-     and then Engine_State = BRAKING;
+     and then Engine_State = BRAKING,
+     Post   => Braking_Torque =
+       Torque_Type (Interpolated_Gain_Triple.Kp * Braking_Error) +
+       Torque_Type (Interpolated_Gain_Triple.Ki * Braking_Integral_Error) +
+       Torque_Type (Interpolated_Gain_Triple.Kd * Braking_Derivative_Error);
 
 end MMS.F_PT.F_FC.Behavior;
