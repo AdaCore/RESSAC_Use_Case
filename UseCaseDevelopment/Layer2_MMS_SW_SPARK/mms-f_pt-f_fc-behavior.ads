@@ -412,64 +412,94 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
    -- Reference Trajectory Computation --
    --------------------------------------
 
+   function Use_Set_Point_Altitude return Boolean is
+     (Running_State = LANDING or else Selected_Option = ALTITUDE)
+   with Pre => On_State = RUNNING;
+
    function Set_Point_Altitude return Current_Altitude_Type with
      Global => (Input    => Trajectory_State,
-                Proof_In => (Private_State,
+                Proof_In => (Input_State,
+                             Private_State,
                              Operating_Mode_State,
                              Mutual_Exclusion_State)),
-     Pre    => On_State = RUNNING;
+     Pre    => On_State = RUNNING
+     and then Use_Set_Point_Altitude;
 
    function Intermediate_Set_Point_Altitude return Current_Altitude_Type with
      Global => (Input    => Trajectory_State,
-                Proof_In => (Private_State,
+                Proof_In => (Input_State,
+                             Private_State,
                              Operating_Mode_State,
                              Mutual_Exclusion_State)),
-     Pre    => On_State = RUNNING;
+     Pre    => On_State = RUNNING
+     and then Use_Set_Point_Altitude;
 
    function Close_To_Set_Point_Altitude return Boolean with
      Global => (Input    => Trajectory_State,
-                Proof_In => (Private_State,
+                Proof_In => (Input_State,
+                             Private_State,
                              Operating_Mode_State,
                              Mutual_Exclusion_State)),
-     Pre    => On_State = RUNNING;
+     Pre    => On_State = RUNNING
+     and then Use_Set_Point_Altitude;
    --  True if we are close enough to the set point. Used to avoid Zeno effect.
 
    function Intermediate_Set_Point_Altitude_Reached return Boolean with
      Global => (Input    => Trajectory_State,
-                Proof_In => (Private_State,
+                Proof_In => (Input_State,
+                             Private_State,
                              Operating_Mode_State,
                              Mutual_Exclusion_State)),
-     Pre    => On_State = RUNNING and then Already_Running;
+     Pre    => On_State = RUNNING
+     and then Already_Running
+     and then not Operating_Mode_Changed
+     and then not Operating_Point_Changed
+     and then Use_Set_Point_Altitude;
    --  True if we have reached the previous intermediate set point.
+
+   function Use_Set_Point_Speed return Boolean is
+     (Running_State = LANDING or else Selected_Option = SPEED)
+   with Pre => On_State = RUNNING;
 
    function Set_Point_Speed return Current_Speed_Type with
      Global => (Input    => Trajectory_State,
-                Proof_In => (Private_State,
+                Proof_In => (Input_State,
+                             Private_State,
                              Operating_Mode_State,
                              Mutual_Exclusion_State)),
-     Pre    => On_State = RUNNING;
+     Pre    => On_State = RUNNING
+     and then Use_Set_Point_Speed;
 
    function Intermediate_Set_Point_Speed return Current_Speed_Type with
      Global => (Input    => Trajectory_State,
-                Proof_In => (Private_State,
+                Proof_In => (Input_State,
+                             Private_State,
                              Operating_Mode_State,
                              Mutual_Exclusion_State)),
-     Pre    => On_State = RUNNING;
+     Pre    => On_State = RUNNING
+     and then Use_Set_Point_Speed;
 
    function Close_To_Set_Point_Speed return Boolean with
      Global => (Input    => Trajectory_State,
-                Proof_In => (Private_State,
+                Proof_In => (Input_State,
+                             Private_State,
                              Operating_Mode_State,
                              Mutual_Exclusion_State)),
-     Pre    => On_State = RUNNING;
+     Pre    => On_State = RUNNING
+     and then Use_Set_Point_Speed;
    --  True if we are close enough to the set point. Used to avoid Zeno effect.
 
    function Intermediate_Set_Point_Speed_Reached return Boolean with
      Global => (Input    => Trajectory_State,
-                Proof_In => (Private_State,
+                Proof_In => (Input_State,
+                             Private_State,
                              Operating_Mode_State,
                              Mutual_Exclusion_State)),
-     Pre    => On_State = RUNNING and then Already_Running;
+     Pre    => On_State = RUNNING
+     and then Already_Running
+     and then not Operating_Mode_Changed
+     and then not Operating_Point_Changed
+     and then Use_Set_Point_Speed;
    --  True if we have reached the previous intermediate set point.
 
    function Set_Point_Distance return Current_Range_Type with
@@ -505,8 +535,11 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
           and then Set_Point_Speed = 0
           and then Set_Point_Distance = Mission_Range
         else
-          (Set_Point_Altitude = Operating_Point.Altitude
-           and then Set_Point_Speed = Operating_Point.Speed))
+          (case Selected_Option is
+                 when ALTITUDE =>
+                   Set_Point_Altitude = Operating_Point.Altitude,
+                 when SPEED =>
+                   Set_Point_Speed = Operating_Point.Speed))
 
      --  Instead of giving the true set-point to propulsion control, it gives
      --  half of the change amplitude. When current intermediate set-point is
@@ -515,25 +548,29 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
      --  Module is reset by any operating point change.
 
      and then
-       Intermediate_Set_Point_Speed =
+       (if Use_Set_Point_Speed then
+          Intermediate_Set_Point_Speed =
           (if not Already_Running
            or else Operating_Point_Changed
+           or else Operating_Mode_Changed
            or else (Intermediate_Set_Point_Speed_Reached
                     and then not Close_To_Set_Point_Speed)
            then
              (Set_Point_Speed + Current_Speed) / 2
            elsif Close_To_Set_Point_Speed then Set_Point_Speed
-           else Intermediate_Set_Point_Speed'Old)
+           else Intermediate_Set_Point_Speed'Old))
 
      and then
-       Intermediate_Set_Point_Altitude =
+       (if Use_Set_Point_Altitude then
+          Intermediate_Set_Point_Altitude =
           (if not Already_Running
            or else Operating_Point_Changed
+           or else Operating_Mode_Changed
            or else (Intermediate_Set_Point_Altitude_Reached
                     and then not Close_To_Set_Point_Altitude)
            then (Set_Point_Altitude + Current_Altitude) / 2
            elsif Close_To_Set_Point_Altitude then Set_Point_Altitude
-           else Intermediate_Set_Point_Altitude'Old)
+           else Intermediate_Set_Point_Altitude'Old))
 
     --  Changes in the operating point provoque termination of the current
     --  cruise phase and activate a transient climb or descent phase to
@@ -585,7 +622,8 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
                            Private_State,
                            Mutual_Exclusion_State),
                 In_Out => Gain_Scheduling_State),
-     Pre    => On_State = RUNNING,
+     Pre    => On_State = RUNNING
+     and then Engine_State in BRAKING | PROPULSION,
      Post   =>
 
    --  1. Assembling mission profile.
@@ -631,20 +669,38 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
           Extract_Gain_Triple_For_Neighbours.Neighbours (I) =
          (case Flight_Phase is
           when CLIMB   =>
-           Data.Climb_Gains
-            (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
-             A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
-             S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S),
+            (if Engine_State = PROPULSION then
+               Data.Climb_Propulsion_Gains
+                 (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+                  A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+                  S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S)
+             else
+               Data.Climb_Braking_Gains
+                 (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+                  A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+                  S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S)),
           when CRUISE  =>
-           Data.Cruise_Gains
-            (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
-             A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
-             S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S),
+            (if Engine_State = PROPULSION then
+               Data.Cruise_Propulsion_Gains
+                 (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+                  A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+                  S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S)
+             else
+               Data.Cruise_Braking_Gains
+                 (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+                  A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+                  S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S)),
           when DESCENT =>
-           Data.Descent_Gains
-            (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
-             A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
-             S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S)))
+            (if Engine_State = PROPULSION then
+               Data.Descent_Propulsion_Gains
+                 (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+                  A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+                  S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S)
+             else
+               Data.Descent_Braking_Gains
+                 (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
+                  A => Nearest_Neighbours.Neighbours (I).Mission_Profile.A,
+                  S => Nearest_Neighbours.Neighbours (I).Mission_Profile.S))))
 
    --  4. Compute MP's gain triple by interpolation of its neighbours
    --     Set appropriate value to Interpolated_Gain_Triple.
@@ -656,15 +712,16 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
 
    function Propulsion_Altitude_Error return Current_Altitude_Type'Base is
      (Current_Altitude - Intermediate_Set_Point_Altitude)
-   with Pre => On_State = RUNNING;
+   with Pre => On_State = RUNNING
+     and then Use_Set_Point_Altitude;
 
    function Propulsion_Speed_Error return Current_Speed_Type'Base is
      (Current_Speed - Intermediate_Set_Point_Speed)
-   with Pre => On_State = RUNNING;
+   with Pre => On_State = RUNNING
+     and then Use_Set_Point_Speed;
 
    function Propulsion_Error return Error_Type with
-     Global => (Proof_In => Private_State,
-                Input    => Propulsion_State);
+     Global => Propulsion_State;
    --  In Flight and maybe also Take-Off phase, should be
    --  Propulsion_Altitude_Error if Selected_Mode is ALTITUDE and
    --  Propulsion_Speed_Error otherwise, but I am confused about the units...
@@ -672,14 +729,12 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
    --  see #29.
 
    function Propulsion_Integral_Error return Error_Type with
-     Global => (Proof_In => Private_State,
-                Input    => Propulsion_State);
-   --  Cumulative past error during the last Ti seconds
+     Global => Propulsion_State;
+   --  Cumulative past Propulsion_Error during the last Ti seconds
 
    function Propulsion_Derivative_Error return Error_Type with
-     Global => (Proof_In => Private_State,
-                Input    => Propulsion_State);
-   --  Error variation at current time
+     Global => Propulsion_State;
+   --  Propulsion_Error variation at current time
 
    procedure Propulsion_Control with
      Global => (Input  => (Input_State,
@@ -699,24 +754,27 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
    -- Braking Control --
    ---------------------
 
+   function Braking_Altitude_Error return Current_Altitude_Type'Base is
+     (Current_Altitude - Intermediate_Set_Point_Altitude)
+   with Pre => On_State = RUNNING
+     and then Use_Set_Point_Altitude;
+
    function Braking_Speed_Error return Current_Speed_Type'Base is
-     (Current_Speed - Data.Recovery_Speed)
-   with Pre => On_State = RUNNING;
+     (Current_Speed - Intermediate_Set_Point_Speed)
+   with Pre => On_State = RUNNING
+     and then Use_Set_Point_Speed;
 
    function Braking_Error return Error_Type with
-     Global => (Proof_In => Private_State,
-                Input    => Braking_State);
-   --  Should be Braking_Speed_Error, but I am confused about the units...
+     Global => Braking_State;
+   --  Same as propulsion, see #28.
 
    function Braking_Integral_Error return Error_Type with
-     Global => (Proof_In => Private_State,
-                Input    => Braking_State);
-   --  Cumulative past error during the last Ti seconds
+     Global => Braking_State;
+   --  Cumulative past Braking_Error during the last Ti seconds
 
    function Braking_Derivative_Error return Error_Type with
-     Global => (Proof_In => Private_State,
-                Input    => Braking_State);
-   --  Error variation at current time
+     Global => Braking_State;
+   --  Braking_Error variation at current time
 
    procedure Braking_Control with
      Global => (Input  => (Input_State,

@@ -14,7 +14,7 @@ package MMS.F_PT.F_FC.Data with SPARK_Mode is
 
    Flight_Domain_Mesh : constant Flight_Domain_Mesh_Type (1 .. 100, 1 .. 100); -- ??? bounds
 
-   function Climb_Gains
+   function Climb_Propulsion_Gains
      (S : Flight_Speed_Center;
       A : Flight_Altitude_Center;
       M : Payload_Mass_Center) return Gain_Triple
@@ -23,7 +23,7 @@ package MMS.F_PT.F_FC.Data with SPARK_Mode is
      and then A in Flight_Domain_Mesh'Range (2)
      and then M in MMS.F_PT.Data.Payload_Mass_Grid'Range;
 
-   function Cruise_Gains
+   function Cruise_Propulsion_Gains
      (S : Flight_Speed_Center;
       A : Flight_Altitude_Center;
       M : Payload_Mass_Center) return Gain_Triple
@@ -32,7 +32,34 @@ package MMS.F_PT.F_FC.Data with SPARK_Mode is
      and then A in Flight_Domain_Mesh'Range (2)
      and then M in MMS.F_PT.Data.Payload_Mass_Grid'Range;
 
-   function Descent_Gains
+   function Descent_Propulsion_Gains
+     (S : Flight_Speed_Center;
+      A : Flight_Altitude_Center;
+      M : Payload_Mass_Center) return Gain_Triple
+   with
+     Pre => S in Flight_Domain_Mesh'Range (1)
+     and then A in Flight_Domain_Mesh'Range (2)
+     and then M in MMS.F_PT.Data.Payload_Mass_Grid'Range;
+
+   function Climb_Braking_Gains
+     (S : Flight_Speed_Center;
+      A : Flight_Altitude_Center;
+      M : Payload_Mass_Center) return Gain_Triple
+   with
+     Pre => S in Flight_Domain_Mesh'Range (1)
+     and then A in Flight_Domain_Mesh'Range (2)
+     and then M in MMS.F_PT.Data.Payload_Mass_Grid'Range;
+
+   function Cruise_Braking_Gains
+     (S : Flight_Speed_Center;
+      A : Flight_Altitude_Center;
+      M : Payload_Mass_Center) return Gain_Triple
+   with
+     Pre => S in Flight_Domain_Mesh'Range (1)
+     and then A in Flight_Domain_Mesh'Range (2)
+     and then M in MMS.F_PT.Data.Payload_Mass_Grid'Range;
+
+   function Descent_Braking_Gains
      (S : Flight_Speed_Center;
       A : Flight_Altitude_Center;
       M : Payload_Mass_Center) return Gain_Triple
