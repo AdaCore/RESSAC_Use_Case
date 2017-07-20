@@ -56,7 +56,7 @@ ACTIVITIES:
       6.9.3.1:
       Assumptions A. B, C, E: Not translated (linked with AV's electrical and mechanical behavior)
       6.9.3.2:
-      Guarantees A, B: Not translated
+      Guarantees A, B: The outputs are ensured to be initialized
       Guarantee C: Translated as a postcondition on F_MM.Behavior.garantees.Run (arbitration has been moved to F_MM).
 
     - MMS.F_EL:
