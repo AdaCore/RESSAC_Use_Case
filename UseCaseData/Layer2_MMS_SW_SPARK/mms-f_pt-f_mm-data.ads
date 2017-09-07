@@ -2,6 +2,7 @@ with MMS.F_PT.Data;
 
 with Types; use Types;
 
+private
 package MMS.F_PT.F_MM.Data is
 
    --------------------------
@@ -11,7 +12,8 @@ package MMS.F_PT.F_MM.Data is
    --  From 6.6.2.3
 
    Amode_Initial_Domain_Mesh : Viability_Domain_Mesh_Type
-     (1 .. 100, 1 .. 100, 1 .. 100); -- ??? bounds
+     (1 .. 100, 1 .. 100, 1 .. 100)
+     with Part_Of => Viability_Logic_State; -- ??? bounds
 
    function Viability_Amode_Initial
      (M : Payload_Mass_Center;
@@ -24,7 +26,8 @@ package MMS.F_PT.F_MM.Data is
      and then S in Amode_Initial_Domain_Mesh'Range (3);
 
    Amode_Cruise_Domain_Mesh : Viability_Domain_Mesh_Type
-     (1 .. 100, 1 .. 100, 1 .. 100); -- ??? bounds
+     (1 .. 100, 1 .. 100, 1 .. 100)
+     with Part_Of => Viability_Logic_State; -- ??? bounds
 
    function Viability_Amode_Cruise
      (M : Payload_Mass_Center;
@@ -37,7 +40,8 @@ package MMS.F_PT.F_MM.Data is
      and then S in Amode_Cruise_Domain_Mesh'Range (3);
 
    RPmode_Initial_Domain_Mesh : Viability_Domain_Mesh_Type
-     (1 .. 100, 1 .. 100, 1 .. 100); -- ??? bounds
+     (1 .. 100, 1 .. 100, 1 .. 100)
+     with Part_Of => Viability_Logic_State; -- ??? bounds
 
    function Viability_RPmode_Initial
      (M : Payload_Mass_Center;
@@ -50,7 +54,8 @@ package MMS.F_PT.F_MM.Data is
      and then S in RPmode_Initial_Domain_Mesh'Range (3);
 
    RPmode_Cruise_Domain_Mesh : Viability_Domain_Mesh_Type
-     (1 .. 100, 1 .. 100, 1 .. 100); -- ??? bounds
+     (1 .. 100, 1 .. 100, 1 .. 100)
+     with Part_Of => Viability_Logic_State; -- ??? bounds
 
    function Viability_RPmode_Cruise
      (M : Payload_Mass_Center;
@@ -64,7 +69,8 @@ package MMS.F_PT.F_MM.Data is
 
    --  From 6.6.4 Mission termination control
 
-   Glide_Distance_Domain_Mesh : Glide_Domain_Mesh_Type (1 .. 100); -- ??? bounds
+   Glide_Distance_Domain_Mesh : Glide_Domain_Mesh_Type (1 .. 100)
+     with Part_Of => Mission_Termination_State; -- ??? bounds
 
    function Glide_Distance
      (AI : Glide_Altitude_Center) return Current_Range_Type
@@ -72,8 +78,8 @@ package MMS.F_PT.F_MM.Data is
 
    --  Issue #28
 
-   Altitude_ref_TakeOff    : Current_Altitude_Type;
-   Speed_ref_TakeOff       : Current_Speed_Type;
-   Energy_Mode_ref_TakeOff : Speed_Or_Altitude;
+   Altitude_Ref_TakeOff    : Current_Altitude_Type;
+   Speed_Ref_TakeOff       : Current_Speed_Type;
+   Energy_Mode_Ref_TakeOff : Speed_Or_Altitude;
 
 end MMS.F_PT.F_MM.Data;

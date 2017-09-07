@@ -40,8 +40,10 @@ package MMS.Output is
    -- Physical Parameters --
    -------------------------
    
-   function Propulsion_Torque return Torque_Type;
+   function Propulsion_Torque return Torque_Type
+     renames MMS.F_PT.Output.Propulsion_Torque;
    
-   function Braking_Torque return Torque_Type;
+   function Braking_Torque return Torque_Type
+     renames MMS.F_PT.Output.Braking_Torque;
    
 end MMS.Output;

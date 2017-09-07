@@ -1,4 +1,4 @@
-with MMS.F_PT.F_EM.Data;
+private with MMS.F_PT.F_EM.Data;
 
 package MMS.F_PT.F_EM.Behavior with SPARK_Mode is
       

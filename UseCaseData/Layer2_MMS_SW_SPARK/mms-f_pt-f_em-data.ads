@@ -1,6 +1,7 @@
 with Types; use Types;
 
-package MMS.F_PT.F_EM.Data is
+private
+package MMS.F_PT.F_EM.Data with SPARK_Mode is
 
    ---------------
    -- Constants --
@@ -8,7 +9,9 @@ package MMS.F_PT.F_EM.Data is
    
    --  From 6.8.4
    
-   Primary_Initial_Capacity   : Energy_Level_Type;
-   Secondary_Initial_Capacity : Energy_Level_Type;
+   Primary_Initial_Capacity   : Energy_Level_Type 
+     with Part_Of => Private_State;
+   Secondary_Initial_Capacity : Energy_Level_Type
+     with Part_Of => Private_State; 
 
 end MMS.F_PT.F_EM.Data;

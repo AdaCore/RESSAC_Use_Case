@@ -93,6 +93,9 @@ package MMS.F_PT.F_MM.State is
    In_Flight_Energy_Compatible_With_Mission : Boolean with
      Part_Of => Viability_Logic_State;
 
+   Mission_Profile : Mission_Profile_Type with
+     Part_Of => Viability_Logic_State;
+
    -------------------------------
    -- Mission_Termination_State --
    -------------------------------

@@ -45,7 +45,8 @@ SPARK_Mode,
                        Operating_Point),
                     Viability_Logic_State =>
                       (Initial_Energy_Compatible_With_Mission,
-                       In_Flight_Energy_Compatible_With_Mission),
+                       In_Flight_Energy_Compatible_With_Mission,
+                       Mission_Profile),
                     Mission_Termination_State =>
                       (Descent_Over))
 is

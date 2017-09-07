@@ -10,7 +10,7 @@
 
 with Types; use Types;
 with External;
-with MMS.F_PT.F_MM.Data;
+private with MMS.F_PT.F_MM.Data;
 private with MMS.F_PT.F_MM.State;
 with MMS.F_PT.Data;
 
@@ -148,7 +148,7 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    function Mission_Range_From_Navigation_Parameters
      return Current_Range_Type
    with Global =>
-       (Input => Operating_Point_State, Proof_In => Input_State),
+       (Input => Navigation_Parameter_State, Proof_In => Input_State),
      Pre => Power_On
      and then Mission_Parameters_Defined;
    --  Fetch distance from Navigation_Parameters and do the appropriate
@@ -157,7 +157,7 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    function Operating_Point_From_Navigation_Parameters
      return Operating_Point_Type
    with Global =>
-       (Input => Operating_Point_State, Proof_In => Input_State),
+       (Input => Navigation_Parameter_State, Proof_In => Input_State),
      Pre => Power_On
      and then Mission_Parameters_Defined;
    --  Fetch altitude and speed from Navigation_Parameters and do the
@@ -191,11 +191,11 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
      and then Current_Flight_Phase = CRUISE;
 
    function Current_Altitude_Close_Enough_To_ref_TakeOff return Boolean with
-     Global => Input_State;
+     Global => (Input => (Input_State, Viability_Logic_State));
    --  Return True if Current_Altitude is close enough to Altitude_ref_TakeOff
 
    function Current_Speed_Close_Enough_To_ref_TakeOff return Boolean with
-     Global => Input_State;
+     Global => (Input => (Input_State, Viability_Logic_State));
    --  Return True if Current_Altitude is close enough to Speed_ref_TakeOff
 
    function Take_Off_Over return Boolean is
@@ -232,6 +232,8 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
    function Mission_Cancelled_Signaled return Boolean with
      Global => Output_State;
+
+private
 
    ---------------------------------------
    -- Behavioural Specification of F_MM --
@@ -292,8 +294,10 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    procedure Management_Of_Navigation_Modes_Options_Parameters with
    --  Compute the value of Navigation_Mode / Options / Parameters (see 6.9.4)
 
-     Global => (Input  => (Input_State, Private_State),
-                Output => Navigation_Parameter_State),
+     Global => (Input  => (Input_State,
+                           Private_State,
+                           Data.Energy_Mode_Ref_TakeOff),
+                In_Out => Navigation_Parameter_State),
      Pre    => Power_On,
      Post   => Navigation_Mode =
 
@@ -342,7 +346,10 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
 
      Global => (Input  =>
-                  (Input_State, Private_State, Navigation_Parameter_State),
+                  (Private_State,
+                   Navigation_Parameter_State,
+                   Data.Altitude_Ref_TakeOff,
+                   Data.Speed_Ref_TakeOff),
                 In_Out => Operating_Point_State),
      Pre    => Power_On
        and then Mission_Parameters_Defined
@@ -389,7 +396,9 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
    function Appropriate_Tabulating_Function return Viability_Domain_Mesh_Type
    with
-     Global => Viability_Logic_State;
+       Global => (Input => (Private_State,
+                            Viability_Logic_State,
+                            Navigation_Parameter_State));
 
    function Distance_With_Neighbour
      (Neighbour : Mission_Profile_Type) return Mission_Profile_Distance_Type
@@ -398,9 +407,12 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    --  Compute the distance between Mission_Profile and its Neighbour.
 
    function Nearest_Neighbours return Neighbour_Mission_Profiles with
-    Global => Viability_Logic_State;
+     Global => (Input => (Private_State,
+                          Viability_Logic_State,
+                          Navigation_Parameter_State));
 
-   function Extract_Energy_Level_For_Neighbours return Energy_Levels
+   function Extract_Energy_Level_For_Neighbours
+     (Neighbours : Neighbour_Mission_Profiles) return Energy_Levels
    with
     Global => Viability_Logic_State;
 
@@ -414,7 +426,8 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
                   (Input_State,
                    Private_State,
                    Navigation_Parameter_State,
-                   Operating_Point_State),
+                   Operating_Point_State,
+                   MMS.F_PT.Data.Payload_Mass_Grid),
                  In_Out => Viability_Logic_State),
      Pre    => Power_State = ON,
      Post   =>
@@ -476,11 +489,13 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
 
    --  4. Extracting energy level for the neighbours.
 
-   and then Extract_Energy_Level_For_Neighbours.Size =
+   and then Extract_Energy_Level_For_Neighbours (Nearest_Neighbours).Size =
        Nearest_Neighbours.Size
    and then
-       (for all I in 1 .. Extract_Energy_Level_For_Neighbours.Size =>
-          Extract_Energy_Level_For_Neighbours.Neighbours (I) =
+       (for all I In
+          1 .. Extract_Energy_Level_For_Neighbours (Nearest_Neighbours).Size =>
+              Extract_Energy_Level_For_Neighbours
+          (Nearest_Neighbours).Neighbours (I) =
          (if On_State = INIT and then Navigation_Mode = A
           then Data.Viability_Amode_Initial
             (M => Nearest_Neighbours.Neighbours (I).Mission_Profile.M,
@@ -538,7 +553,7 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    --  Compute the value of In_Flight_Energy_Compatible_With_Mission. It should
    --  be repeated at a periodic rate of F_Viability.
    --  Set In_Flight_Energy_Compatible_With_Mission to True if Energy_Level is
-   --  at least the Interpolated_Energy_Level plus an enery margin. When
+   --  at least the Interpolated_Energy_Level plus an energy margin. When
    --  EstimatedTotalMass increases, and even more so if it increases quickly,
    --  F_MM applies greater safety margins (see #17).
 
@@ -589,6 +604,7 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
    procedure Update_States with
      Global => (Input  =>
                   (Input_State,
+                   Output_State,
                    Navigation_Parameter_State,
                    Operating_Point_State,
                    Viability_Logic_State,
@@ -752,8 +768,6 @@ package MMS.F_PT.F_MM.Behavior with SPARK_Mode is
         =>
           Power_State = ON
         and then On_State = On_State'Old);
-
-private
 
    ----------------------------
    --  Definitions of Inputs --

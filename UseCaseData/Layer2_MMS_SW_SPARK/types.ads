@@ -8,7 +8,7 @@ package Types with SPARK_Mode is
 
    type Speed_Input_Type is range 1 .. 250; -- in k.t
 
-   type Altitude_Input_Type is range -500 .. 3000; -- in ft
+   type Altitude_Input_Type is range -500 .. 3_000; -- in ft
 
    type Navigation_Parameters_Type is record
       Distance : Distance_Input_Type;
