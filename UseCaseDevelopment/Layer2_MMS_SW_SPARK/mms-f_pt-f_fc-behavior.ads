@@ -1,8 +1,6 @@
-with System.Dim.Mks; use all type System.Dim.Mks.Mks_Type;
-
 with MMS.F_PT.F_FC.Data;
 with External;
-with Types; use Types;
+with Types; use Types; use all type Types.Mks.Mks_Type;
 with MMS.F_PT.Data;
 
 package MMS.F_PT.F_FC.Behavior with SPARK_Mode is

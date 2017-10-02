@@ -1,6 +1,4 @@
-with System.Dim.Mks; use System.Dim; use all type System.Dim.Mks.Mks_Type;
-
-package Types is
+package Types with SPARK_Mode is
 
    ----------------------------------
    -- Types for inputs and outputs --
@@ -67,13 +65,59 @@ package Types is
 
    type Payload_Mass_Type is new Integer range 0 .. 98; -- in kg
 
-   subtype Distance_Type is Mks.Length; -- type of P, unit and bounds ???
+   package Mks is
+
+      type Mks_Type is new Long_Float
+        with
+          Dimension_System => (
+           (Unit_Name => Meter,    Unit_Symbol => 'm',   Dim_Symbol => 'L'),
+           (Unit_Name => Kilogram, Unit_Symbol => "kg",  Dim_Symbol => 'M'),
+           (Unit_Name => Second,   Unit_Symbol => 's',   Dim_Symbol => 'T'),
+           (Unit_Name => Ampere,   Unit_Symbol => 'A',   Dim_Symbol => 'I'),
+           (Unit_Name => Kelvin,   Unit_Symbol => 'K',   Dim_Symbol => '@'),
+           (Unit_Name => Mole,     Unit_Symbol => "mol", Dim_Symbol => 'N'),
+           (Unit_Name => Candela,  Unit_Symbol => "cd",  Dim_Symbol => 'J'));
+
+      --  SI Base dimensioned subtypes
+
+      subtype Length is Mks_Type
+        with
+          Dimension => (Symbol => 'm',
+                        Meter  => 1,
+                        others => 0);
+
+      subtype Time is Mks_Type
+        with
+          Dimension => (Symbol => 's',
+                        Second => 1,
+                        others => 0);
+
+      subtype Speed is Mks_Type
+        with
+          Dimension => (Meter  =>  1,
+                        Second => -1,
+                        others =>  0);
+
+      subtype Angle is Mks_Type
+        with
+          Dimension => (Symbol => "rad",
+                        others => 0);
+
+      pragma Warnings (Off, "*assumed to be*");
+      m   : constant Length := 1.0;
+      s   : constant Time   := 1.0;
+      pragma Warnings (On, "*assumed to be*");
+   end Mks;
+
+   use Mks;
+
+   subtype Distance_Type is Length; -- type of P, unit and bounds ???
 
    subtype Speed_Type is Mks.Speed; -- type of P_Dot and Q_Dot, in angle.s-1, bounds ???
 
-   Zero_Speed : constant Speed_Type := 0.0*Mks.m*Mks.s**(-1);
+   Zero_Speed : constant Speed_Type := 0.0*m*s**(-1);
 
-   subtype Angle_Type is Mks.Angle; -- type of Q, unit and bounds ???
+   subtype Angle_Type is Angle; -- type of Q, unit and bounds ???
 
    type Rotactor_Type is range 0 .. 9;
 
