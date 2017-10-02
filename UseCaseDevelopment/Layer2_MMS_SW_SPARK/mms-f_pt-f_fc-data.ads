@@ -104,15 +104,15 @@ private
    Flight_Domain_Mesh : constant Flight_Domain_Mesh_Type (1 .. 100, 1 .. 100) :=
      (others => (others => <>));
 
-   Qdot_MinCl : constant Speed_Type := 0.0;
-   Qdot_MaxCl : constant Speed_Type := 0.0;
+   Qdot_MinCl : constant Speed_Type := Zero_Speed;
+   Qdot_MaxCl : constant Speed_Type := Zero_Speed;
    Q_MaxCl    : constant Angle_Type := 0.0;
-   Qdot_MinCr : constant Speed_Type := 0.0;
-   Qdot_MaxCr : constant Speed_Type := 0.0;
+   Qdot_MinCr : constant Speed_Type := Zero_Speed;
+   Qdot_MaxCr : constant Speed_Type := Zero_Speed;
    Q_MinCr    : constant Angle_Type := 0.0;
-   Pdot_MaxCr : constant Speed_Type := 0.0;
-   Qdot_MinDs : constant Speed_Type := 0.0;
-   Qdot_MaxDs : constant Speed_Type := 0.0;
+   Pdot_MaxCr : constant Speed_Type := Zero_Speed;
+   Qdot_MinDs : constant Speed_Type := Zero_Speed;
+   Qdot_MaxDs : constant Speed_Type := Zero_Speed;
    Q_MaxDs    : constant Angle_Type := 0.0;
 
    Escape_Time : constant Time_Type := 0;

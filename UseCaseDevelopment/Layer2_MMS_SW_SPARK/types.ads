@@ -1,3 +1,5 @@
+with System.Dim.Mks; use System.Dim; use all type System.Dim.Mks.Mks_Type;
+
 package Types is
 
    ----------------------------------
@@ -65,11 +67,13 @@ package Types is
 
    type Payload_Mass_Type is new Integer range 0 .. 98; -- in kg
 
-   type Distance_Type is new Float; -- type of P, unit and bounds ???
+   subtype Distance_Type is Mks.Length; -- type of P, unit and bounds ???
 
-   type Speed_Type is new Float; -- type of P_Dot and Q_Dot, in angle.s-1, bounds ???
+   subtype Speed_Type is Mks.Speed; -- type of P_Dot and Q_Dot, in angle.s-1, bounds ???
 
-   type Angle_Type is new Float; -- type of Q, unit and bounds ???
+   Zero_Speed : constant Speed_Type := 0.0*Mks.m*Mks.s**(-1);
+
+   subtype Angle_Type is Mks.Angle; -- type of Q, unit and bounds ???
 
    type Rotactor_Type is range 0 .. 9;
 

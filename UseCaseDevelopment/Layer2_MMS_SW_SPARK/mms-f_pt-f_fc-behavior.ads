@@ -1,3 +1,5 @@
+with System.Dim.Mks; use all type System.Dim.Mks.Mks_Type;
+
 with MMS.F_PT.F_FC.Data;
 with External;
 with Types; use Types;
@@ -252,7 +254,7 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
         and then not Emergency_Landing
         and then
           (if Running_State = LANDING then
-              not (P_Dot = 0.0 and then Q_Dot = 0.0))
+              not (P_Dot = Zero_Speed and then Q_Dot = Zero_Speed))
         and then not In_Safety_Envelope
         and then Time_Since_In_Safety_Escape > MMS.F_PT.F_FC.Data.Escape_Time
         =>
@@ -263,7 +265,7 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
         and then not Emergency_Landing
         and then
           (if Running_State = LANDING then
-              not (P_Dot = 0.0 and then Q_Dot = 0.0))
+              not (P_Dot = Zero_Speed and then Q_Dot = Zero_Speed))
         and then
           (if Running_State = FLIGHT then not Start_Landing)
         and then
@@ -305,7 +307,7 @@ package MMS.F_PT.F_FC.Behavior with SPARK_Mode is
         On_State = RUNNING
         and then not Emergency_Landing
         and then Running_State = LANDING
-        and then P_Dot = 0.0 and then Q_Dot = 0.0
+        and then P_Dot = Zero_Speed and then Q_Dot = Zero_Speed
         =>
           On_State = COMPLETE,
 
