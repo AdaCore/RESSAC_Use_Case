@@ -1,0 +1,119 @@
+Notes-Types { Esterel-Technologies }  DEFINITIONS ::=
+BEGIN
+    Unit ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Unit TEXT
+            {
+            	 NT_DEFAULT_VALUE "TBD" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+    Comment ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Comment TEXT
+            {
+            	 NT_DEFAULT_VALUE "" ,
+            	 NT_FIELD_HEIGHT 3 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+    Comment_Package ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Description TEXT
+            {
+            	 NT_DEFAULT_VALUE "TBD" ,
+            	 NT_FIELD_HEIGHT 10 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+    Range ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Range TEXT
+            {
+            	 NT_DEFAULT_VALUE "TBD" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+    Resolution ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Resolution TEXT
+            {
+            	 NT_DEFAULT_VALUE "TBD" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+END
+
+Notes-Values { Esterel-Technologies }  DEFINITIONS ::=
+BEGIN
+    Unit ::= {
+        {"!ed/2ea1/589C/1330/594d1202147e", "Unit_2","TBD" , T },
+        {"!ed/293a/589C/1330/594d050c66cf", "Unit_2","TBD" , T },
+        {"!ed/2970/589C/1330/594d062c7935", "Unit_2","TBD" , T },
+        {"!ed/2976/589C/1330/594d062d5d6d", "Unit_2","TBD" , T },
+        {"!ed/297c/589C/1330/594d062d1c3c", "Unit_2","TBD" , T },
+        {"!ed/2851/589C/1330/594cea7a23b3", "Unit_2","TBD" , T },
+        {"!ed/2852/589C/1330/594cea925130", "Unit_2","TBD" , T },
+        {"!ed/2853/589C/1330/594cea9b550b", "Unit_2","TBD" , T },
+        {"!ed/2854/589C/1330/594ceaa554f6", "Unit_2","TBD" , T },
+        {"!ed/2856/589C/1330/594ceabf4b3b", "Unit_2","TBD" , T }}
+    Comment ::= {
+        {"!ed/2ea1/589C/1330/594d1202147e", "Comment_1","" , T },
+        {"!ed/293a/589C/1330/594d050c66cf", "Comment_1","" , T },
+        {"!ed/2970/589C/1330/594d062c7935", "Comment_1","" , T },
+        {"!ed/2976/589C/1330/594d062d5d6d", "Comment_1","" , T },
+        {"!ed/297c/589C/1330/594d062d1c3c", "Comment_1","" , T },
+        {"!ed/2851/589C/1330/594cea7a23b3", "Comment_1","" , T },
+        {"!ed/2852/589C/1330/594cea925130", "Comment_1","" , T },
+        {"!ed/2853/589C/1330/594cea9b550b", "Comment_1","" , T },
+        {"!ed/2854/589C/1330/594ceaa554f6", "Comment_1","" , T },
+        {"!ed/2856/589C/1330/594ceabf4b3b", "Comment_1","" , T }}
+    Comment_Package ::= {
+        {"!ed/284d/589C/1330/594cea75498b", "Comment_Package_1","TBD" , T }}
+    Range ::= {
+        {"!ed/2ea1/589C/1330/594d1202147e", "Range_3","TBD" , T },
+        {"!ed/293a/589C/1330/594d050c66cf", "Range_3","TBD" , T },
+        {"!ed/2970/589C/1330/594d062c7935", "Range_3","TBD" , T },
+        {"!ed/2976/589C/1330/594d062d5d6d", "Range_3","TBD" , T },
+        {"!ed/297c/589C/1330/594d062d1c3c", "Range_3","TBD" , T }}
+    Resolution ::= {
+        {"!ed/2ea1/589C/1330/594d1202147e", "Resolution_4","TBD" , T },
+        {"!ed/293a/589C/1330/594d050c66cf", "Resolution_4","TBD" , T },
+        {"!ed/2970/589C/1330/594d062c7935", "Resolution_4","TBD" , T },
+        {"!ed/2976/589C/1330/594d062d5d6d", "Resolution_4","TBD" , T },
+        {"!ed/297c/589C/1330/594d062d1c3c", "Resolution_4","TBD" , T }}
+END
+

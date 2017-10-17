@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" name="abs">
+	<inputs>
+		<Variable name="value">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/975b/197F/2150/59e4aef342e1"/>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;input value&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="abs">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/975a/197F/2150/59e4aef368b6"/>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;absolute value.&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<numericTypes>
+		<NumericType>
+			<typeVar>
+				<TypeRef name="'T"/>
+			</typeVar>
+		</NumericType>
+	</numericTypes>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/9755/197F/2150/59e4aef35902"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/9756/197F/2150/59e4aef360f7"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/9757/197F/2150/59e4aef36680"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/9758/197F/2150/59e4aef36e9e"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L5">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/9759/197F/2150/59e4aef37945"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = value; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="value"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/974e/197F/2150/59e4aef3375"/>
+			</pragmas>
+		</Equation>
+		<!-- abs = _L4; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="abs"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L4"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/974f/197F/2150/59e4aef3481"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = _L1 < _L3; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!-- _L1 < _L3 -->
+				<BinaryOp name="1" operator="&lt;">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</BinaryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/9750/197F/2150/59e4aef34fa3"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = (0 : 'T); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<!-- (0 : 'T) -->
+				<NumericCastOp name="1">
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+					<flow>
+						<ConstValue value="0"/>
+					</flow>
+				</NumericCastOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/9751/197F/2150/59e4aef3429a"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = if _L2 then (_L5) else (_L1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<!-- if _L2 then (_L5) else (_L1) -->
+				<IfThenElseOp name="1">
+					<if>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+					</if>
+					<then>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L5"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</then>
+					<else>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</else>
+				</IfThenElseOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/9752/197F/2150/59e4aef36f0c"/>
+			</pragmas>
+		</Equation>
+		<!-- _L5 =  - _L1; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L5"/>
+			</lefts>
+			<right>
+				<!--  - _L1 -->
+				<UnaryOp name="1" operator="-">
+					<operand>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</operand>
+				</UnaryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/9753/197F/2150/59e4aef31262"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/974d/197F/2150/59e4aef315f4" symbolFile="..\symbols\real_abs.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="diagram_abs_1" landscape="true" format="A4 (210 297)" oid="!ed/9754/197F/2150/59e4aef3444b">
+					<presentationElements>
+						<EquationGE presentable="!ed/974e/197F/2150/59e4aef3375">
+							<position>
+								<Point x="2672" y="4524"/>
+							</position>
+							<size>
+								<Size width="265" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/974f/197F/2150/59e4aef3481">
+							<position>
+								<Point x="9499" y="6059"/>
+							</position>
+							<size>
+								<Size width="344" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/9750/197F/2150/59e4aef34fa3">
+							<position>
+								<Point x="6085" y="4577"/>
+							</position>
+							<size>
+								<Size width="1006" height="662"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/9751/197F/2150/59e4aef3429a">
+							<position>
+								<Point x="5054" y="5133"/>
+							</position>
+							<size>
+								<Size width="211" height="317"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/974e/197F/2150/59e4aef3375" dstEquation="!ed/9750/197F/2150/59e4aef34fa3">
+							<positions>
+								<Point x="2937" y="4789"/>
+								<Point x="4498" y="4789"/>
+								<Point x="4498" y="4789"/>
+								<Point x="6085" y="4789"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/9751/197F/2150/59e4aef3429a" dstEquation="!ed/9750/197F/2150/59e4aef34fa3">
+							<positions>
+								<Point x="5265" y="5292"/>
+								<Point x="5874" y="5292"/>
+								<Point x="5874" y="5027"/>
+								<Point x="6085" y="5027"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/9752/197F/2150/59e4aef36f0c">
+							<position>
+								<Point x="7382" y="5636"/>
+							</position>
+							<size>
+								<Size width="1022" height="1365"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/9750/197F/2150/59e4aef34fa3" dstEquation="!ed/9752/197F/2150/59e4aef36f0c">
+							<positions>
+								<Point x="7091" y="4921"/>
+								<Point x="7911" y="4921"/>
+								<Point x="7911" y="5636"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/9752/197F/2150/59e4aef36f0c" dstEquation="!ed/974f/197F/2150/59e4aef3481">
+							<positions>
+								<Point x="8414" y="6324"/>
+								<Point x="8969" y="6324"/>
+								<Point x="8969" y="6324"/>
+								<Point x="9551" y="6324"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/9753/197F/2150/59e4aef31262">
+							<position>
+								<Point x="5371" y="5741"/>
+							</position>
+							<size>
+								<Size width="1005" height="661"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/9753/197F/2150/59e4aef31262" dstEquation="!ed/9752/197F/2150/59e4aef36f0c">
+							<positions>
+								<Point x="6376" y="6085"/>
+								<Point x="6879" y="6085"/>
+								<Point x="6879" y="6085"/>
+								<Point x="7382" y="6085"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/974e/197F/2150/59e4aef3375" dstEquation="!ed/9753/197F/2150/59e4aef31262">
+							<positions>
+								<Point x="2937" y="4789"/>
+								<Point x="4154" y="4789"/>
+								<Point x="4154" y="6085"/>
+								<Point x="5371" y="6085"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/974e/197F/2150/59e4aef3375" dstEquation="!ed/9752/197F/2150/59e4aef36f0c">
+							<positions>
+								<Point x="2937" y="4789"/>
+								<Point x="4154" y="4789"/>
+								<Point x="4154" y="6562"/>
+								<Point x="7382" y="6562"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+		<kcg:Pragma>
+			doc &quot;OperatorKind_1&quot; {OperatorKind = &quot;Library&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Change_6&quot; {Change = &quot; CR: First issue - No change. &quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Description_5&quot; {Description = &quot; Description: This operator returns the absolute value of an input.&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;CopyRight_4&quot; {CopyRight = &quot; (C) ZSSM. All rights reserved.&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Date_3&quot; {Date = &quot; 30/03/2009&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Author_2&quot; {Author = &quot; Created by: T.CHRETIEN&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Title_1&quot; {Title = &quot; Title: diagram_real_abs_1&quot;}
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

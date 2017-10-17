@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="utl_mm">
+			<declarations>
+				<Type name="array_int_4_t">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="4"/>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/12c0/745C/15C0/58f8643d661"/>
+						<kcg:Pragma>
+							doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Range_3&quot; {Range = &quot;TBD&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="truthTablesValues_t">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="T">
+									<pragmas>
+										<ed:Value oid="!ed/2907/7DB9/1EC0/58f9048e6963"/>
+									</pragmas>
+								</Value>
+								<Value name="F">
+									<pragmas>
+										<ed:Value oid="!ed/2908/7DB9/1EC0/58f9048e4cc0"/>
+									</pragmas>
+								</Value>
+								<Value name="X">
+									<pragmas>
+										<ed:Value oid="!ed/2909/7DB9/1EC0/58f9048e2e0d"/>
+									</pragmas>
+								</Value>
+							</values>
+							<pragmas>
+								<ed:Enum oid="!ed/2906/7DB9/1EC0/58f9048e7801"/>
+							</pragmas>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2905/7DB9/1EC0/58f9048e6a8e"/>
+					</pragmas>
+				</Type>
+				<Type name="index_and_value_t">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="lower_index">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/9706/197F/2150/59e4ae8048a2"/>
+										<kcg:Pragma>
+											doc &quot;Resolution_1&quot; {Resolution = &quot;1&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Range_1&quot; {Range = &quot;NA&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Unit_1&quot; {Unit = &quot;Dimensionless&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Comment_1&quot; {Comment = &quot;closest lower value index&quot;}
+										</kcg:Pragma>
+									</pragmas>
+								</Field>
+								<Field name="lower_value">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/9707/197F/2150/59e4ae804e87"/>
+										<kcg:Pragma>
+											doc &quot;Resolution_1&quot; {Resolution = &quot;NA&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Range_1&quot; {Range = &quot;NA&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Unit_1&quot; {Unit = &quot;NA&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Comment_1&quot; {Comment = &quot;closest lower referenced value&quot;}
+										</kcg:Pragma>
+									</pragmas>
+								</Field>
+								<Field name="higher_index">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/9708/197F/2150/59e4ae80649d"/>
+										<kcg:Pragma>
+											doc &quot;Resolution_1&quot; {Resolution = &quot;1&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Range_1&quot; {Range = &quot;NA&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Unit_1&quot; {Unit = &quot;Dimensionless&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Comment_1&quot; {Comment = &quot;closest higher value index&quot;}
+										</kcg:Pragma>
+									</pragmas>
+								</Field>
+								<Field name="higher_value">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/9709/197F/2150/59e4ae802b7b"/>
+										<kcg:Pragma>
+											doc &quot;Resolution_1&quot; {Resolution = &quot;NA&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Range_1&quot; {Range = &quot;NA&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Unit_1&quot; {Unit = &quot;NA&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Comment_1&quot; {Comment = &quot;closest higher referenced value&quot;}
+										</kcg:Pragma>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/9705/197F/2150/59e4ae805ae2"/>
+						<kcg:Pragma>
+							doc &quot;Resolution_1&quot; {Resolution = &quot;NA&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Range_3&quot; {Range = &quot;NA&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Unit_2&quot; {Unit = &quot;NA&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Comment_1&quot; {Comment = &quot;structure containing values for a search of the closest lower and higher in a table : - the index of the closest lower - the value of the closest lower - the index of the closest higher - the value of the closest higher&quot;}
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Operator name="transform_index_structure" href="transform_index_structure.xscade"/>
+				<Operator name="Square" href="Square.xscade"/>
+				<Operator name="SqrtR" href="SqrtR1.xscade"/>
+				<Operator name="SqrtR32" href="SqrtR32.xscade"/>
+				<Operator name="compute_sum_inverse_val" href="compute_sum_inverse_val.xscade"/>
+				<Operator name="PowerR" href="PowerR.xscade"/>
+				<Operator name="PowerRR" href="PowerRR.xscade"/>
+				<Operator name="compute_inverse_exp" href="compute_inverse_exp.xscade"/>
+				<Operator name="PowerRR32" href="PowerRR32.xscade"/>
+				<Operator name="TruthTableIdx" href="TruthTableIdx.xscade"/>
+				<Operator name="TruthTableLineIdx" href="TruthTableLineIdx.xscade"/>
+				<Operator name="TruthTableElt" href="TruthTableElt.xscade"/>
+				<Operator name="RisingEdge" href="RisingEdge.xscade"/>
+				<Operator name="FallingEdge" href="FallingEdge.xscade"/>
+				<Operator name="mapwi_index_array_true" href="mapwi_index_array_true.xscade"/>
+				<Operator name="fold_closest_l_h" href="fold_closest_l_h.xscade"/>
+				<Operator name="closest_lower_higher" href="closest_lower_higher.xscade"/>
+				<Operator name="division_by_zero_safe" href="division_by_zero_safe.xscade"/>
+				<Operator name="verify_epsilon" href="verify_epsilon.xscade"/>
+				<Operator name="abs" href="abs.xscade"/>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/3103/1DFB/1050/58f0cd813766" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>utilities package</comment>
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3104/1DFB/1050/58f0cd815f79" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3105/1DFB/1050/58f0cd81535c" blockKind="types" columnsSize="0, 150, 150, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3106/1DFB/1050/58f0cd81e8c" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+				<kcg:Pragma>
+					doc &quot;Comment_Package_1&quot; {Description = &quot;TBD&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

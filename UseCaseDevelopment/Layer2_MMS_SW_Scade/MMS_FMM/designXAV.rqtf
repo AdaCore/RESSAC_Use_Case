@@ -1,0 +1,24 @@
+[Files]
+Names=F_MM_Requirements,SCADE Design
+RepositoryTool=Boost
+
+[F_MM_Requirements]
+Cover1=SCADE Design
+Cover1Position=2400@2400
+GraphicPosition=2200@2200
+Type=Word_Req
+Path=C:\GitHub\RESSAC_Use_Case\UseCaseDevelopment\Layer1_MMS\app_working_dir\MMS_F_MM refinement.docx
+AbsolutePath=C:\GitHub\RESSAC_Use_Case\UseCaseDevelopment\Layer1_MMS\app_working_dir\MMS_F_MM refinement.docx
+
+[SCADE Design]
+GraphicPosition=2600@2600
+Variable1Name=dateFiles
+Variable1Value=transform_index_structure.xscade¥transform_index_structure.ann¥Square1.xscade¥SqrtR1.xscade¥SqrtR32.xscade¥compute_sum_inverse_dist.xscade¥compute_sum_inverse_dist.ann¥PowerR.xscade¥PowerRR.xscade¥Operator8.xscade¥Operator8.ann¥PowerRR32.xscade¥TruthTableIdx.xscade¥TruthTableLineIdx.xscade¥TruthTableElt.xscade¥combine_poles.xscade¥test_param.xscade¥test_param.ann¥map_compute_distances.xscade¥map_compute_distances.ann¥map_combine_values.xscade¥map_combine_values.ann¥fold_compute_interpolation.xscade¥fold_compute_interpolation.ann¥determine_viability1.xscade¥determine_viability1.ann¥determine_closest_neighbours1.xscade¥determine_closest_neighbours1.ann¥create_poles_combinations.xscade¥create_poles_combinations.ann¥create_combinations.xscade¥create_combinations.ann¥compute_necessary_energy.xscade¥compute_necessary_energy.ann¥compute_distances.xscade¥compute_distances.ann¥combine_poles1.xscade¥combine_poles1.ann¥Operator13.xscade¥Operator13.ann¥Operator15.xscade¥Operator15.ann¥RisingEdge.xscade¥FallingEdge.xscade¥Package2.xscade¥Package2.ann¥C:\\Users\\ANNEPE~1.POR\\AppData\\Local\\Temp\\Esterel Technologies\\StudioBackup\\determine_viability_V1.xscade¥Package1.xscade¥Package1.ann¥Package3.xscade¥Package3.ann¥Package41.xscade¥Package41.ann¥Package5.xscade¥Package5.ann¥designXAV.trace
+Variable2Name=icon
+Variable2Value=./icons/Suite/Suite.png
+Variable3Name=withImages
+Variable3Value=0
+Type=SCADE
+Path=designXAV.etp
+AbsolutePath=C:\projets\ressac\use_case\microXAV\designXAV\designXAV.etp
+

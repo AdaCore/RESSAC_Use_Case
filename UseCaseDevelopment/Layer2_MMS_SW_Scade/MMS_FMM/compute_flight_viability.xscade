@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="node" name="compute_flight_viability">
+	<inputs>
+		<Variable name="nav_parameters">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="types_mm::nav_param_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5253/285/D14/594d319629ab"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="nav_mode_rp">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5256/285/D14/594d319d1234"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="payload_mass">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/525e/285/D14/594d31bd4369"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;kg&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;payload mass from ground station&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;[1;5]&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;0.1&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="energy_level">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5266/285/D14/594d321662a9"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;kJ&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;current energy storage&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;[0;500]&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;1&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<locals>
+		<Variable name="LL_viability_array">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5288/285/D14/594d328d5c6b"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<IfBlock name="navigation_mode">
+			<block>
+				<IfNode>
+					<if>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nav_mode_rp"/>
+							</path>
+						</IdExpression>
+					</if>
+					<then>
+						<Action>
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="conf_mm::viablility_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/5298/285/D14/594d32b44f89"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- LL_viability_array = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="LL_viability_array"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/528b/285/D14/594d329a1a64"/>
+									</pragmas>
+								</Equation>
+								<!-- _L1 = conf_mm::Viability_RPmode_cruise; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="conf_mm::Viability_RPmode_cruise"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/5297/285/D14/594d32b41d74"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:Action oid="!ed/527e/285/D14/594d32601ee6"/>
+							</pragmas>
+						</Action>
+					</then>
+					<else>
+						<Action>
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="conf_mm::viablility_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/529e/285/D14/594d32c77444"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- LL_viability_array = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="LL_viability_array"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/5296/285/D14/594d329d152f"/>
+									</pragmas>
+								</Equation>
+								<!-- _L1 = conf_mm::Viability_Amode_cruise; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="conf_mm::Viability_Amode_cruise"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/529d/285/D14/594d32c775a8"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:Action oid="!ed/527f/285/D14/594d3260672d"/>
+							</pragmas>
+						</Action>
+					</else>
+					<pragmas>
+						<ed:IfNode oid="!ed/527d/285/D14/594d32601ed3"/>
+					</pragmas>
+				</IfNode>
+			</block>
+			<pragmas>
+				<ed:IfBlock oid="!ed/5278/285/D14/594d325e1a8e"/>
+			</pragmas>
+		</IfBlock>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/520e/285/D14/594d31221e38" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="compute_flight_viability_1" landscape="true" format="A4 (210 297)" oid="!ed/520f/285/D14/594d31224386">
+					<presentationElements>
+						<IfBlockGE presentable="!ed/5278/285/D14/594d325e1a8e">
+							<position>
+								<Point x="783" y="3789"/>
+							</position>
+							<size>
+								<Size width="9377" height="2455"/>
+							</size>
+						</IfBlockGE>
+						<ActionGE presentable="!ed/527e/285/D14/594d32601ee6">
+							<position>
+								<Point x="2244" y="4191"/>
+							</position>
+							<size>
+								<Size width="7704" height="741"/>
+							</size>
+						</ActionGE>
+						<ActionGE presentable="!ed/527f/285/D14/594d3260672d">
+							<position>
+								<Point x="2244" y="5144"/>
+							</position>
+							<size>
+								<Size width="7704" height="740"/>
+							</size>
+						</ActionGE>
+						<IfNodeGE labelWidth="1609" presentable="!ed/527d/285/D14/594d32601ed3">
+							<position>
+								<Point x="1143" y="4255"/>
+							</position>
+						</IfNodeGE>
+						<EquationGE presentable="!ed/528b/285/D14/594d329a1a64">
+							<position>
+								<Point x="7112" y="4297"/>
+							</position>
+							<size>
+								<Size width="360" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/5296/285/D14/594d329d152f">
+							<position>
+								<Point x="7112" y="5271"/>
+							</position>
+							<size>
+								<Size width="360" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/5297/285/D14/594d32b41d74">
+							<position>
+								<Point x="6033" y="4297"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5297/285/D14/594d32b41d74" dstEquation="!ed/528b/285/D14/594d329a1a64">
+							<positions>
+								<Point x="6287" y="4551"/>
+								<Point x="6689" y="4551"/>
+								<Point x="6689" y="4551"/>
+								<Point x="7112" y="4551"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/529d/285/D14/594d32c775a8">
+							<position>
+								<Point x="6033" y="5271"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/529d/285/D14/594d32c775a8" dstEquation="!ed/5296/285/D14/594d329d152f">
+							<positions>
+								<Point x="6287" y="5525"/>
+								<Point x="6689" y="5525"/>
+								<Point x="6689" y="5525"/>
+								<Point x="7112" y="5525"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+		<kcg:Pragma>
+			doc &quot;OperatorKind_1&quot; {OperatorKind = &quot;TBD&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Title_1&quot; {Title = &quot;Title : compute_flight_viability_1&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Author_2&quot; {Author = &quot; Modified by: AP. PORTE&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Date_3&quot; {Date = &quot;23/06/2017&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;CopyRight_4&quot; {CopyRight = &quot; (C) ZSSM. All rights reserved.&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Change_6&quot; {Change = &quot; PR: First issue - No change.&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Description_5&quot; {Description = &quot; Description: compute flight viability  ---! ToBeCompleted !--&quot;}
+		</kcg:Pragma>
+	</pragmas>
+</Operator>
