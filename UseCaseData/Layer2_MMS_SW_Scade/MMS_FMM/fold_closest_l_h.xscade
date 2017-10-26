@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" visibility="private" name="fold_closest_l_h">
+	<inputs>
+		<Variable name="index_acc">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8dc3/197F/2150/59e4ad20c0d"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;index of the table of Hp or p or r accumulator&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;NA&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="Input">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8dc4/197F/2150/59e4ad2050d"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;input corresponding to Hp or r or p&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;NA&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="input_array_value">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8dc5/197F/2150/59e4ad206e3a"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;value of the array of Hp or p or r&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;NA&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="index">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8dc2/197F/2150/59e4ad204f0"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;index of closest lower&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_1&quot; {Unit = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_1&quot; {Range = &quot;NA&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="l_keep1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8dbf/197F/2150/59e4ad206f54"/>
+				<kcg:Pragma>
+					keep
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="l_keep2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8dc0/197F/2150/59e4ad20683c"/>
+				<kcg:Pragma>
+					keep
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="l_keep3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8dc1/197F/2150/59e4ad20525a"/>
+				<kcg:Pragma>
+					keep
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="_L12">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8dbb/197F/2150/59e4ad201254"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L13">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8dbc/197F/2150/59e4ad20f05"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L15">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8dbd/197F/2150/59e4ad20276a"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L17">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8dbe/197F/2150/59e4ad203f42"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- index = _L15; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="index"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L15"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8db2/197F/2150/59e4ad20235"/>
+			</pragmas>
+		</Equation>
+		<!-- l_keep1 = index_acc; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="l_keep1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="index_acc"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8db3/197F/2150/59e4ad204672"/>
+			</pragmas>
+		</Equation>
+		<!-- _L12 = Input; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L12"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Input"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8db4/197F/2150/59e4ad20463c"/>
+			</pragmas>
+		</Equation>
+		<!-- _L13 = input_array_value; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L13"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="input_array_value"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8db5/197F/2150/59e4ad20448f"/>
+			</pragmas>
+		</Equation>
+		<!-- l_keep3 = _L12 >= _L13; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="l_keep3"/>
+			</lefts>
+			<right>
+				<!-- _L12 >= _L13 -->
+				<BinaryOp name="1" operator="&gt;=">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L12"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L13"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</BinaryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8db6/197F/2150/59e4ad2066ee"/>
+			</pragmas>
+		</Equation>
+		<!-- _L15 = if l_keep3 then (l_keep2) else (l_keep1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L15"/>
+			</lefts>
+			<right>
+				<!-- if l_keep3 then (l_keep2) else (l_keep1) -->
+				<IfThenElseOp name="1">
+					<if>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="l_keep3"/>
+							</path>
+						</IdExpression>
+					</if>
+					<then>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="l_keep2"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</then>
+					<else>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="l_keep1"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</else>
+				</IfThenElseOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8db7/197F/2150/59e4ad20247a"/>
+			</pragmas>
+		</Equation>
+		<!-- l_keep2 = _L17 + l_keep1; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="l_keep2"/>
+			</lefts>
+			<right>
+				<!-- _L17 + l_keep1 -->
+				<NAryOp name="1" operator="+">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L17"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="l_keep1"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</NAryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8db8/197F/2150/59e4ad2047c9"/>
+			</pragmas>
+		</Equation>
+		<!-- _L17 = 1; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L17"/>
+			</lefts>
+			<right>
+				<ConstValue value="1"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8db9/197F/2150/59e4ad202c34"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/8db1/197F/2150/59e4ad20fcb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="diagram_fold_closest_l_h_1" landscape="true" format="A4 (210 297)" oid="!ed/8dba/197F/2150/59e4ad202d5e">
+					<presentationElements>
+						<EquationGE presentable="!ed/8db2/197F/2150/59e4ad20235">
+							<position>
+								<Point x="15081" y="7541"/>
+							</position>
+							<size>
+								<Size width="265" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/8db3/197F/2150/59e4ad204672">
+							<position>
+								<Point x="5027" y="7858"/>
+							</position>
+							<size>
+								<Size width="265" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/8db4/197F/2150/59e4ad20463c">
+							<position>
+								<Point x="5054" y="5159"/>
+							</position>
+							<size>
+								<Size width="264" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/8db5/197F/2150/59e4ad20448f">
+							<position>
+								<Point x="5054" y="6191"/>
+							</position>
+							<size>
+								<Size width="264" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/8db6/197F/2150/59e4ad2066ee">
+							<position>
+								<Point x="8996" y="5583"/>
+							</position>
+							<size>
+								<Size width="1005" height="661"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8db4/197F/2150/59e4ad20463c" dstEquation="!ed/8db6/197F/2150/59e4ad2066ee">
+							<positions>
+								<Point x="5313" y="5419"/>
+								<Point x="7070" y="5419"/>
+								<Point x="7070" y="5800"/>
+								<Point x="8996" y="5800"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/8db5/197F/2150/59e4ad20448f" dstEquation="!ed/8db6/197F/2150/59e4ad2066ee">
+							<positions>
+								<Point x="5313" y="6435"/>
+								<Point x="7070" y="6435"/>
+								<Point x="7070" y="6033"/>
+								<Point x="8996" y="6033"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/8db7/197F/2150/59e4ad20247a">
+							<position>
+								<Point x="10443" y="7321"/>
+							</position>
+							<size>
+								<Size width="1021" height="942"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8db6/197F/2150/59e4ad2066ee" dstEquation="!ed/8db7/197F/2150/59e4ad20247a">
+							<positions>
+								<Point x="9991" y="5927"/>
+								<Point x="10964" y="5927"/>
+								<Point x="10964" y="7324"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/8db8/197F/2150/59e4ad2047c9">
+							<position>
+								<Point x="7408" y="7117"/>
+							</position>
+							<size>
+								<Size width="1006" height="662"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/8db9/197F/2150/59e4ad202c34">
+							<position>
+								<Point x="5144" y="7176"/>
+							</position>
+							<size>
+								<Size width="169" height="317"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8db9/197F/2150/59e4ad202c34" dstEquation="!ed/8db8/197F/2150/59e4ad2047c9">
+							<positions>
+								<Point x="5313" y="7345"/>
+								<Point x="6350" y="7345"/>
+								<Point x="6350" y="7345"/>
+								<Point x="7408" y="7345"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/8db3/197F/2150/59e4ad204672" dstEquation="!ed/8db8/197F/2150/59e4ad2047c9">
+							<positions>
+								<Point x="5292" y="8107"/>
+								<Point x="6350" y="8107"/>
+								<Point x="6350" y="7557"/>
+								<Point x="7408" y="7557"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/8db8/197F/2150/59e4ad2047c9" dstEquation="!ed/8db7/197F/2150/59e4ad20247a">
+							<positions>
+								<Point x="8424" y="7451"/>
+								<Point x="9419" y="7451"/>
+								<Point x="9419" y="7641"/>
+								<Point x="10435" y="7641"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/8db3/197F/2150/59e4ad204672" dstEquation="!ed/8db7/197F/2150/59e4ad20247a">
+							<positions>
+								<Point x="5292" y="8107"/>
+								<Point x="9398" y="8107"/>
+								<Point x="9398" y="7938"/>
+								<Point x="10435" y="7938"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8db7/197F/2150/59e4ad20247a" dstEquation="!ed/8db2/197F/2150/59e4ad20235">
+							<positions>
+								<Point x="11472" y="7789"/>
+								<Point x="13272" y="7789"/>
+								<Point x="13272" y="7789"/>
+								<Point x="15113" y="7789"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+		<kcg:Pragma>
+			doc &quot;OperatorKind_1&quot; {OperatorKind = &quot;Refinement&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Change_6&quot; {Change = &quot; PR-32 : KCG limitation 5475 on gutl operators  CR scade#47 : fix ssl symbol reference issue &quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Description_5&quot; {Description = &quot; Description: closest_lower_higher_indexes folded&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Date_3&quot; {Date = &quot; 06/02/2017&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Title_1&quot; {Title = &quot; Title: diagram_fold_closest_l_h_1&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Author_2&quot; {Author = &quot; Modified by: J. Kirsch&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;CopyRight_4&quot; {CopyRight = &quot; (C) ZSSM. All rights reserved.&quot;}
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

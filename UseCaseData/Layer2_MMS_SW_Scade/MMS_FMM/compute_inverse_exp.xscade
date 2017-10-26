@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" name="compute_inverse_exp">
+	<inputs>
+		<Variable name="val">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1216/745C/15C0/58f85cfd23cb"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="exp">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1217/745C/15C0/58f85cfd2bea" hidden="true"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;[0.1;10.0]&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="inverse">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/122a/745C/15C0/58f85d186bd1"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L7">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1225/745C/15C0/58f85cfd68bb"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L6">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1223/745C/15C0/58f85cfd242a"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1220/745C/15C0/58f85cfd4fa4"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L5">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1221/745C/15C0/58f85cfd748d"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/121e/745C/15C0/58f85cfd1f99"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/121b/745C/15C0/58f85cfd4584"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1219/745C/15C0/58f85cfd7d7b"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = 1.0; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<ConstValue value="1.0"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1218/745C/15C0/58f85cfd1c86"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = exp; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="exp"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/121a/745C/15C0/58f85cfd192f"/>
+			</pragmas>
+		</Equation>
+		<!-- _ = _L5; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L5"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/121c/745C/15C0/58f85cfd50a3"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = 1.0; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<ConstValue value="1.0"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/121d/745C/15C0/58f85cfd139d"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4, _L5 = division_by_zero_safe(_L3, _L6, _L1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+				<VariableRef name="_L5"/>
+			</lefts>
+			<right>
+				<!-- division_by_zero_safe(_L3, _L6, _L1) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="division_by_zero_safe"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L6"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/121f/745C/15C0/58f85cfd371b"/>
+			</pragmas>
+		</Equation>
+		<!-- _L6 = val; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L6"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="val"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1222/745C/15C0/58f85cfd573a"/>
+			</pragmas>
+		</Equation>
+		<!-- _L7 = PowerRR(_L4, _L2); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L7"/>
+			</lefts>
+			<right>
+				<!-- PowerRR(_L4, _L2) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="PowerRR"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1224/745C/15C0/58f85cfd62e6"/>
+			</pragmas>
+		</Equation>
+		<!-- inverse = _L7; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="inverse"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L7"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1233/745C/15C0/58f85d249e9"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/11f5/745C/15C0/58f85ce91e6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="compute_inverse_exp_1" landscape="true" format="A4 (210 297)" oid="!ed/11f6/745C/15C0/58f85ce9547d">
+					<presentationElements>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/1218/745C/15C0/58f85cfd1c86">
+							<position>
+								<Point x="5165" y="7281"/>
+							</position>
+							<size>
+								<Size width="169" height="318"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_HIDDEN" presentable="!ed/121a/745C/15C0/58f85cfd192f">
+							<position>
+								<Point x="8424" y="6054"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_TERMINATOR" presentable="!ed/121c/745C/15C0/58f85cfd50a3">
+							<position>
+								<Point x="7366" y="6054"/>
+							</position>
+							<size>
+								<Size width="508" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/121d/745C/15C0/58f85cfd139d">
+							<position>
+								<Point x="3620" y="5588"/>
+							</position>
+							<size>
+								<Size width="169" height="318"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/121f/745C/15C0/58f85cfd371b">
+							<position>
+								<Point x="4530" y="5186"/>
+							</position>
+							<size>
+								<Size width="2413" height="1693"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1222/745C/15C0/58f85cfd573a">
+							<position>
+								<Point x="3535" y="6054"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_IMPOP" presentable="!ed/1224/745C/15C0/58f85cfd62e6">
+							<position>
+								<Point x="9716" y="5186"/>
+							</position>
+							<size>
+								<Size width="2857" height="1693"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/121a/745C/15C0/58f85cfd192f" dstEquation="!ed/1224/745C/15C0/58f85cfd62e6">
+							<positions>
+								<Point x="8678" y="6308"/>
+								<Point x="9186" y="6308"/>
+								<Point x="9186" y="6308"/>
+								<Point x="9716" y="6308"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/1233/745C/15C0/58f85d249e9">
+							<position>
+								<Point x="13187" y="5779"/>
+							</position>
+							<size>
+								<Size width="339" height="508"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1224/745C/15C0/58f85cfd62e6" dstEquation="!ed/1233/745C/15C0/58f85d249e9">
+							<positions>
+								<Point x="12573" y="6033"/>
+								<Point x="12891" y="6033"/>
+								<Point x="12891" y="6033"/>
+								<Point x="13229" y="6033"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/121f/745C/15C0/58f85cfd371b" dstEquation="!ed/121c/745C/15C0/58f85cfd50a3">
+							<positions>
+								<Point x="6943" y="6308"/>
+								<Point x="7281" y="6308"/>
+								<Point x="7281" y="6308"/>
+								<Point x="7620" y="6308"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/121f/745C/15C0/58f85cfd371b" dstEquation="!ed/1224/745C/15C0/58f85cfd62e6">
+							<positions>
+								<Point x="6943" y="5757"/>
+								<Point x="8319" y="5757"/>
+								<Point x="8319" y="5757"/>
+								<Point x="9716" y="5757"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/1218/745C/15C0/58f85cfd1c86" dstEquation="!ed/121f/745C/15C0/58f85cfd371b">
+							<positions>
+								<Point x="5334" y="7451"/>
+								<Point x="5736" y="7451"/>
+								<Point x="5736" y="6879"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1222/745C/15C0/58f85cfd573a" dstEquation="!ed/121f/745C/15C0/58f85cfd371b">
+							<positions>
+								<Point x="3789" y="6308"/>
+								<Point x="4149" y="6308"/>
+								<Point x="4149" y="6308"/>
+								<Point x="4530" y="6308"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/121d/745C/15C0/58f85cfd139d" dstEquation="!ed/121f/745C/15C0/58f85cfd371b">
+							<positions>
+								<Point x="3789" y="5757"/>
+								<Point x="4149" y="5757"/>
+								<Point x="4149" y="5757"/>
+								<Point x="4530" y="5757"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+		<kcg:Pragma>
+			doc &quot;OperatorKind_1&quot; {OperatorKind = &quot;TBD&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Title_1&quot; {Title = &quot;Title : compute_inverse_exp_1&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Author_2&quot; {Author = &quot; Modified by: AP. PORTE&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Date_3&quot; {Date = &quot;20/04/2017&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;CopyRight_4&quot; {CopyRight = &quot; (C) ZSSM. All rights reserved.&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Description_5&quot; {Description = &quot; Description:  compute (1/val)^exp&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Change_6&quot; {Change = &quot; PR: First issue - No change.&quot;}
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" name="Square">
+	<inputs>
+		<Variable name="Square_In">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1a08/654E/1838/58f70bd177ff"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="Square_Out">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1a07/654E/1838/58f70bd1769c"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<numericTypes>
+		<NumericType>
+			<typeVar>
+				<TypeRef name="'T"/>
+			</typeVar>
+		</NumericType>
+	</numericTypes>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1a05/654E/1838/58f70bd15577"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1a06/654E/1838/58f70bd152f0"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = Square_In; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Square_In"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1a01/654E/1838/58f70bd1ebd"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = _L1 * _L1; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!-- _L1 * _L1 -->
+				<NAryOp name="1" operator="*">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</NAryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1a02/654E/1838/58f70bd13031"/>
+			</pragmas>
+		</Equation>
+		<!-- Square_Out = _L2; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Square_Out"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L2"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1a03/654E/1838/58f70bd1455a"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/1a00/654E/1838/58f70bd164ca" symbolFile="Square.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>SR_Output = (SR_Input)^2</comment>
+			<diagrams>
+				<NetDiagram name="diagram_Square" landscape="false" format="A4 (210 297)" oid="!ed/1a04/654E/1838/58f70bd15307">
+					<presentationElements>
+						<EquationGE presentable="!ed/1a01/654E/1838/58f70bd1ebd">
+							<position>
+								<Point x="1653" y="661"/>
+							</position>
+							<size>
+								<Size width="251" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1a02/654E/1838/58f70bd13031">
+							<position>
+								<Point x="4172" y="574"/>
+							</position>
+							<size>
+								<Size width="1022" height="678"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1a01/654E/1838/58f70bd1ebd" dstEquation="!ed/1a02/654E/1838/58f70bd13031">
+							<positions>
+								<Point x="1905" y="910"/>
+								<Point x="3598" y="910"/>
+								<Point x="3598" y="804"/>
+								<Point x="4170" y="804"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1a01/654E/1838/58f70bd1ebd" dstEquation="!ed/1a02/654E/1838/58f70bd13031">
+							<positions>
+								<Point x="1905" y="910"/>
+								<Point x="3598" y="910"/>
+								<Point x="3598" y="1016"/>
+								<Point x="4170" y="1016"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/1a03/654E/1838/58f70bd1455a">
+							<position>
+								<Point x="6552" y="661"/>
+							</position>
+							<size>
+								<Size width="326" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1a02/654E/1838/58f70bd13031" dstEquation="!ed/1a03/654E/1838/58f70bd1455a">
+							<positions>
+								<Point x="5186" y="910"/>
+								<Point x="5503" y="910"/>
+								<Point x="5503" y="910"/>
+								<Point x="6604" y="910"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

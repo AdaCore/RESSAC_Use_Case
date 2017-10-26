@@ -1,7 +1,0 @@
-
-[Scade/Styles/ScNetStyle2/Style_Red](kind=Style; Style=ScNetStyle2; BasedOn=Equation Set)
-
-
-[Scade/Styles/ScNetStyle2/Style_Red/Entity]
-
-"LineColor"="(255,0,0)" 

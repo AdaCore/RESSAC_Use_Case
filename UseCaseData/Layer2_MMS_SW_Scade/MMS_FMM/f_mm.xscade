@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="f_mm">
+			<declarations>
+				<Operator name="manage_mission" href="manage_mission.xscade"/>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/12/1DFB/1050/58f0bcf64c89" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/13/1DFB/1050/58f0bcf65f23" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/14/1DFB/1050/58f0bcf64cf5" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/15/1DFB/1050/58f0bcf6568e" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+		<Constant name="epsilon_Cst">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0.0000001"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/97c6/197F/2150/59e4b0214cb1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>TBD according to the expected precision</comment>
+				</ed:Constant>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Constant>
+	</declarations>
+</File>

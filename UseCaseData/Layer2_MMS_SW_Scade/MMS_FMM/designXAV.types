@@ -1,0 +1,64 @@
+
+[Types]
+Names=Word_Req
+
+[Word_Req]
+;This default type considers :
+;- Requirements use the Word style 'Requirement_ID", names being composed of a unique ID "ABCxx" and a label in natural language. ID and Label must be separated by a colon
+;- Requirement bodies use the Word style "Requirement_Text"
+;- Attributes "Allocation" and "Priority" are pre-defined.
+;- Coverage of requirements is defined by writing "[Covers: <some covers>]", <some covers> is the list of covered requirements separated by , or ; 
+Tool=WordWithStyles
+ToolEdit=Word
+Image=word
+Section1Name=Heading
+Section1Guid=_E5160843_CF32_4D0D_8D2F_D8C67871816D
+Section1=^[Hh]eading (\d+)\t(?:([\d\.]+)[ \t](.*)|([^\d\n].+))$
+Section1Indexes=6,1,2,1
+MacroRequirement1Name=Macro-requirement
+MacroRequirement1Guid=_D42C5B4C_D773_482A_8C40_FBB1B6166952
+MacroRequirement1=\[MacroReq_([^\]]+)
+MacroRequirement1End=\[End_of_MacroReq\]
+Requirement1Name=Requirement
+Requirement1Guid=_197ECB0A_F31B_4F85_A378_4D6692613235
+Requirement1=^REQ_Id[\t+](\S+)(?:[ \t]*\:[ \t]*(.+)|)$
+Requirement1End=REQ_End[\t+]Req_End
+Reference1Name=Coverage
+Reference1Guid=_93186B1B_3645_42EB_9087_4F4376E53CC9
+Reference1Print=[Covers: $i]
+Reference1=\[Covers[ \t]*:[ \t]*([^\]]*)
+Reference1Sub=[ \t]*([^\,\;]+)[ \t]*
+Attribute1Name=Allocation
+Attribute1Guid=_3469774E_3529_451A_A474_455A9C8CF624
+Attribute1Print=Owner : $i
+Attribute1Value1Key=guid_E5160843_CF32_4D0D_8D2F_D8C67871816D
+Attribute1Value1Value=_4C5F271A_8F0E_4496_AFA1_3DCDD3C32898_
+Attribute1Value2Key=guid_D42C5B4C_D773_482A_8C40_FBB1B6166952
+Attribute1Value2Value=_F170DB9C_556E_4AE0_B177_DBFADED4E63D_
+Attribute1Value3Key=guid_197ECB0A_F31B_4F85_A378_4D6692613235
+Attribute1Value3Value=_97970123_1083_4E9A_B991_D77C4C0413F9
+Attribute1=Allocated to[ \t]*\:[ \t]*(.+)
+Attribute2Name=Priority
+Attribute2Guid=_0397D88C_7EC5_44F4_883A_5EDA8B060F0B
+Attribute2Print=$t : $i
+Attribute2EnumValues=High,Medium,Low
+Attribute2Value1Key=guidValues
+Attribute2Value1Value=_BE97AAF4_BDF9_4E6E_BF64_C1027A299A67_¥_462BD05A_C6F1_42A3_BF7C_C0E203140DA9_¥_0D4DEDF4_61F1_4EA1_AD43_4EB2A6FEFFE7_
+Attribute2Value2Key=guidEnumeration
+Attribute2Value2Value=_5C7DAEC0_73D0_4D26_B292_7DCE1EB8CF37_
+Attribute2Value3Key=guid_E5160843_CF32_4D0D_8D2F_D8C67871816D
+Attribute2Value3Value=_3F02614A_D3D3_4472_B3E6_5C58E75EF0C9_
+Attribute2Value4Key=guid_D42C5B4C_D773_482A_8C40_FBB1B6166952
+Attribute2Value4Value=_6852C887_5E38_41F2_B1DB_3AF58AF9896C_
+Attribute2Value5Key=guid_197ECB0A_F31B_4F85_A378_4D6692613235
+Attribute2Value5Value=_A334F030_526E_4187_97B2_9035AF7F2218_
+Attribute2=Priority[ \t]*\:[ \t]*(.+)
+Text1Name=Text
+Text1RegularExpression=\bREQ_Body\t(.+?)(?=\|\d|\n)
+Picture1Name=Picture
+Picture1Guid=_672493D3_6A69_4D7D_BB7A_87AD0D2D6352
+Picture1RegularExpression=<Picture<([^>]+)
+FileExtension=doc,docx,docm
+TextFormat=3
+IntermediateFileEncoding=UTF8
+

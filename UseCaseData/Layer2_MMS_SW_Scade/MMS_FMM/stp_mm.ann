@@ -1,0 +1,59 @@
+Notes-Types { Esterel-Technologies }  DEFINITIONS ::=
+BEGIN
+    Comment_Package ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Description TEXT
+            {
+            	 NT_DEFAULT_VALUE "TBD" ,
+            	 NT_FIELD_HEIGHT 10 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+    Comment ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Comment TEXT
+            {
+            	 NT_DEFAULT_VALUE "" ,
+            	 NT_FIELD_HEIGHT 3 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+    Unit ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Unit TEXT
+            {
+            	 NT_DEFAULT_VALUE "TBD" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+END
+
+Notes-Values { Esterel-Technologies }  DEFINITIONS ::=
+BEGIN
+    Comment_Package ::= {
+        {"!ed/290e/2FBF/14D0/592d39b73ed0", "Comment_Package_1","Mission Set Up" , T }}
+    Comment ::= {
+        {"!ed/2a06/589C/1330/594d07985fa", "Comment_1","" , T }}
+    Unit ::= {
+        {"!ed/2a06/589C/1330/594d07985fa", "Unit_2","TBD" , T }}
+END
+

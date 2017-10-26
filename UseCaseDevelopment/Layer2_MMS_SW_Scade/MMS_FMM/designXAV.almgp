@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<ALMGateway:ALMGProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ALMGateway="http://www.esterel-technologies.com/scade/lifecycle/almgateway" name="designXAV" id="_5aKYwFS9Eee0gMMbaB_ezg">
-  <connectors xsi:type="ALMGateway:ReqtifyConnector" rqtfFile="designXAV.rqtf"/>
-</ALMGateway:ALMGProject>

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" name="verify_epsilon">
+	<inputs>
+		<Variable name="in">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8f40/197F/2150/59e4ae0832e7"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;input value to compare with epsilon&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;NA&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="epsilon">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8f3d/197F/2150/59e4ae08c89" hidden="true"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;value of minimum value of a variable, near zero (default 10^-19)&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;NA&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="result">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8f3e/197F/2150/59e4ae087883"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;0.0 if the input value is too close of epsilon&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;NA&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="flag_robustness_activ">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8f3f/197F/2150/59e4ae086f76"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;true if robustness has been activated during computation&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;NA&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;NA&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8f37/197F/2150/59e4ae0823b"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8f38/197F/2150/59e4ae083db4"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L7">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8f39/197F/2150/59e4ae0818b0"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L11">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8f3a/197F/2150/59e4ae089f3"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L12">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8f3b/197F/2150/59e4ae087031"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L14">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/8f3c/197F/2150/59e4ae08d53"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = in; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="in"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8f2e/197F/2150/59e4ae083cf9"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = 0.0; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<ConstValue value="0.0"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8f2f/197F/2150/59e4ae086941"/>
+			</pragmas>
+		</Equation>
+		<!-- result = _L14; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="result"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L14"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8f30/197F/2150/59e4ae0856ff"/>
+			</pragmas>
+		</Equation>
+		<!-- _L7 = epsilon; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L7"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="epsilon"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8f31/197F/2150/59e4ae084f38"/>
+			</pragmas>
+		</Equation>
+		<!-- _L11 = abs(_L1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L11"/>
+			</lefts>
+			<right>
+				<!-- abs(_L1) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="abs"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8f32/197F/2150/59e4ae0816a5"/>
+			</pragmas>
+		</Equation>
+		<!-- _L12 = _L11 < _L7; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L12"/>
+			</lefts>
+			<right>
+				<!-- _L11 < _L7 -->
+				<BinaryOp name="1" operator="&lt;">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L11"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L7"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</BinaryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8f33/197F/2150/59e4ae0812c4"/>
+			</pragmas>
+		</Equation>
+		<!-- flag_robustness_activ = _L12; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="flag_robustness_activ"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L12"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8f34/197F/2150/59e4ae083f25"/>
+			</pragmas>
+		</Equation>
+		<!-- _L14 = if _L12 then (_L3) else (_L1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L14"/>
+			</lefts>
+			<right>
+				<!-- if _L12 then (_L3) else (_L1) -->
+				<IfThenElseOp name="1">
+					<if>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L12"/>
+							</path>
+						</IdExpression>
+					</if>
+					<then>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</then>
+					<else>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</else>
+				</IfThenElseOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/8f35/197F/2150/59e4ae084ff1"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/8f2d/197F/2150/59e4ae081b2" symbolFile="..\symbols\verify_epsilon.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="diagram_verify_epsilon_1" landscape="true" format="A4 (210 297)" oid="!ed/8f36/197F/2150/59e4ae083330">
+					<presentationElements>
+						<EquationGE presentable="!ed/8f2e/197F/2150/59e4ae083cf9">
+							<position>
+								<Point x="3731" y="5292"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/8f2f/197F/2150/59e4ae086941">
+							<position>
+								<Point x="10213" y="5080"/>
+							</position>
+							<size>
+								<Size width="212" height="317"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/8f30/197F/2150/59e4ae0856ff">
+							<position>
+								<Point x="14235" y="5159"/>
+							</position>
+							<size>
+								<Size width="338" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/8f31/197F/2150/59e4ae084f38">
+							<position>
+								<Point x="8837" y="4524"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/8f32/197F/2150/59e4ae0816a5">
+							<position>
+								<Point x="6403" y="3545"/>
+							</position>
+							<size>
+								<Size width="2159" height="810"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8f2e/197F/2150/59e4ae083cf9" dstEquation="!ed/8f32/197F/2150/59e4ae0816a5">
+							<positions>
+								<Point x="3995" y="5556"/>
+								<Point x="5186" y="5556"/>
+								<Point x="5186" y="3942"/>
+								<Point x="6403" y="3942"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/8f33/197F/2150/59e4ae0812c4">
+							<position>
+								<Point x="9922" y="3731"/>
+							</position>
+							<size>
+								<Size width="1016" height="656"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/8f34/197F/2150/59e4ae083f25">
+							<position>
+								<Point x="14235" y="3810"/>
+							</position>
+							<size>
+								<Size width="338" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/8f35/197F/2150/59e4ae084ff1">
+							<position>
+								<Point x="11377" y="4948"/>
+							</position>
+							<size>
+								<Size width="1016" height="910"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8f35/197F/2150/59e4ae084ff1" dstEquation="!ed/8f30/197F/2150/59e4ae0856ff">
+							<positions>
+								<Point x="12383" y="5398"/>
+								<Point x="13335" y="5398"/>
+								<Point x="13335" y="5398"/>
+								<Point x="14288" y="5398"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/8f2f/197F/2150/59e4ae086941" dstEquation="!ed/8f35/197F/2150/59e4ae084ff1">
+							<positions>
+								<Point x="10425" y="5239"/>
+								<Point x="10901" y="5239"/>
+								<Point x="10901" y="5239"/>
+								<Point x="11377" y="5239"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8f33/197F/2150/59e4ae0812c4" dstEquation="!ed/8f35/197F/2150/59e4ae084ff1">
+							<positions>
+								<Point x="10927" y="4075"/>
+								<Point x="11880" y="4075"/>
+								<Point x="11880" y="4948"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/8f31/197F/2150/59e4ae084f38" dstEquation="!ed/8f33/197F/2150/59e4ae0812c4">
+							<positions>
+								<Point x="9102" y="4789"/>
+								<Point x="9260" y="4789"/>
+								<Point x="9260" y="4180"/>
+								<Point x="9922" y="4180"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8f32/197F/2150/59e4ae0816a5" dstEquation="!ed/8f33/197F/2150/59e4ae0812c4">
+							<positions>
+								<Point x="8546" y="3942"/>
+								<Point x="9234" y="3942"/>
+								<Point x="9234" y="3942"/>
+								<Point x="9922" y="3942"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8f33/197F/2150/59e4ae0812c4" dstEquation="!ed/8f34/197F/2150/59e4ae083f25">
+							<positions>
+								<Point x="10927" y="4075"/>
+								<Point x="12594" y="4075"/>
+								<Point x="12594" y="4075"/>
+								<Point x="14288" y="4075"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/8f2e/197F/2150/59e4ae083cf9" dstEquation="!ed/8f35/197F/2150/59e4ae084ff1">
+							<positions>
+								<Point x="3995" y="5556"/>
+								<Point x="7673" y="5556"/>
+								<Point x="7673" y="5556"/>
+								<Point x="11377" y="5556"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+		<kcg:Pragma>
+			doc &quot;OperatorKind_1&quot; {OperatorKind = &quot;Robustness&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Change_6&quot; {Change = &quot; CR scade#47 : shorten IO names to ease readability,  updated logic to match description (lower than epsilon)&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Description_5&quot; {Description = &quot; Description: This robustness operator verifies if an input value is   too close to zero. If input_1 is too close to zero (lower than epsilon), then output result is  set to zero and flag_robustness_activ is set to true. . Result is set to input value otherwise and flag_robustness_activ is set to false.&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Date_3&quot; {Date = &quot;17/10/2016&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Title_1&quot; {Title = &quot; Title: diagram_verify_epsilon&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Author_2&quot; {Author = &quot; Modified by: J. Kirsch&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;CopyRight_4&quot; {CopyRight = &quot; (C) ZSSM. All rights reserved.&quot;}
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

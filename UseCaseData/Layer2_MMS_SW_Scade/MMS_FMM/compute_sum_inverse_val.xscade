@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" name="compute_sum_inverse_val">
+	<sizeParameters>
+		<SizeParameter name="nb_items">
+			<pragmas>
+				<ed:SizeParameter oid="!ed/1035/1252/1D14/58f7878d52a4"/>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</SizeParameter>
+	</sizeParameters>
+	<inputs>
+		<Variable name="values">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_items"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1036/1252/1D14/58f787b65697"/>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="exp">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/103f/1252/1D14/58f787d051d6" hidden="true"/>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;[0.1;10.0]&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="sum_inverse">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1048/1252/1D14/58f7882459db"/>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_items"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/104c/745C/15C0/58f857c213ba"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_items"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1052/745C/15C0/58f857d21e08"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L7">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_items"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/10af/745C/15C0/58f8591215a4"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L8">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/10bd/745C/15C0/58f8592f2884"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L9">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/10c8/745C/15C0/58f859601cc1"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L10">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/10cf/745C/15C0/58f859774f0f"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = values; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="values"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/104b/745C/15C0/58f857c261b2"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = (map compute_inverse_exp <<nb_items>>)(_L1, _L7); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!-- (map compute_inverse_exp <<nb_items>>)(_L1, _L7) -->
+				<CallExpression>
+					<operator>
+						<IteratorOp name="1" iterator="map">
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="compute_inverse_exp"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="nb_items"/>
+									</path>
+								</IdExpression>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L7"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1051/745C/15C0/58f857d26a11"/>
+			</pragmas>
+		</Equation>
+		<!-- _L7 = _L8 ^ nb_items; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L7"/>
+			</lefts>
+			<right>
+				<!-- _L8 ^ nb_items -->
+				<ScalarToVectorOp name="2">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L8"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_items"/>
+							</path>
+						</IdExpression>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/10ae/745C/15C0/58f859122837"/>
+			</pragmas>
+		</Equation>
+		<!-- _L8 = exp; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L8"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="exp"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/10bc/745C/15C0/58f8592f33ca"/>
+			</pragmas>
+		</Equation>
+		<!-- _L9 = (fold $+$ <<nb_items>>)(_L10, _L2); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L9"/>
+			</lefts>
+			<right>
+				<!-- (fold $+$ <<nb_items>>)(_L10, _L2) -->
+				<CallExpression>
+					<operator>
+						<IteratorOp name="3" iterator="fold">
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="$+$"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="nb_items"/>
+									</path>
+								</IdExpression>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L10"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/10c7/745C/15C0/58f859606f4a"/>
+			</pragmas>
+		</Equation>
+		<!-- _L10 = 0.0; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L10"/>
+			</lefts>
+			<right>
+				<ConstValue value="0.0"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/10ce/745C/15C0/58f859771bc8"/>
+			</pragmas>
+		</Equation>
+		<!-- sum_inverse = _L9; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="sum_inverse"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L9"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/10f5/745C/15C0/58f859947f3"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/1033/1252/1D14/58f78782541c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="compute_sum_inverse_val_1" landscape="true" format="A4 (210 297)" oid="!ed/1034/1252/1D14/58f78782534c">
+					<presentationElements>
+						<EquationGE presentable="!ed/104b/745C/15C0/58f857c261b2">
+							<position>
+								<Point x="2604" y="5101"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1051/745C/15C0/58f857d26a11">
+							<position>
+								<Point x="3725" y="4763"/>
+							</position>
+							<size>
+								<Size width="3572" height="1899"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/10ae/745C/15C0/58f859122837">
+							<position>
+								<Point x="1397" y="5779"/>
+							</position>
+							<size>
+								<Size width="1434" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/10bc/745C/15C0/58f8592f33ca">
+							<position>
+								<Point x="656" y="5779"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/10bc/745C/15C0/58f8592f33ca" dstEquation="!ed/10ae/745C/15C0/58f859122837">
+							<positions>
+								<Point x="910" y="6033"/>
+								<Point x="1143" y="6033"/>
+								<Point x="1143" y="6033"/>
+								<Point x="1397" y="6033"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/10c7/745C/15C0/58f859606f4a">
+							<position>
+								<Point x="9017" y="3768"/>
+							</position>
+							<size>
+								<Size width="2281" height="1667"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/10ce/745C/15C0/58f859771bc8">
+							<position>
+								<Point x="7514" y="4149"/>
+							</position>
+							<size>
+								<Size width="169" height="317"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/10ce/745C/15C0/58f859771bc8" dstEquation="!ed/10c7/745C/15C0/58f859606f4a">
+							<positions>
+								<Point x="7684" y="4318"/>
+								<Point x="8340" y="4318"/>
+								<Point x="8340" y="4318"/>
+								<Point x="9017" y="4318"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/10f5/745C/15C0/58f859947f3">
+							<position>
+								<Point x="12150" y="4360"/>
+							</position>
+							<size>
+								<Size width="339" height="508"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/10c7/745C/15C0/58f859606f4a" dstEquation="!ed/10f5/745C/15C0/58f859947f3">
+							<positions>
+								<Point x="11303" y="4614"/>
+								<Point x="11748" y="4614"/>
+								<Point x="11748" y="4614"/>
+								<Point x="12192" y="4614"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/104b/745C/15C0/58f857c261b2" dstEquation="!ed/1051/745C/15C0/58f857d26a11">
+							<positions>
+								<Point x="2858" y="5355"/>
+								<Point x="3281" y="5355"/>
+								<Point x="3281" y="5398"/>
+								<Point x="3725" y="5398"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/10ae/745C/15C0/58f859122837" dstEquation="!ed/1051/745C/15C0/58f857d26a11">
+							<positions>
+								<Point x="2815" y="6033"/>
+								<Point x="3260" y="6033"/>
+								<Point x="3260" y="6033"/>
+								<Point x="3725" y="6033"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1051/745C/15C0/58f857d26a11" dstEquation="!ed/10c7/745C/15C0/58f859606f4a">
+							<positions>
+								<Point x="7303" y="5715"/>
+								<Point x="8149" y="5715"/>
+								<Point x="8149" y="4890"/>
+								<Point x="9017" y="4890"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+		<kcg:Pragma>
+			doc &quot;OperatorKind_1&quot; {OperatorKind = &quot;TBD&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Title_1&quot; {Title = &quot;Title : compute_sum_inverse_val_1&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Author_2&quot; {Author = &quot; Modified by: AP. PORTE&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Date_3&quot; {Date = &quot;19/04/2017&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;CopyRight_4&quot; {CopyRight = &quot; (C) ZSSM. All rights reserved.&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Description_5&quot; {Description = &quot; Description:   compute sum [(1/val)^exp]&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Change_6&quot; {Change = &quot; PR: First issue - No change.&quot;}
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

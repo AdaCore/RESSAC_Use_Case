@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" external="imported" name="PowerRR32">
+	<inputs>
+		<Variable name="i">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/125a/745C/15C0/58f85d881de5"/>
+			</pragmas>
+		</Variable>
+		<Variable name="p">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/125b/745C/15C0/58f85d884278"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="o">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1259/745C/15C0/58f85d883792"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<specializedOperator>
+		<OperatorRef name="PowerRR"/>
+	</specializedOperator>
+	<pragmas>
+		<ed:Operator oid="!ed/1258/745C/15C0/58f85d883b0d"/>
+		<kcg:Pragma>
+			C:name PowerRR32_mathext_mathextimpl
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

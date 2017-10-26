@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" name="select_navigation_data">
+	<inputs>
+		<Variable name="navigation_parameters_gs">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="types_mm::nav_param_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2b9c/6F08/E3C/5947995916b5"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;navigation parameters {Distance;Speed;Altitude} from ground station&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;N/A&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="navigation_mode_rp">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2ba2/6F08/E3C/594799592d41"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;Navigation Mode: {Remote Panel/Automatic} true = remote panel false = automatic&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;N/A&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="mode_switch_rp">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2ba8/6F08/E3C/594799597744"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;Flight mode switch selection from GS: {Automatic;RemotePanel} true = Remote Panel false = automatic&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;N/A&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="navigation_parameters_usb">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="types_mm::nav_param_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2baf/6F08/E3C/594799597f60"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;navigation parameters {Distance;Speed;Altitude} from USB Key&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;N/A&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="navigation_parameters">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="types_mm::nav_param_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2bd5/6F08/E3C/594799b04707"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;navigation parameters {Distance;Speed;Altitude} from ground station&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;N/A&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="navigation_mode">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2bdb/6F08/E3C/594799b06a4e"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;Navigation Mode: {Remote Panel/Automatic} true = remote panel false = automatic&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;N/A&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;N/A&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="types_mm::nav_param_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2bb3/6F08/E3C/5947998d54a3"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2bb5/6F08/E3C/5947998dc63"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2bb7/6F08/E3C/5947998d6e45"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="types_mm::nav_param_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2bb9/6F08/E3C/5947998d563a"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = navigation_parameters_gs; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="navigation_parameters_gs"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2bb2/6F08/E3C/5947998d1b4f"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = navigation_mode_rp; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="navigation_mode_rp"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2bb4/6F08/E3C/5947998d5be7"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = mode_switch_rp; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="mode_switch_rp"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2bb6/6F08/E3C/5947998d23bb"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = navigation_parameters_usb; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="navigation_parameters_usb"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2bb8/6F08/E3C/5947998d7fab"/>
+			</pragmas>
+		</Equation>
+		<!-- _ = _L3; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L3"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2bcd/6F08/E3C/5947999e4bb4"/>
+			</pragmas>
+		</Equation>
+		<!-- navigation_parameters = _L1; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="navigation_parameters"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L1"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2bde/6F08/E3C/594799c33138"/>
+			</pragmas>
+		</Equation>
+		<!-- navigation_mode = _L2; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="navigation_mode"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L2"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2bdf/6F08/E3C/594799c3c1e"/>
+			</pragmas>
+		</Equation>
+		<!-- _ = _L4; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L4"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2ffb/589C/1330/594d174c4860"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/2b94/6F08/E3C/5947993f7ed1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="select_navigation_data_1" landscape="true" format="A4 (210 297)" oid="!ed/2b95/6F08/E3C/5947993f4619">
+					<presentationElements>
+						<EquationGE presentable="!ed/2bb2/6F08/E3C/5947998d1b4f">
+							<position>
+								<Point x="5906" y="4043"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/2bb4/6F08/E3C/5947998d5be7">
+							<position>
+								<Point x="5906" y="4974"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/2bb6/6F08/E3C/5947998d23bb">
+							<position>
+								<Point x="5906" y="5906"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/2bb8/6F08/E3C/5947998d7fab">
+							<position>
+								<Point x="5906" y="6837"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/2bcd/6F08/E3C/5947999e4bb4">
+							<position>
+								<Point x="6943" y="5906"/>
+							</position>
+							<size>
+								<Size width="508" height="508"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2bb6/6F08/E3C/5947998d23bb" dstEquation="!ed/2bcd/6F08/E3C/5947999e4bb4">
+							<positions>
+								<Point x="6160" y="6160"/>
+								<Point x="6668" y="6160"/>
+								<Point x="6668" y="6160"/>
+								<Point x="7197" y="6160"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/2bde/6F08/E3C/594799c33138">
+							<position>
+								<Point x="6943" y="4043"/>
+							</position>
+							<size>
+								<Size width="338" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/2bdf/6F08/E3C/594799c3c1e">
+							<position>
+								<Point x="6922" y="4911"/>
+							</position>
+							<size>
+								<Size width="338" height="508"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2bb2/6F08/E3C/5947998d1b4f" dstEquation="!ed/2bde/6F08/E3C/594799c33138">
+							<positions>
+								<Point x="6160" y="4297"/>
+								<Point x="6562" y="4297"/>
+								<Point x="6562" y="4297"/>
+								<Point x="6985" y="4297"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2bb4/6F08/E3C/5947998d5be7" dstEquation="!ed/2bdf/6F08/E3C/594799c3c1e">
+							<positions>
+								<Point x="6160" y="5228"/>
+								<Point x="6562" y="5228"/>
+								<Point x="6562" y="5165"/>
+								<Point x="6964" y="5165"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/2ffb/589C/1330/594d174c4860">
+							<position>
+								<Point x="7176" y="6837"/>
+							</position>
+							<size>
+								<Size width="508" height="508"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2bb8/6F08/E3C/5947998d7fab" dstEquation="!ed/2ffb/589C/1330/594d174c4860">
+							<positions>
+								<Point x="6160" y="7091"/>
+								<Point x="6795" y="7091"/>
+								<Point x="6795" y="7091"/>
+								<Point x="7430" y="7091"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+		<kcg:Pragma>
+			doc &quot;OperatorKind_1&quot; {OperatorKind = &quot;TBD&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Title_1&quot; {Title = &quot;Title : select_navigation_data_1&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Author_2&quot; {Author = &quot; Modified by: AP. PORTE&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Date_3&quot; {Date = &quot;19/06/2017&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;CopyRight_4&quot; {CopyRight = &quot; (C) ZSSM. All rights reserved.&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Change_6&quot; {Change = &quot; PR: First issue - No change.&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Description_5&quot; {Description = &quot; Description: Ground Stations's values supersed the ones from USB Key  ---! ToBeCompleted !--&quot;}
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

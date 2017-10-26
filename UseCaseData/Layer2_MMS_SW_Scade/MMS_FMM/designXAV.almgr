@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scade_req:ReqProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:scade_req="http://www.esterel-technologies.com/scade/lifecycle/almgateway/scade_req/1" identifier="C:\projets\ressac\use_case\microXAV\designXAV\designXAV.rqtf" text="designXAV">
+  <children xsi:type="scade_req:Document" identifier="F_MM_Requirements" text="F_MM_Requirements    Word_Req">
+    <children xsi:type="scade_req:Section" identifier="1" text="1 Refinement of the definition of the MMS function" description="">
+      <children xsi:type="scade_req:Section" identifier="1.3" text="1.3 Behavior" description="">
+        <children xsi:type="scade_req:Section" identifier="1.3.1" text="1.3.1 Mission Viability computation" description="">
+          <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_00" text="Req_F_MM_00" description="From the tables, F_MM must select the nearest neighbours and extract energy levels for each of these neighbours">
+            <children xsi:type="scade_req:IncomingReference" identifier="!ed/2918/1DFB/1050/58f0c89b60cd" text="viab::determine_viability/" type="Covering:trace" local="true"/>
+          </children>
+          <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_01" text="Req_F_MM_01" description="F_MM must compute energy level by interpolation - with distance based averaging">
+            <children xsi:type="scade_req:IncomingReference" identifier="!ed/2918/1DFB/1050/58f0c89b60cd" text="viab::determine_viability/" type="Covering:trace" local="true"/>
+          </children>
+        </children>
+        <children xsi:type="scade_req:Section" identifier="1.3.2" text="1.3.2 Init Sequence" description="">
+          <children xsi:type="scade_req:Section" identifier="1.3.2.1" text="1.3.2.1 Payload boarding" description="">
+            <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_10" text="Req_F_MM_10" description="A payload boarding sequence consists in 1. The bay is opened using the BAY SWITCH (Bayswitch is set to OPEN) 2. The payload is boarded in the bay 3. The bay is closed using the BAY SWITCH (Bayswitch is set to CLOSED)">
+              <children xsi:type="scade_req:IncomingReference" identifier="!ed/2917/623E/DF0/594380793291" text="manage_payload_boarding" type="Covering:trace" local="true"/>
+            </children>
+            <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_11" text="Req_F_MM_11" description="When the bay is closed, the mass must be recorded from the CP's rotator or the USB key.">
+              <children xsi:type="scade_req:IncomingReference" identifier="!ed/2917/623E/DF0/594380793291" text="manage_payload_boarding" type="Covering:trace" local="true"/>
+            </children>
+            <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_12" text="Req_F_MM_12" description="The rotators supersede any other means, unless value 99 is configured on the two wheels. In RP mode, GS supersedes the USB key, whereas in A mode the key supersedes any GS input."/>
+          </children>
+          <children xsi:type="scade_req:Section" identifier="1.3.2.2" text="1.3.2.2 Mission set up" description="">
+            <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_20" text="Req_F_MM_20" description="Mission set up values must be taken into account when start message is received and payload mass is obtained. Then mission viability is computed.">
+              <children xsi:type="scade_req:IncomingReference" identifier="!ed/2b54/6F08/E3C/594798594fe9" text="set_up_mission" type="Covering:trace" local="true"/>
+            </children>
+            <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_21" text="Req_F_MM_21" description="Mission parameters sources must be resolved. Ground station's values supersede the ones from USB Key.">
+              <children xsi:type="scade_req:IncomingReference" identifier="!ed/2b94/6F08/E3C/5947993f7ed1" text="select_navigation_data" type="Covering:trace" local="true"/>
+            </children>
+            <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_22" text="Req_F_MM_22" description="Mission viability is computed at set up phase using payload mass, distance, navigation mode, altitude and speed received.">
+              <children xsi:type="scade_req:IncomingReference" identifier="!ed/2ba8/589C/1330/594d0c5e2a3d" text="stp::compute_set_up_viability/" type="Covering:trace" local="true"/>
+            </children>
+            <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_23" text="Req_F_MM_23" description="When mission is decided viable, StartTakeOff order must be launched to F_FC. Otherwise MissionCANCELLED must be set to F_FC">
+              <children xsi:type="scade_req:IncomingReference" identifier="!ed/2b54/6F08/E3C/594798594fe9" text="stp::set_up_mission/" type="Covering:trace" local="true"/>
+            </children>
+          </children>
+        </children>
+        <children xsi:type="scade_req:Section" identifier="1.3.3" text="1.3.3 In flight functions" description="">
+          <children xsi:type="scade_req:Section" identifier="1.3.3.1" text="1.3.3.1 Viability computation" description="">
+            <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_30" text="Req_F_MM_30" description="During flight, when flight mode is CRUISE, F_MM must compute the viability with periodic rate (0.1 Hz) using: payload mass, navigation mode, and current remaining distance (from  F_FC), altitude (from F_FC) and speed (from F_FC)"/>
+          </children>
+          <children xsi:type="scade_req:Section" identifier="1.3.3.2" text="1.3.3.2 Mission termination control" description="">
+            <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_40" text="Req_F_MM_40" description="During flight, F_MM must monitor current range and activate landing when (Distance-CurrentRange) &lt;  GlideDistance(CurrentAltitude)."/>
+            <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_41" text="Req_F_MM_41" description="GlideDistance is a tabulated function that gives the ground distance needed to reach altitude zero from CurrentAltitude."/>
+          </children>
+          <children xsi:type="scade_req:Section" identifier="1.3.3.3" text="1.3.3.3 Operating point update management" description="">
+            <children xsi:type="scade_req:Requirement" identifier="Req_F_MM_50" text="Req_F_MM_50" description="F_MM sends command to F_FC to freeze any change on the operating point when landing is activated."/>
+          </children>
+        </children>
+      </children>
+    </children>
+  </children>
+</scade_req:ReqProject>

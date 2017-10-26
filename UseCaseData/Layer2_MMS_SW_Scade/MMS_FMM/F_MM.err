@@ -1,0 +1,81 @@
+*** Post-namespace Error (ERR_516): Undefined variable
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 377, character 0
+  at path f_mm::manage_mission/LL_missionCancelled/
+ The local variable LL_missionCancelled has no definition
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 291, character 0
+  at path f_mm::manage_mission/go/
+ The input variable go is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 295, character 0
+  at path f_mm::manage_mission/mission_abort/
+ The input variable mission_abort is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 299, character 0
+  at path f_mm::manage_mission/pushbutton_on/
+ The input variable pushbutton_on is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 323, character 0
+  at path f_mm::manage_mission/estimated_total_mass/
+ The input variable estimated_total_mass is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 327, character 0
+  at path f_mm::manage_mission/current_range/
+ The input variable current_range is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 331, character 0
+  at path f_mm::manage_mission/current_speed/
+ The input variable current_speed is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 335, character 0
+  at path f_mm::manage_mission/current_altitude/
+ The input variable current_altitude is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 339, character 0
+  at path f_mm::manage_mission/flight_mode/
+ The input variable flight_mode is never used
+*** Post-namespace Error (ERR_516): Undefined variable
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 352, character 0
+  at path f_mm::manage_mission/mission_complete/
+ The output variable mission_complete has no definition
+*** Post-namespace Error (ERR_516): Undefined variable
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 356, character 0
+  at path f_mm::manage_mission/mission_aborted/
+ The output variable mission_aborted has no definition
+*** Post-namespace Error (ERR_516): Undefined variable
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 360, character 0
+  at path f_mm::manage_mission/emergency_landing/
+ The output variable emergency_landing has no definition
+*** Post-namespace Error (ERR_516): Undefined variable
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 368, character 0
+  at path f_mm::manage_mission/start_landing/
+ The output variable start_landing has no definition
+*** Post-namespace Error (ERR_516): Undefined variable
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\manage_mission.scade, line 372, character 0
+  at path f_mm::manage_mission/operating_point/
+ The output variable operating_point has no definition
+*** Completion Error (SE_EXILPA): Illegal Empty Parameter
+  at path _L1, _L2 = (viab_mm::na<<_null, _null, _null, _null>>)(_null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null)
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\compute_flight_viability.scade, line 113, character 0
+  at path flight_mm::compute_flight_viability/LL_viability_array/
+ The local variable LL_viability_array is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\compute_flight_viability.scade, line 95, character 0
+  at path flight_mm::compute_flight_viability/nav_parameters/
+ The input variable nav_parameters is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\compute_flight_viability.scade, line 103, character 0
+  at path flight_mm::compute_flight_viability/payload_mass/
+ The input variable payload_mass is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\compute_flight_viability.scade, line 107, character 0
+  at path flight_mm::compute_flight_viability/energy_level/
+ The input variable energy_level is never used
+*** Type Error (ERR_100): Type mismatch
+  at file C:\Users\ANNEPE~1.POR\AppData\Local\Temp\ScadeChecker\8528\compute_flight_viability.scade, line 132, character 12
+  at path flight_mm::compute_flight_viability/navigation_mode:then:LL_viability_array=
+ This expression has type {altitudes:float32^4, distances:float32^4,
+ masses:float32^4, speeds:float32^4, energies:float32^4^4^4^4}
+ but should have type bool
+ (output flow mismatch)

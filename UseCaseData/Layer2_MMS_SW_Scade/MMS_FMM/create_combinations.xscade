@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" visibility="private" name="create_combinations">
+	<sizeParameters>
+		<SizeParameter name="nb_values">
+			<pragmas>
+				<ed:SizeParameter oid="!ed/13e9/71E6/226C/58f74b2f3b39"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</SizeParameter>
+		<SizeParameter name="nb_vectors">
+			<pragmas>
+				<ed:SizeParameter oid="!ed/13ec/71E6/226C/58f74b3d74bf"/>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</SizeParameter>
+	</sizeParameters>
+	<inputs>
+		<Variable name="val">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="2"/>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/13fb/71E6/226C/58f74b5b46e1"/>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="array_val">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="nb_values"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_vectors"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1403/71E6/226C/58f74b5b3f3a"/>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="out_array">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<!-- nb_values + 1 -->
+								<NAryOp operator="+">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="nb_values"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="1"/>
+									</operands>
+								</NAryOp>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<!-- nb_vectors * 2 -->
+						<NAryOp operator="*">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="nb_vectors"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="2"/>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1413/71E6/226C/58f74b5b9b6"/>
+				<kcg:Pragma>
+					doc &quot;Resolution_4&quot; {Resolution = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Range_3&quot; {Range = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Unit_2&quot; {Unit = &quot;TBD&quot;}
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Comment_1&quot; {Comment = &quot;&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<!-- nb_values + 1 -->
+								<NAryOp operator="+">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="nb_values"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="1"/>
+									</operands>
+								</NAryOp>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_vectors"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/13df/71E6/226C/58f74b261ab1"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="nb_values"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_vectors"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1459/71E6/226C/58f74c837549"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_vectors"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/146a/71E6/226C/58f74ca32018"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L7">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/175a/71E6/226C/58f7542390b"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L11">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<!-- nb_values + 1 -->
+								<NAryOp operator="+">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="nb_values"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="1"/>
+									</operands>
+								</NAryOp>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_vectors"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/179c/71E6/226C/58f754341f5d"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L10">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_vectors"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/179a/71E6/226C/58f75434508c"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L9">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="nb_values"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_vectors"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1798/71E6/226C/58f754342e18"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L8">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1796/71E6/226C/58f75434abd"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L12">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<!-- nb_values + 1 -->
+								<NAryOp operator="+">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="nb_values"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="1"/>
+									</operands>
+								</NAryOp>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<!-- nb_vectors + nb_vectors -->
+						<NAryOp operator="+">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="nb_vectors"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="nb_vectors"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/17b0/71E6/226C/58f7544f6cd7"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = (map (map_combine_values<<nb_values>>) <<nb_vectors>>)(_L4, _L3); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<!-- (map (map_combine_values<<nb_values>>) <<nb_vectors>>)(_L4, _L3) -->
+				<CallExpression>
+					<operator>
+						<IteratorOp name="2" iterator="map">
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="map_combine_values"/>
+									</operator>
+									<instanceParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="nb_values"/>
+											</path>
+										</IdExpression>
+									</instanceParameters>
+								</OpCall>
+							</operator>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="nb_vectors"/>
+									</path>
+								</IdExpression>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/13de/71E6/226C/58f74b267837"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = array_val; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="array_val"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1458/71E6/226C/58f74c834565"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = _L7 ^ nb_vectors; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<!-- _L7 ^ nb_vectors -->
+				<ScalarToVectorOp name="1">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L7"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_vectors"/>
+							</path>
+						</IdExpression>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1469/71E6/226C/58f74ca3197a"/>
+			</pragmas>
+		</Equation>
+		<!-- _L7 = val[0]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L7"/>
+			</lefts>
+			<right>
+				<!-- val[0] -->
+				<PrjOp name="1">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="val"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<ConstValue value="0"/>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1759/71E6/226C/58f754232e8e"/>
+			</pragmas>
+		</Equation>
+		<!-- _L8 = val[1]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L8"/>
+			</lefts>
+			<right>
+				<!-- val[1] -->
+				<PrjOp name="2">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="val"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<ConstValue value="1"/>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1795/71E6/226C/58f754341dba"/>
+			</pragmas>
+		</Equation>
+		<!-- _L9 = array_val; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L9"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="array_val"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1797/71E6/226C/58f754343ea2"/>
+			</pragmas>
+		</Equation>
+		<!-- _L10 = _L8 ^ nb_vectors; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L10"/>
+			</lefts>
+			<right>
+				<!-- _L8 ^ nb_vectors -->
+				<ScalarToVectorOp name="2">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L8"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="nb_vectors"/>
+							</path>
+						</IdExpression>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1799/71E6/226C/58f75434a76"/>
+			</pragmas>
+		</Equation>
+		<!-- _L11 = (map (map_combine_values<<nb_values>>) <<nb_vectors>>)(_L10, _L9); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L11"/>
+			</lefts>
+			<right>
+				<!-- (map (map_combine_values<<nb_values>>) <<nb_vectors>>)(_L10, _L9) -->
+				<CallExpression>
+					<operator>
+						<IteratorOp name="4" iterator="map">
+							<operator>
+								<OpCall name="2">
+									<operator>
+										<OperatorRef name="map_combine_values"/>
+									</operator>
+									<instanceParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="nb_values"/>
+											</path>
+										</IdExpression>
+									</instanceParameters>
+								</OpCall>
+							</operator>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="nb_vectors"/>
+									</path>
+								</IdExpression>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L10"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L9"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/179b/71E6/226C/58f754341a6a"/>
+			</pragmas>
+		</Equation>
+		<!-- _L12 = _L1 @ _L11; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L12"/>
+			</lefts>
+			<right>
+				<!-- _L1 @ _L11 -->
+				<NAryOp name="1" operator="@">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L11"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</NAryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/17af/71E6/226C/58f7544f10b3"/>
+			</pragmas>
+		</Equation>
+		<!-- out_array = _L12; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="out_array"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L12"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/17b7/71E6/226C/58f7546259a1"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/13dc/71E6/226C/58f74b134109" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="map_create_combinations_1" landscape="true" format="A4 (210 297)" oid="!ed/13dd/71E6/226C/58f74b135876">
+					<presentationElements>
+						<EquationGE presentable="!ed/13de/71E6/226C/58f74b267837">
+							<position>
+								<Point x="6681" y="3844"/>
+							</position>
+							<size>
+								<Size width="5223" height="3594"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1458/71E6/226C/58f74c834565">
+							<position>
+								<Point x="2963" y="5990"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1469/71E6/226C/58f74ca3197a">
+							<position>
+								<Point x="3768" y="4551"/>
+							</position>
+							<size>
+								<Size width="1540" height="990"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1469/71E6/226C/58f74ca3197a" dstEquation="!ed/13de/71E6/226C/58f74b267837">
+							<positions>
+								<Point x="5292" y="5038"/>
+								<Point x="5990" y="5038"/>
+								<Point x="5990" y="5038"/>
+								<Point x="6689" y="5038"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1458/71E6/226C/58f74c834565" dstEquation="!ed/13de/71E6/226C/58f74b267837">
+							<positions>
+								<Point x="3217" y="6244"/>
+								<Point x="4953" y="6244"/>
+								<Point x="4953" y="6244"/>
+								<Point x="6689" y="6244"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/1759/71E6/226C/58f754232e8e">
+							<position>
+								<Point x="2646" y="4868"/>
+							</position>
+							<size>
+								<Size width="169" height="318"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1759/71E6/226C/58f754232e8e" dstEquation="!ed/1469/71E6/226C/58f74ca3197a">
+							<positions>
+								<Point x="2815" y="5038"/>
+								<Point x="3281" y="5038"/>
+								<Point x="3281" y="5038"/>
+								<Point x="3768" y="5038"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/1795/71E6/226C/58f754341dba">
+							<position>
+								<Point x="2667" y="8700"/>
+							</position>
+							<size>
+								<Size width="169" height="317"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_INPUT" presentable="!ed/1797/71E6/226C/58f754343ea2">
+							<position>
+								<Point x="2985" y="9821"/>
+							</position>
+							<size>
+								<Size width="254" height="508"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1799/71E6/226C/58f75434a76">
+							<position>
+								<Point x="3789" y="8382"/>
+							</position>
+							<size>
+								<Size width="1524" height="974"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/179b/71E6/226C/58f754341a6a">
+							<position>
+								<Point x="6710" y="7684"/>
+							</position>
+							<size>
+								<Size width="5207" height="3577"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1799/71E6/226C/58f75434a76" dstEquation="!ed/179b/71E6/226C/58f754341a6a">
+							<positions>
+								<Point x="5313" y="8869"/>
+								<Point x="6011" y="8869"/>
+								<Point x="6011" y="8869"/>
+								<Point x="6710" y="8869"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1795/71E6/226C/58f754341dba" dstEquation="!ed/1799/71E6/226C/58f75434a76">
+							<positions>
+								<Point x="2836" y="8869"/>
+								<Point x="3302" y="8869"/>
+								<Point x="3302" y="8869"/>
+								<Point x="3789" y="8869"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1797/71E6/226C/58f754343ea2" dstEquation="!ed/179b/71E6/226C/58f754341a6a">
+							<positions>
+								<Point x="3239" y="10075"/>
+								<Point x="4974" y="10075"/>
+								<Point x="4974" y="10075"/>
+								<Point x="6710" y="10075"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/17af/71E6/226C/58f7544f10b3">
+							<position>
+								<Point x="13589" y="6583"/>
+							</position>
+							<size>
+								<Size width="974" height="974"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/13de/71E6/226C/58f74b267837" dstEquation="!ed/17af/71E6/226C/58f7544f10b3">
+							<positions>
+								<Point x="11896" y="5652"/>
+								<Point x="12742" y="5652"/>
+								<Point x="12742" y="6900"/>
+								<Point x="13589" y="6900"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/179b/71E6/226C/58f754341a6a" dstEquation="!ed/17af/71E6/226C/58f7544f10b3">
+							<positions>
+								<Point x="11917" y="9483"/>
+								<Point x="12742" y="9483"/>
+								<Point x="12742" y="7239"/>
+								<Point x="13589" y="7239"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/17b7/71E6/226C/58f7546259a1">
+							<position>
+								<Point x="15748" y="6816"/>
+							</position>
+							<size>
+								<Size width="339" height="508"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/17af/71E6/226C/58f7544f10b3" dstEquation="!ed/17b7/71E6/226C/58f7546259a1">
+							<positions>
+								<Point x="14563" y="7070"/>
+								<Point x="15177" y="7070"/>
+								<Point x="15177" y="7070"/>
+								<Point x="15790" y="7070"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+		<kcg:Pragma>
+			doc &quot;OperatorKind_1&quot; {OperatorKind = &quot;TBD&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Change_6&quot; {Change = &quot; PR: First issue - No change.&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Description_5&quot; {Description = &quot; Description:  create arrays of combinations: concatenates each value of val to all vectors of array_val&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;CopyRight_4&quot; {CopyRight = &quot; (C) ZSSM. All rights reserved.&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Date_3&quot; {Date = &quot;19/04/2017&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Author_2&quot; {Author = &quot; Modified by: AP. PORTE&quot;}
+		</kcg:Pragma>
+		<kcg:Pragma>
+			doc &quot;Title_1&quot; {Title = &quot;Title : map_create_combinations_1&quot;}
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

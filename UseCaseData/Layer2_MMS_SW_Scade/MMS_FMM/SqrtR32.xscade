@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" external="imported" name="SqrtR32">
+	<inputs>
+		<Variable name="i">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4fd4/654E/1838/58f70e5d4acd"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="o">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4fd3/654E/1838/58f70e5d1296"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<specializedOperator>
+		<OperatorRef name="SqrtR"/>
+	</specializedOperator>
+	<pragmas>
+		<ed:Operator oid="!ed/4fd2/654E/1838/58f70e5d6f68"/>
+		<kcg:Pragma>
+			C:name SqrtR32_mathext_mathextimpl
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

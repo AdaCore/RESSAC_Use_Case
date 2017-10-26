@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="types_mm">
+			<declarations>
+				<Type name="mass_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2931/2FBF/14D0/592d3acb4b49" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>mass in kg</comment>
+						</ed:Type>
+						<kcg:Pragma>
+							doc &quot;Unit_2&quot; {Unit = &quot;kg&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Comment_1&quot; {Comment = &quot;mass in kg&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Range_3&quot; {Range = &quot;[0;500]&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Resolution_4&quot; {Resolution = &quot;0.1&quot;}
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="nav_param_t">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="distance">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="distance_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2adf/6F08/E3C/5947866c9e"/>
+										<kcg:Pragma>
+											doc &quot;Unit_1&quot; {Unit = &quot;n.m&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Comment_1&quot; {Comment = &quot;distance in nautic mile&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Range_1&quot; {Range = &quot;[1;100]&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Resolution_1&quot; {Resolution = &quot;1&quot;}
+										</kcg:Pragma>
+									</pragmas>
+								</Field>
+								<Field name="speed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="speed_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2b0d/6F08/E3C/59478878626b"/>
+										<kcg:Pragma>
+											doc &quot;Unit_1&quot; {Unit = &quot;kt&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Comment_1&quot; {Comment = &quot;speed in knots&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Range_1&quot; {Range = &quot;[1;250]&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Resolution_1&quot; {Resolution = &quot;1&quot;}
+										</kcg:Pragma>
+									</pragmas>
+								</Field>
+								<Field name="altitude">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="altitude_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2b17/6F08/E3C/5947888198"/>
+										<kcg:Pragma>
+											doc &quot;Unit_1&quot; {Unit = &quot;ft&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Comment_1&quot; {Comment = &quot;altitude in feet&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Range_1&quot; {Range = &quot;[-500; 3000]&quot;}
+										</kcg:Pragma>
+										<kcg:Pragma>
+											doc &quot;Resolution_1&quot; {Resolution = &quot;1&quot;}
+										</kcg:Pragma>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2ade/6F08/E3C/594786601f82"/>
+						<kcg:Pragma>
+							doc &quot;Unit_2&quot; {Unit = &quot;N/A&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Comment_1&quot; {Comment = &quot;navigations parameters {Distance;Speed;Altitude}&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Range_3&quot; {Range = &quot;N/A&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Resolution_4&quot; {Resolution = &quot;N/A&quot;}
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="distance_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2ae0/6F08/E3C/594786775890" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>distance in nautic miles</comment>
+						</ed:Type>
+						<kcg:Pragma>
+							doc &quot;Unit_2&quot; {Unit = &quot;n.m&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Comment_1&quot; {Comment = &quot;distance in nautic mile&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Range_3&quot; {Range = &quot;[1;100]&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Resolution_4&quot; {Resolution = &quot;1&quot;}
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="speed_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2ae9/6F08/E3C/594786916a99" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>speed in knots</comment>
+						</ed:Type>
+						<kcg:Pragma>
+							doc &quot;Unit_2&quot; {Unit = &quot;kt&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Comment_1&quot; {Comment = &quot;speed in knots&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Range_3&quot; {Range = &quot;[1;250]&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Resolution_4&quot; {Resolution = &quot;1&quot;}
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="altitude_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2afb/6F08/E3C/594786f1350" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>altitude in feet</comment>
+						</ed:Type>
+						<kcg:Pragma>
+							doc &quot;Unit_2&quot; {Unit = &quot;ft&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Comment_1&quot; {Comment = &quot;altitude in feet&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Range_3&quot; {Range = &quot;[-500; 3000]&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Resolution_4&quot; {Resolution = &quot;1&quot;}
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="flight_mode_t">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="CLIMB">
+									<pragmas>
+										<ed:Value oid="!ed/2b47/6F08/E3C/5947971d5de6"/>
+									</pragmas>
+								</Value>
+								<Value name="CRUISE">
+									<pragmas>
+										<ed:Value oid="!ed/2b48/6F08/E3C/594797234ba"/>
+									</pragmas>
+								</Value>
+								<Value name="DESCEND">
+									<pragmas>
+										<ed:Value oid="!ed/2b49/6F08/E3C/594797274b30"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2b46/6F08/E3C/5947971215ad"/>
+						<kcg:Pragma>
+							doc &quot;Unit_2&quot; {Unit = &quot;N/A&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Comment_1&quot; {Comment = &quot;Flight Mode &quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Range_3&quot; {Range = &quot;N/A&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Resolution_4&quot; {Resolution = &quot;N/A&quot;}
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="energy_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2cc9/6F08/E3C/5947ba4d4ec3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>energy in kJoules</comment>
+						</ed:Type>
+						<kcg:Pragma>
+							doc &quot;Unit_2&quot; {Unit = &quot;kJ&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Comment_1&quot; {Comment = &quot;energy in kJoules&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Range_3&quot; {Range = &quot;[0;500]&quot;}
+						</kcg:Pragma>
+						<kcg:Pragma>
+							doc &quot;Resolution_4&quot; {Resolution = &quot;1&quot;}
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/292d/2FBF/14D0/592d3ac44750" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/292e/2FBF/14D0/592d3ac4a4f" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/292f/2FBF/14D0/592d3ac43ced" blockKind="types" columnsSize="0, 150, 291, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/2930/2FBF/14D0/592d3ac4662e" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+				<kcg:Pragma>
+					doc &quot;Comment_Package_1&quot; {Description = &quot;TBD&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

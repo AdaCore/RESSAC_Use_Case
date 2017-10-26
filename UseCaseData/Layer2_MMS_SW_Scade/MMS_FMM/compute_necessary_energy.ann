@@ -1,0 +1,420 @@
+Notes-Types { Esterel-Technologies }  DEFINITIONS ::=
+BEGIN
+    Unit ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Unit TEXT
+            {
+            	 NT_DEFAULT_VALUE "TBD" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+    Comment_Default ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Description TEXT
+            {
+            	 NT_DEFAULT_VALUE "-" ,
+            	 NT_FIELD_HEIGHT 10 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE F ,
+            	 NT_PRINTABLE F }
+    } } }
+
+    Comment ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Comment TEXT
+            {
+            	 NT_DEFAULT_VALUE "" ,
+            	 NT_FIELD_HEIGHT 3 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+    Range ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Range TEXT
+            {
+            	 NT_DEFAULT_VALUE "TBD" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+    Resolution ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            Resolution TEXT
+            {
+            	 NT_DEFAULT_VALUE "TBD" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F }
+    } } }
+
+    OperatorKind ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            OperatorKind ENUM
+            {
+            	 NT_ENUM_VALUES {"Architecture", "Functional", "Refinement", "Library", "Derived", "Robustness", "TBD"},
+            	 NT_DEFAULT_VALUE "TBD" ,
+            	 NT_INCRUSTABLE T },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T }
+    } } }
+
+    Title ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        note_graphical_information {
+            NT_INCRUSTABLE BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_PERMANENT BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_LOCATION STRING
+            {
+            	 NT_DEFAULT_VALUE "RELATIVE" },
+            NT_POS_X REAL
+            {
+            	 NT_DEFAULT_VALUE 0 },
+            NT_POS_Y REAL
+            {
+            	 NT_DEFAULT_VALUE 0 },
+            NT_MODIFY BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE F },
+            NT_FRAME BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_FRAME_WIDTH INTEGER
+            {
+            	 NT_DEFAULT_VALUE 350 },
+            NT_FRAME_HEIGHT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 20 },
+            NT_FONT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 1 }
+        },
+        information {
+            Title TEXT
+            {
+            	 NT_DEFAULT_VALUE "Title : " ,
+            	 NT_INCRUSTABLE T },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T }
+    } } }
+
+    Author ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        note_graphical_information {
+            NT_INCRUSTABLE BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_PERMANENT BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_LOCATION STRING
+            {
+            	 NT_DEFAULT_VALUE "RELATIVE" },
+            NT_POS_X REAL
+            {
+            	 NT_DEFAULT_VALUE 0 },
+            NT_POS_Y REAL
+            {
+            	 NT_DEFAULT_VALUE 20 },
+            NT_MODIFY BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE F },
+            NT_FRAME BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_FRAME_WIDTH INTEGER
+            {
+            	 NT_DEFAULT_VALUE 250 },
+            NT_FRAME_HEIGHT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 20 },
+            NT_FONT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 1 }
+        },
+        information {
+            Author TEXT
+            {
+            	 NT_DEFAULT_VALUE " Modified by: AP. PORTE" ,
+            	 NT_INCRUSTABLE T },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T }
+    } } }
+
+    Date ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        note_graphical_information {
+            NT_INCRUSTABLE BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_PERMANENT BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_LOCATION STRING
+            {
+            	 NT_DEFAULT_VALUE "RELATIVE" },
+            NT_POS_X REAL
+            {
+            	 NT_DEFAULT_VALUE 250 },
+            NT_POS_Y REAL
+            {
+            	 NT_DEFAULT_VALUE 20 },
+            NT_MODIFY BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE F },
+            NT_FRAME BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_FRAME_WIDTH INTEGER
+            {
+            	 NT_DEFAULT_VALUE 100 },
+            NT_FRAME_HEIGHT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 20 },
+            NT_FONT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 1 }
+        },
+        information {
+            Date DATE
+            {
+            	 NT_DEFAULT_VALUE "dd/mm/yyyy" ,
+            	 NT_INCRUSTABLE T },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T }
+    } } }
+
+    CopyRight ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        note_graphical_information {
+            NT_INCRUSTABLE BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_PERMANENT BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_LOCATION STRING
+            {
+            	 NT_DEFAULT_VALUE "RELATIVE" },
+            NT_POS_X REAL
+            {
+            	 NT_DEFAULT_VALUE 0 },
+            NT_POS_Y REAL
+            {
+            	 NT_DEFAULT_VALUE 40 },
+            NT_MODIFY BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE F },
+            NT_FRAME BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_FRAME_WIDTH INTEGER
+            {
+            	 NT_DEFAULT_VALUE 350 },
+            NT_FRAME_HEIGHT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 21 },
+            NT_FONT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 1 }
+        },
+        information {
+            CopyRight TEXT
+            {
+            	 NT_DEFAULT_VALUE " (C) ZSSM. All rights reserved." ,
+            	 NT_INCRUSTABLE T ,
+            	 NT_EDITABLE F },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T }
+    } } }
+
+    Description ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        note_graphical_information {
+            NT_INCRUSTABLE BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_PERMANENT BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_LOCATION STRING
+            {
+            	 NT_DEFAULT_VALUE "RELATIVE" },
+            NT_POS_X REAL
+            {
+            	 NT_DEFAULT_VALUE 350 },
+            NT_POS_Y REAL
+            {
+            	 NT_DEFAULT_VALUE 0 },
+            NT_MODIFY BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_FRAME BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_FRAME_WIDTH INTEGER
+            {
+            	 NT_DEFAULT_VALUE 400 },
+            NT_FRAME_HEIGHT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 120 },
+            NT_FONT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 1 }
+        },
+        information {
+            Description TEXT
+            {
+            	 NT_DEFAULT_VALUE " Description: " ,
+            	 NT_INCRUSTABLE T },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T }
+    } } }
+
+    Change ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        note_graphical_information {
+            NT_INCRUSTABLE BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_PERMANENT BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_LOCATION STRING
+            {
+            	 NT_DEFAULT_VALUE "RELATIVE" },
+            NT_POS_X REAL
+            {
+            	 NT_DEFAULT_VALUE 0 },
+            NT_POS_Y REAL
+            {
+            	 NT_DEFAULT_VALUE 60 },
+            NT_MODIFY BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_FRAME BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T },
+            NT_FRAME_WIDTH INTEGER
+            {
+            	 NT_DEFAULT_VALUE 350 },
+            NT_FRAME_HEIGHT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 60 },
+            NT_FONT INTEGER
+            {
+            	 NT_DEFAULT_VALUE 1 }
+        },
+        information {
+            Change TEXT
+            {
+            	 NT_DEFAULT_VALUE " PR: First issue - No change." ,
+            	 NT_INCRUSTABLE T },
+            to_c BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T }
+    } } }
+
+END
+
+Notes-Values { Esterel-Technologies }  DEFINITIONS ::=
+BEGIN
+    Unit ::= {
+        {"!ed/2b44/5C75/1654/58f8b11f3e32", "Unit_2","TBD" , T },
+        {"!ed/2d49/5C75/1654/58f8b3b740", "Unit_2","TBD" , T },
+        {"!ed/2cb2/5C75/1654/58f8b1e12d34", "Unit_2","TBD" , T },
+        {"!ed/2ab1/5C75/1654/58f8af8f94", "Unit_2","TBD" , T },
+        {"!ed/2abf/5C75/1654/58f8af8f5c16", "Unit_2","TBD" , T },
+        {"!ed/2ac5/5C75/1654/58f8af8f27e6", "Unit_2","TBD" , T },
+        {"!ed/2b3d/5C75/1654/58f8b0f579aa", "Unit_2","TBD" , T }}
+    Comment_Default ::= {
+        {"!ed/2a5a/5C75/1654/58f8af3f198f", "Comment_Default_1","-" , F },
+        {"!ed/2c9a/5C75/1654/58f8b1ab20fc", "Comment_Default_1","-" , F }}
+    Comment ::= {
+        {"!ed/2b44/5C75/1654/58f8b11f3e32", "Comment_1","" , T },
+        {"!ed/2d49/5C75/1654/58f8b3b740", "Comment_1","" , T },
+        {"!ed/2cb2/5C75/1654/58f8b1e12d34", "Comment_1","" , T },
+        {"!ed/2ab1/5C75/1654/58f8af8f94", "Comment_1","" , T },
+        {"!ed/2abf/5C75/1654/58f8af8f5c16", "Comment_1","" , T },
+        {"!ed/2ac5/5C75/1654/58f8af8f27e6", "Comment_1","" , T },
+        {"!ed/2b3d/5C75/1654/58f8b0f579aa", "Comment_1","" , T }}
+    Range ::= {
+        {"!ed/2b44/5C75/1654/58f8b11f3e32", "Range_3","TBD" , T },
+        {"!ed/2d49/5C75/1654/58f8b3b740", "Range_3","[0.1;10.0]" , T },
+        {"!ed/2cb2/5C75/1654/58f8b1e12d34", "Range_3","TBD" , T },
+        {"!ed/2ab1/5C75/1654/58f8af8f94", "Range_3","TBD" , T },
+        {"!ed/2abf/5C75/1654/58f8af8f5c16", "Range_3","TBD" , T },
+        {"!ed/2ac5/5C75/1654/58f8af8f27e6", "Range_3","TBD" , T },
+        {"!ed/2b3d/5C75/1654/58f8b0f579aa", "Range_3","TBD" , T }}
+    Resolution ::= {
+        {"!ed/2b44/5C75/1654/58f8b11f3e32", "Resolution_4","TBD" , T },
+        {"!ed/2d49/5C75/1654/58f8b3b740", "Resolution_4","TBD" , T },
+        {"!ed/2cb2/5C75/1654/58f8b1e12d34", "Resolution_4","TBD" , T },
+        {"!ed/2ab1/5C75/1654/58f8af8f94", "Resolution_4","TBD" , T },
+        {"!ed/2abf/5C75/1654/58f8af8f5c16", "Resolution_4","TBD" , T },
+        {"!ed/2ac5/5C75/1654/58f8af8f27e6", "Resolution_4","TBD" , T },
+        {"!ed/2b3d/5C75/1654/58f8b0f579aa", "Resolution_4","TBD" , T }}
+    OperatorKind ::= {
+        {"!ed/fbe/1252/1D14/58f786145a83", "OperatorKind_1","TBD" , T }}
+    Title ::= {
+        {"!ed/fbf/1252/1D14/58f786141f1f", "Title_1",T , T , "RELATIVE" , 0.000000 , 0.000000 , F , T , 350 , 20 , 1 , "Title : compute_necessary_energy_1" , T }}
+    Author ::= {
+        {"!ed/fbf/1252/1D14/58f786141f1f", "Author_2",T , T , "RELATIVE" , 0.000000 , 20.000000 , F , T , 250 , 20 , 1 , " Modified by: AP. PORTE" , T }}
+    Date ::= {
+        {"!ed/fbf/1252/1D14/58f786141f1f", "Date_3",T , T , "RELATIVE" , 250.000000 , 20.000000 , F , T , 100 , 20 , 1 , "20/04/2017" , T }}
+    CopyRight ::= {
+        {"!ed/fbf/1252/1D14/58f786141f1f", "CopyRight_4",T , T , "RELATIVE" , 0.000000 , 40.000000 , F , T , 350 , 21 , 1 , " (C) ZSSM. All rights reserved." , T }}
+    Description ::= {
+        {"!ed/fbf/1252/1D14/58f786141f1f", "Description_5",T , T , "RELATIVE" , 350.000000 , 0.000000 , T , T , 400 , 120 , 1 , " Description: 
+compute energy necessary for parameters 
+depending if all poles distances are not null or if parameters are on one pole
+(Robustness to avoid computation of interpolation on null distances)" , T }}
+    Change ::= {
+        {"!ed/fbf/1252/1D14/58f786141f1f", "Change_6",T , T , "RELATIVE" , 0.000000 , 60.000000 , T , T , 350 , 60 , 1 , " PR: First issue - No change." , T }}
+END
+
