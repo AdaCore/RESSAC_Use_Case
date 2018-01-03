@@ -38,8 +38,11 @@ package MMS.F_PT.F_CM.Input is
    function Bay_Switch return Bay_Switch_Type
      renames MMS.F_PT.Input.Bay_Switch; 
 
-   function Payload_Mass return Payload_Mass_Type
-     renames MMS.F_PT.Input.Payload_Mass;
+   function Rotactor_1 return Rotactor_Type
+     renames MMS.F_PT.Input.Rotactor_1; 
+   
+   function Rotactor_2 return Rotactor_Type
+     renames MMS.F_PT.Input.Rotactor_2; 
    
    function USB_Key return USB_Key_Type_Option
      renames MMS.F_PT.Input.USB_Key;

@@ -34,12 +34,15 @@ package MMS.F_PT.F_MM.Input is
 
    function Bay_Switch return Bay_Switch_Type
      renames MMS.F_PT.F_CM.Output.Bay_Switch;
-
-   function Payload_Mass return Payload_Mass_Type
-     renames MMS.F_PT.F_CM.Output.Payload_Mass;
    
    function USB_Key return USB_Key_Type_Option
      renames MMS.F_PT.F_CM.Output.USB_Key;
+   
+   function Rotactor_1 return Rotactor_Type
+     renames MMS.F_PT.F_CM.Output.Rotactor_1;
+   
+   function Rotactor_2 return Rotactor_Type
+     renames MMS.F_PT.F_CM.Output.Rotactor_2;
    
    -----------------------
    -- From F_FC or F_EL --
@@ -51,10 +54,7 @@ package MMS.F_PT.F_MM.Input is
    ---------------
    -- From F_FC --
    ---------------
-   
-   function Estimated_Total_Mass return Estimated_Total_Mass_Type
-     renames MMS.F_PT.F_FC.Output.Estimated_Total_Mass;
-   
+
    function Current_Range return Current_Range_Type
      renames MMS.F_PT.F_FC.Output.Current_Range;
    

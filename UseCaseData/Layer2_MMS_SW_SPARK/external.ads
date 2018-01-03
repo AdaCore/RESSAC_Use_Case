@@ -46,7 +46,11 @@ package External with Abstract_State => (State with External => Async_Writers) i
      Volatile_Function,
      Global => State;
 
-   function Payload_Mass return Payload_Mass_Type with
+   function Rotactor_1 return Rotactor_Type with
+     Volatile_Function,
+     Global => State;
+
+   function Rotactor_2 return Rotactor_Type with
      Volatile_Function,
      Global => State;
 

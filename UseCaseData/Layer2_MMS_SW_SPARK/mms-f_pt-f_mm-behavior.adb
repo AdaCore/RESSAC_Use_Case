@@ -121,7 +121,8 @@ package body MMS.F_PT.F_MM.Behavior with SPARK_Mode is
       Input_On_OFF_Push_Button := On_OFF_Push_Button;
       Input_Start_Push_Button := Start_Push_Button;
       Input_Mission_Abort := Mission_Abort;
-      Input_Estimated_Total_Mass := Estimated_Total_Mass;
+      Input_Rotactor_1 := Rotactor_1;
+      Input_Rotactor_2 := Rotactor_2;
       Input_Current_Range := Current_Range;
       Input_Current_Speed := Current_Speed;
       Input_Current_Altitude := Current_Altitude;
@@ -140,11 +141,33 @@ package body MMS.F_PT.F_MM.Behavior with SPARK_Mode is
                                (Power_State = ON
                                 and then On_State = INIT
                                 and then Init_State = CANCELLED);
+      Is_Mission_Ready     : constant Boolean :=
+                               (Power_State = On
+                                and then On_State = INIT
+                                and then Init_State = READY);
+      Is_Start_Take_Off    : constant Boolean :=
+                               (Power_State = On
+                                and then On_State = RUNNING
+                                and then Running_State = TAKE_OFF);
+      Is_Start_Landing     : constant Boolean :=
+                               (Power_State = On
+                                and then On_State = RUNNING
+                                and then Running_State = Landing);
+
+      Payload_Mass         : constant Payload_Mass_Type :=
+                               Payload_Mass_Type
+                                 (Input_Rotactor_1 * 10 + Input_Rotactor_2);
    begin
       State.Output_Emergency_Landing := Is_Mission_Aborted;
       State.Output_Mission_Aborted := Is_Mission_Aborted;
-
       State.Output_Mission_Cancelled := Is_Mission_Cancelled;
+      State.Output_Mission_Ready := Is_Mission_Ready;
+      State.Output_Start_Take_Off := Is_Start_Take_Off;
+      State.Output_Start_Landing := Is_Start_Landing;
+      State.Output_Operating_Point := Operating_Point;
+      State.Output_Operating_Mode := Operating_Mode;
+      State.Output_Mission_Range := Mission_Range;
+      State.Output_Payload_Mass := Payload_Mass;
    end Write_Outputs;
 
    -------------------------------------------------------

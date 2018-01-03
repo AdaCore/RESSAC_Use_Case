@@ -410,6 +410,24 @@ private
      Global => (Input => (Private_State,
                           Viability_Logic_State,
                           Navigation_Parameter_State));
+   --  First hypothesis: nearest neighbours have the smallest distance with
+   --  Mission_profile
+   --
+   --  Post => Nearest_Neighbours'Result'Length = 2 * Nb_Of_Dimensions
+   --  for all Neighboor_Center of Nearest_Neighbours'Result =>
+   --  for all Center of Appropriate_Tabulating_Function =>
+   --  if Center not in Nearest_Neighboors'Result then
+   --     Distance_With_Neighbour (Neighboor_Center) < Distance_With_Neighbour (Center)
+   --  end if;
+   --
+   --  Second hypothesis: nearest neighbours has the smallest distance in only
+   --  one dimension with the Mission_Profile
+   --
+   --  Post => Nearest_Neighbours'Result'Length = 2 * Nb_Of_Dimensions
+   --  for all Neighboor_Center of Nearest_Neighbours'Result =>
+   --  Appropriate_Tabulating_Function (D, A, S).Distance <= Appropriate_Tabulating_Function (D - 1, A, S).Distance
+   --  and Appropriate_Tabulating_Function (D, A, S).Distance <= Appropriate_Tabulating_Function (D + 1, A, S).Distance
+
 
    function Extract_Energy_Level_For_Neighbours
      (Neighbours : Neighbour_Mission_Profiles) return Energy_Levels
@@ -750,6 +768,7 @@ private
         =>
           Power_State = ON
         and then On_State = COMPLETE,
+        -- ??? Should we verify that the distance
 
         Power_State = ON
         and then On_State = RUNNING

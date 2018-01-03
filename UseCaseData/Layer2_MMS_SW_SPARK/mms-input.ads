@@ -36,8 +36,11 @@ package MMS.Input is
    function Bay_Switch return Bay_Switch_Type
      renames External.Bay_Switch;
 
-   function Payload_Mass return Payload_Mass_Type
-     renames External.Payload_Mass;
+   function Rotactor_1 return Rotactor_Type
+     renames External.Rotactor_1;
+
+   function Rotactor_2 return Rotactor_Type
+     renames External.Rotactor_2;
 
    function USB_Key return USB_Key_Type_Option
      renames External.USB_Key;

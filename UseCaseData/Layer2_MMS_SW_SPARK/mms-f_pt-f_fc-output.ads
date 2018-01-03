@@ -16,8 +16,6 @@ package MMS.F_PT.F_FC.Output is
    
    function Mission_Abort return Boolean with Global => Output_State; -- ??? not listed in F_FC outputs
    
-   function Estimated_Total_Mass return Estimated_Total_Mass_Type with Global => Output_State;
-   
    function Current_Range return Current_Range_Type with Global => Output_State;
    
    function Current_Speed return Current_Speed_Type with Global => Output_State;

@@ -31,8 +31,9 @@ package MMS.F_PT.F_MM.State is
 
    Input_Mission_Abort : Boolean with Part_Of => Input_State;
 
-   Input_Estimated_Total_Mass : Estimated_Total_Mass_Type with
-     Part_Of => Input_State;
+   Input_Rotactor_1 : Rotactor_Type with Part_Of => Input_State;
+
+   Input_Rotactor_2 : Rotactor_Type with Part_Of => Input_State;
 
    Input_Current_Range : Current_Range_Type with Part_Of => Input_State;
 
@@ -112,6 +113,8 @@ package MMS.F_PT.F_MM.State is
 
    Output_Mission_Aborted : Boolean with Part_Of => Output_State;
 
+   Output_Mission_Ready : Boolean with Part_Of => Output_State;
+
    Output_Emergency_Landing : Boolean with Part_Of => Output_State;
 
    Output_Start_Take_Off : Boolean with Part_Of => Output_State;
@@ -123,5 +126,7 @@ package MMS.F_PT.F_MM.State is
    Output_Operating_Mode : Navigation_Option_Type with Part_Of => Output_State;
 
    Output_Mission_Range : Current_Range_Type with Part_Of => Output_State;
+
+   Output_Payload_Mass : Payload_Mass_Type with Part_Of => Output_State;
 
 end MMS.F_PT.F_MM.State;

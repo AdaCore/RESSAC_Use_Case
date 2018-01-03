@@ -19,7 +19,7 @@ package MMS.F_PT.F_FC.Input is
      renames MMS.F_PT.F_CM.Output.Q;
    
    function Payload_Mass return Payload_Mass_Type
-     renames MMS.F_PT.F_CM.Output.Payload_Mass;
+     renames MMS.F_PT.F_MM.Output.Payload_Mass;
       
    ---------------
    -- From F_MM --
