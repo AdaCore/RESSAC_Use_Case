@@ -32,7 +32,7 @@ private
    
    function Primary_Initial_Capacity return Energy_Level_Type 
    is
-     (Data.Primary_Initial_Capacity + Data.Secondary_Initial_CapacitY)
+     (Data.Primary_Initial_Capacity + Data.Secondary_Initial_Capacity)
    with Global => Private_State;
       
    function Propulsion_Energy return Energy_Level_Type
