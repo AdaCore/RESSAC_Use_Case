@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" name="SafetyConstant">
+	<declarations>
+		<Constant external="imported" name="qdot_minCl">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Constant oid="!ed/4eee/471E/275C/591477f36895"/>
+			</pragmas>
+		</Constant>
+		<Constant external="imported" name="qDot_maxCl">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Constant oid="!ed/4eef/471E/275C/59147801194e"/>
+			</pragmas>
+		</Constant>
+		<Constant external="imported" name="q_maxCl">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Constant oid="!ed/4ef0/471E/275C/5914780ec2c"/>
+			</pragmas>
+		</Constant>
+		<Constant external="imported" name="qDot_minCr">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Constant oid="!ed/4ef1/471E/275C/591478185e4"/>
+			</pragmas>
+		</Constant>
+		<Constant external="imported" name="qDot_maxCr">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Constant oid="!ed/4ef2/471E/275C/591478233d72"/>
+			</pragmas>
+		</Constant>
+		<Constant external="imported" name="q_minCr">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Constant oid="!ed/4ef3/471E/275C/591478321596"/>
+			</pragmas>
+		</Constant>
+		<Constant external="imported" name="pDot_maxCr">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Constant oid="!ed/4ef4/471E/275C/5914783e9f3"/>
+			</pragmas>
+		</Constant>
+		<Constant external="imported" name="qDot_minDs">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Constant oid="!ed/4ef5/471E/275C/5914787aaee"/>
+			</pragmas>
+		</Constant>
+		<Constant external="imported" name="qDot_maxDs">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Constant oid="!ed/4ef6/471E/275C/59147884307a"/>
+			</pragmas>
+		</Constant>
+		<Constant external="imported" name="q_maxDs">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Constant oid="!ed/4ef7/471E/275C/5914788e3e4f"/>
+			</pragmas>
+		</Constant>
+	</declarations>
+	<pragmas>
+		<ed:Package oid="!ed/4eea/471E/275C/591477d2636" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4eeb/471E/275C/591477d2a2a" blockKind="constants"/>
+				<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4eec/471E/275C/591477d23d13" blockKind="types"/>
+				<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4eed/471E/275C/591477d24679" blockKind="sensors"/>
+			</diagrams>
+		</ed:Package>
+	</pragmas>
+</Package>

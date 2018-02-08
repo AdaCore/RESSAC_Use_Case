@@ -1,0 +1,58 @@
+Notes-Types { Esterel-Technologies }  DEFINITIONS ::=
+BEGIN
+    TranslationIdentifier ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            AlternativeName TEXT
+            {
+            	 NT_DEFAULT_VALUE "" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 }
+    } } }
+
+    ConnectedData ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            ConnectedPort TEXT
+            {
+            	 NT_DEFAULT_VALUE "" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 },
+            ConnectorName TEXT
+            {
+            	 NT_DEFAULT_VALUE "" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 },
+            IsPrimary BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F ,
+            	 NT_LEFT_LABEL "IsPrimary" }
+    } } }
+
+END
+
+Notes-Values { Esterel-Technologies }  DEFINITIONS ::=
+BEGIN
+    TranslationIdentifier ::= {
+        {"_uanCoGbfEee7o9Qa1D9bhQ", "TranslationIdentifier_1","Flight Control (S_FC)" }}
+    ConnectedData ::= {
+        {"_uWKAcGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input1" , "MissionRange_Input1" , F },
+        {"_uWTxcGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input1" , "OperatingMode_Input1" , F },
+        {"_uWTxcWbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input1" , "OperatingPointSpeed_Input1" , F },
+        {"_uWc7YGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input1" , "OperatingPointAltitude_Input1" , F },
+        {"_uWmsYGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input1" , "StartLanding_Input1" , F },
+        {"_uWv2UGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input1" , "StartTakeOff_Input1" , F },
+        {"_uW5nUGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input2" , "Input2_p" , F },
+        {"_uXCxQGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input2" , "Input2_pDot" , F },
+        {"_uXMiQGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input2" , "Input2_q" , F },
+        {"_uXpOMGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output1" , "Output1_EstimatedTotalMass" , T },
+        {"_uXpOMWbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output1" , "Output1_CurrentRange" , T },
+        {"_uXyYIGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output1" , "Output1_CurentSpeed" , T },
+        {"_uad4sGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output1" , "Output1_CurrentAltitude" , T },
+        {"_uad4sWbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output2" , "Output2_PropulsionTorque" , T },
+        {"_uad4smbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output2" , "Output2_BrakingTorque" , T }}
+END
+

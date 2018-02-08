@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="MissionManagement">
+			<declarations>
+				<Constant name="Viability">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="false"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/4c5e/471E/275C/59145c406a38"/>
+					</pragmas>
+				</Constant>
+				<Type name="ts_Viability">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="A_initial">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c60/471E/275C/59145c8d6d88"/>
+									</pragmas>
+								</Field>
+								<Field name="A_cruise">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c69/471E/275C/59145c9c19b5"/>
+									</pragmas>
+								</Field>
+								<Field name="RP_initial">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c72/471E/275C/59145ca74498"/>
+									</pragmas>
+								</Field>
+								<Field name="RP_cruise">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c7b/471E/275C/59145cb51ed9"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4c5f/471E/275C/59145c7b6717"/>
+					</pragmas>
+				</Type>
+				<Operator name="F_MM" href="F_MM.xscade"/>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/4b0b/471E/275C/591452bd62ff" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4b0c/471E/275C/591452bd258" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4b0d/471E/275C/591452bd4e32" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4b0e/471E/275C/591452bd3669" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

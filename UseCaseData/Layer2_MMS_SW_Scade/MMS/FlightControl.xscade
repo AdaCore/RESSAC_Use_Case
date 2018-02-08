@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="FlightControl">
+			<declarations>
+				<Package name="SafetyConstant" href="SafetyConstant.xscade"/>
+				<Constant external="imported" name="ClimbGains">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Constant oid="!ed/4e62/471E/275C/591476656ffd"/>
+					</pragmas>
+				</Constant>
+				<Constant external="imported" name="CruiseGains">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Constant oid="!ed/4e63/471E/275C/591476652787"/>
+					</pragmas>
+				</Constant>
+				<Constant external="imported" name="DescentGains">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Constant oid="!ed/4e64/471E/275C/5914766639a7"/>
+					</pragmas>
+				</Constant>
+				<Constant name="J0">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float64"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="10.0"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/9890/471E/275C/591582123b6a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>kg.m²</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="L">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float64"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="1000.0"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/9899/471E/275C/5915822c3eb8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>m</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="M0">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float64"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="1000.0"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/98a2/471E/275C/5915823cf0a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>kg</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="RecoverySpeed">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float64"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="1.0"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/98ab/471E/275C/5915824a24bb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>m/s</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="CommutationDuration">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float64"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="1.0"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/99e7/471E/275C/591584b85457" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>s</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="g">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float64"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="9.8"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/8ac1/B5A/FD4/5982ecea8cd"/>
+					</pragmas>
+				</Constant>
+				<Operator name="F_FC" href="F_FC.xscade"/>
+				<Operator name="GainsPID" href="GainsPID.xscade"/>
+				<Operator name="CheckEnvelope" href="CheckEnvelope.xscade"/>
+				<Operator name="IntermediateSetPoint" href="IntermediateSetPoint.xscade"/>
+				<Operator name="PID" href="PID.xscade"/>
+				<Operator name="EnergyModeComputation" href="EnergyModeComputation.xscade"/>
+				<Operator name="StateVectorComputation" href="StateVectorComputation.xscade"/>
+				<Operator name="SetPointGeneration" href="SetPointGeneration.xscade"/>
+				<Operator name="ControlLaws" href="ControlLaws.xscade"/>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/4e17/471E/275C/591474e348b9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4e18/471E/275C/591474e3ac8" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4e19/471E/275C/591474e33c33" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4e1a/471E/275C/591474e379dd" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

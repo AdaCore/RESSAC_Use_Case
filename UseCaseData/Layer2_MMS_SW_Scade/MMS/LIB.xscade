@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="LIB">
+			<declarations>
+				<Constant name="F_Epsilon">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float64"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="0.001"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/8fe1/7AC7/1190/59883087732f"/>
+					</pragmas>
+				</Constant>
+				<Operator name="F_Equal" href="F_Equal.xscade"/>
+				<Operator name="F_Abs" href="F_Abs.xscade"/>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/8fdb/7AC7/1190/598830762424" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/8fdc/7AC7/1190/5988307628c0" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/8fdd/7AC7/1190/5988307660be" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/8fde/7AC7/1190/598830766381" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="Type">
+			<declarations>
+				<Type name="ts_Navigation">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Parameters">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="ts_DSA"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b16/471E/275C/5914531451d6"/>
+									</pragmas>
+								</Field>
+								<Field name="Mode">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="te_NavigationMode"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b17/471E/275C/591453232bea"/>
+									</pragmas>
+								</Field>
+								<Field name="Option">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="te_Option"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b18/471E/275C/5914532f15c1"/>
+									</pragmas>
+								</Field>
+								<Field name="GO">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b56/471E/275C/5914543d7b2b"/>
+									</pragmas>
+								</Field>
+								<Field name="MissionAbort">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b5f/471E/275C/591454464595"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4b15/471E/275C/59145307331a"/>
+					</pragmas>
+				</Type>
+				<Type name="te_NavigationMode">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="RP">
+									<pragmas>
+										<ed:Value oid="!ed/4b1a/471E/275C/591453726055"/>
+									</pragmas>
+								</Value>
+								<Value name="A">
+									<pragmas>
+										<ed:Value oid="!ed/4b1b/471E/275C/591453772d24"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4b19/471E/275C/591453555f37"/>
+					</pragmas>
+				</Type>
+				<Type name="te_Option">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="SPEED">
+									<pragmas>
+										<ed:Value oid="!ed/4b1d/471E/275C/5914538a3cdd"/>
+									</pragmas>
+								</Value>
+								<Value name="ALTITUDE">
+									<pragmas>
+										<ed:Value oid="!ed/4c5d/471E/275C/591459ad690"/>
+									</pragmas>
+								</Value>
+								<Value name="ENERGY">
+									<pragmas>
+										<ed:Value oid="!ed/4b1e/471E/275C/591453906d5"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4b1c/471E/275C/5914537b5c2e"/>
+					</pragmas>
+				</Type>
+				<Type name="ts_DSA">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Distance">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float64"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b20/471E/275C/591453a7595f"/>
+									</pragmas>
+								</Field>
+								<Field name="Speed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float64"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b29/471E/275C/591453b62cc8"/>
+									</pragmas>
+								</Field>
+								<Field name="Altitude">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float64"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b32/471E/275C/591453be3694"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4b1f/471E/275C/5914539a492"/>
+					</pragmas>
+				</Type>
+				<Type name="ts_ControlPanelCommad">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="ON_PushButton">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b73/471E/275C/5914550c7a6c"/>
+									</pragmas>
+								</Field>
+								<Field name="Start_PusButton">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b7c/471E/275C/591455226f4d"/>
+									</pragmas>
+								</Field>
+								<Field name="ModeSwitch">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="te_NavigationMode"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b85/471E/275C/591455314d76"/>
+									</pragmas>
+								</Field>
+								<Field name="BaySwitch">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="te_Bay"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b92/471E/275C/59145565dff"/>
+									</pragmas>
+								</Field>
+								<Field name="PayloadMass">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float64"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4b9c/471E/275C/5914557c3898"/>
+									</pragmas>
+								</Field>
+								<Field name="USB_Key">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="ts_DSA"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4ba5/471E/275C/5914558c2241"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4b72/471E/275C/591454fb5702"/>
+					</pragmas>
+				</Type>
+				<Type name="te_Bay">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="OPEN">
+									<pragmas>
+										<ed:Value oid="!ed/4b90/471E/275C/591455587273"/>
+									</pragmas>
+								</Value>
+								<Value name="CLOSED">
+									<pragmas>
+										<ed:Value oid="!ed/4b91/471E/275C/5914555ec7a"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4b8f/471E/275C/5914554a1d41"/>
+					</pragmas>
+				</Type>
+				<Type name="ts_FligthControl">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="CurrentDistance">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float64"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4bc4/471E/275C/591456b61fad"/>
+									</pragmas>
+								</Field>
+								<Field name="CurrentSpeed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float64"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4bcd/471E/275C/591456c746f"/>
+									</pragmas>
+								</Field>
+								<Field name="CurrentAltitude">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float64"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4bd6/471E/275C/591456d1c33"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4bba/471E/275C/591456013d6"/>
+					</pragmas>
+				</Type>
+				<Type name="ts_MissionStatus">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="MissionCANCELLED">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4bff/471E/275C/5914581d1414"/>
+									</pragmas>
+								</Field>
+								<Field name="MissionCOMPLETE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c08/471E/275C/5914585024d9"/>
+									</pragmas>
+								</Field>
+								<Field name="MissionABORTED">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c11/471E/275C/591458874033"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4bfe/471E/275C/591458057f2f"/>
+					</pragmas>
+				</Type>
+				<Type name="ts_FligthControlCmd">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="StartTakeOff">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c26/471E/275C/591458f95564"/>
+									</pragmas>
+								</Field>
+								<Field name="StartLanding">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c2f/471E/275C/591459093fff"/>
+									</pragmas>
+								</Field>
+								<Field name="OperatingAltitude">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float64"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c38/471E/275C/591459166994"/>
+									</pragmas>
+								</Field>
+								<Field name="OperatingSpeed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float64"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c41/471E/275C/591459661819"/>
+									</pragmas>
+								</Field>
+								<Field name="OperatingOption">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="te_Option"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c4a/471E/275C/591459754b16"/>
+									</pragmas>
+								</Field>
+								<Field name="OperatingDistance">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="float64"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4c4b/471E/275C/591459897ee0"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4c25/471E/275C/591458eb1ef9"/>
+					</pragmas>
+				</Type>
+				<Type name="te_Phase">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="CRUISE">
+									<pragmas>
+										<ed:Value oid="!ed/4f86/471E/275C/591479478a6"/>
+									</pragmas>
+								</Value>
+								<Value name="CLIMB">
+									<pragmas>
+										<ed:Value oid="!ed/4f87/471E/275C/591479557d60"/>
+									</pragmas>
+								</Value>
+								<Value name="DESCENT">
+									<pragmas>
+										<ed:Value oid="!ed/4f88/471E/275C/5914795b4a9c"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4f72/471E/275C/5914791b38ae"/>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/4b11/471E/275C/591453034aab" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4b12/471E/275C/59145303614" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4b13/471E/275C/591453031d20" blockKind="types" columnsSize="0, 215, 150, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4b14/471E/275C/591453031c14" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="node" name="F_MM">
+	<inputs>
+		<Variable name="NavigationGS">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Type::ts_Navigation"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4b68/471E/275C/5914545651c1"/>
+			</pragmas>
+		</Variable>
+		<Variable name="MissionAbortEL">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4bfa/471E/275C/59145743809"/>
+			</pragmas>
+		</Variable>
+		<Variable name="ControlPanelCmd">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Type::ts_ControlPanelCommad"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4baf/471E/275C/591455aa3838"/>
+			</pragmas>
+		</Variable>
+		<Variable name="FligthControlEstimated">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Type::ts_FligthControl"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4bb9/471E/275C/591455ed46d"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="MissionStatus">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Type::ts_MissionStatus"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4bfd/471E/275C/591457f769cc"/>
+			</pragmas>
+		</Variable>
+		<Variable name="EmergencyLanding">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4c23/471E/275C/591458b94d16"/>
+			</pragmas>
+		</Variable>
+		<Variable name="FligthControlCmd">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Type::ts_FligthControlCmd"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4c24/471E/275C/591458cb3053"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L19">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Type::ts_FligthControlCmd"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4e09/471E/275C/591467404e88"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<StateMachine name="SM1">
+			<states>
+				<State initial="true" name="OFF">
+					<unless>
+						<Transition kind="restart">
+							<target>
+								<StateRef name="ON"/>
+							</target>
+							<condition>
+								<!-- ControlPanelCmd.ON_PushButton -->
+								<PrjOp name="2">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ControlPanelCmd"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="ON_PushButton"/>
+									</with>
+								</PrjOp>
+							</condition>
+							<pragmas>
+								<ed:Transition oid="!ed/4cd5/471E/275C/591461a77755"/>
+							</pragmas>
+						</Transition>
+					</unless>
+					<pragmas>
+						<ed:State oid="!ed/4cc4/471E/275C/591461954d4a"/>
+					</pragmas>
+				</State>
+				<State name="ON">
+					<unless>
+						<Transition kind="restart">
+							<target>
+								<StateRef name="OFF"/>
+							</target>
+							<condition>
+								<!--  not ControlPanelCmd.ON_PushButton -->
+								<UnaryOp name="1" operator="not">
+									<operand>
+										<!-- ControlPanelCmd.ON_PushButton -->
+										<PrjOp name="3">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="ControlPanelCmd"/>
+													</path>
+												</IdExpression>
+											</flow>
+											<with>
+												<Label name="ON_PushButton"/>
+											</with>
+										</PrjOp>
+									</operand>
+								</UnaryOp>
+							</condition>
+							<pragmas>
+								<ed:Transition oid="!ed/4ce7/471E/275C/591461b45dcf"/>
+							</pragmas>
+						</Transition>
+					</unless>
+					<pragmas>
+						<ed:State oid="!ed/4cca/471E/275C/5914619a11e9"/>
+					</pragmas>
+				</State>
+			</states>
+			<pragmas>
+				<ed:StateMachine oid="!ed/4cba/471E/275C/5914618e6057"/>
+			</pragmas>
+		</StateMachine>
+		<!-- FligthControlCmd = _L19; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="FligthControlCmd"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L19"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/4dfa/471E/275C/591467251710"/>
+			</pragmas>
+		</Equation>
+		<!-- _L19 = (make Type::ts_FligthControlCmd)(_null, _null, _null, _null, _null, _null)... -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L19"/>
+			</lefts>
+			<right>
+				<!-- (make Type::ts_FligthControlCmd)(_null, _null, _null, _null, _null, _null) -->
+				<CallExpression>
+					<operator>
+						<MakeOp>
+							<type>
+								<TypeRef name="Type::ts_FligthControlCmd"/>
+							</type>
+						</MakeOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/4e08/471E/275C/591467403014"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/4b0f/471E/275C/591452d07e24" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="F_MM_1" landscape="true" format="A4 (210 297)" oid="!ed/4b10/471E/275C/591452d03ac2">
+					<presentationElements>
+						<StateMachineGE presentable="!ed/4cba/471E/275C/5914618e6057">
+							<position>
+								<Point x="688" y="926"/>
+							</position>
+							<size>
+								<Size width="28337" height="18574"/>
+							</size>
+						</StateMachineGE>
+						<StateGE presentable="!ed/4cc4/471E/275C/591461954d4a">
+							<position>
+								<Point x="1482" y="9260"/>
+							</position>
+							<size>
+								<Size width="1852" height="1773"/>
+							</size>
+						</StateGE>
+						<StateGE presentable="!ed/4cca/471E/275C/5914619a11e9">
+							<position>
+								<Point x="4524" y="1693"/>
+							</position>
+							<size>
+								<Size width="23733" height="17251"/>
+							</size>
+						</StateGE>
+						<TransitionGE presentable="!ed/4cd5/471E/275C/591461a77755">
+							<positions>
+								<Point x="2302" y="9260"/>
+								<Point x="2223" y="7117"/>
+								<Point x="3360" y="7117"/>
+								<Point x="4524" y="7091"/>
+							</positions>
+							<labelSize>
+								<Size width="3254" height="370"/>
+							</labelSize>
+							<labelPos>
+								<Point x="1111" y="5556"/>
+							</labelPos>
+							<slashPos>
+								<Point x="3572" y="5556"/>
+							</slashPos>
+						</TransitionGE>
+						<TransitionGE presentable="!ed/4ce7/471E/275C/591461b45dcf">
+							<positions>
+								<Point x="4524" y="13785"/>
+								<Point x="2434" y="13811"/>
+								<Point x="2408" y="12435"/>
+								<Point x="2381" y="11033"/>
+							</positions>
+							<labelSize>
+								<Size width="3175" height="370"/>
+							</labelSize>
+							<labelPos>
+								<Point x="820" y="14155"/>
+							</labelPos>
+							<slashPos>
+								<Point x="3201" y="14155"/>
+							</slashPos>
+						</TransitionGE>
+						<EquationGE presentable="!ed/4dfa/471E/275C/591467251710">
+							<position>
+								<Point x="21775" y="22622"/>
+							</position>
+							<size>
+								<Size width="317" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/4e08/471E/275C/591467403014">
+							<position>
+								<Point x="17534" y="19889"/>
+							</position>
+							<size>
+								<Size width="2688" height="5995"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/4e08/471E/275C/591467403014" dstEquation="!ed/4dfa/471E/275C/591467251710">
+							<positions>
+								<Point x="20214" y="22886"/>
+								<Point x="21008" y="22886"/>
+								<Point x="21008" y="22886"/>
+								<Point x="21828" y="22886"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

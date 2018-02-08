@@ -1,0 +1,70 @@
+Notes-Types { Esterel-Technologies }  DEFINITIONS ::=
+BEGIN
+    TranslationIdentifier ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            AlternativeName TEXT
+            {
+            	 NT_DEFAULT_VALUE "" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 }
+    } } }
+
+    ConnectedData ::= SEQUENCE OF { SEQUENCE {
+    annot_object OID,
+    name STRING,
+        information {
+            ConnectedPort TEXT
+            {
+            	 NT_DEFAULT_VALUE "" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 },
+            ConnectorName TEXT
+            {
+            	 NT_DEFAULT_VALUE "" ,
+            	 NT_FIELD_HEIGHT 1 ,
+            	 NT_FIELD_WIDTH 60 },
+            IsPrimary BOOLEAN
+            {
+            	 NT_DEFAULT_VALUE T ,
+            	 NT_PRINTABLE F ,
+            	 NT_LEFT_LABEL "IsPrimary" }
+    } } }
+
+END
+
+Notes-Values { Esterel-Technologies }  DEFINITIONS ::=
+BEGIN
+    TranslationIdentifier ::= {
+        {"_uci8UmbfEee7o9Qa1D9bhQ", "TranslationIdentifier_1","Mission management (S_MM)" },
+        {"_ua59kGbfEee7o9Qa1D9bhQ", "TranslationIdentifier_1","Navigation Mode" }}
+    ConnectedData ::= {
+        {"_uawzoGbfEee7o9Qa1D9bhQ", "ConnectedData_1","In" , "NavigationGS_NavigationParameters" , F },
+        {"_ua59kGbfEee7o9Qa1D9bhQ", "ConnectedData_1","In" , "NavigationGS_Navigation Mode" , F },
+        {"_ua59kWbfEee7o9Qa1D9bhQ", "ConnectedData_1","In" , "NavigationGS_NavigationOpion" , F },
+        {"_ubDukGbfEee7o9Qa1D9bhQ", "ConnectedData_1","In" , "NavigationGS_NavigationGO" , F },
+        {"_ubDukWbfEee7o9Qa1D9bhQ", "ConnectedData_1","In" , "NavigationGS_MissionAbort" , F },
+        {"_ubM4gGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input1" , "EstimatedTotalMass_Input1" , F },
+        {"_ubWpgGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input1" , "CurrentRange_Input1" , F },
+        {"_ubWpgWbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input1" , "CurentSpeed_Input1" , F },
+        {"_ubgagGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input1" , "CurrentAltitude_Input1" , F },
+        {"_ubgagWbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input2" , "EnergyLevel1_Input2" , F },
+        {"_ubpkcGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input3" , "USB_Key_Input3" , F },
+        {"_ubzVcGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input3" , "PayLoadMass_Input3" , F },
+        {"_ubzVcWbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input3" , "BaySwitch_Input3" , F },
+        {"_ub8fYGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input3" , "ModeSwitch_Input3" , F },
+        {"_ub8fYWbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input3" , "ON_PushButton_Input3" , F },
+        {"_ub8fYmbfEee7o9Qa1D9bhQ", "ConnectedData_1","Input3" , "Start_PushButton_Input3" , F },
+        {"_ucGQYGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output1" , "Output1_MissionCANCELLED" , T },
+        {"_ucGQYWbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output1" , "Output1_MissionCOMPLETE" , T },
+        {"_ucPaUGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output1" , "Output1_MissionABORTED" , T },
+        {"_ucPaUWbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output2" , "Output2_StartTakeOff" , T },
+        {"_ucPaUmbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output2" , "Output2_StartLanding" , T },
+        {"_ucZLUGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output2" , "Output2_OperatingPointAltitude" , T },
+        {"_ucZLUWbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output2" , "Output2_OperatingPointSpeed" , T },
+        {"_ucZLUmbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output2" , "Output2_OperatingMode" , T },
+        {"_uci8UGbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output2" , "Output2_MissionRange" , T },
+        {"_uci8UWbfEee7o9Qa1D9bhQ", "ConnectedData_1","Output3" , "Output3_EmergencyLanding" , T }}
+END
+

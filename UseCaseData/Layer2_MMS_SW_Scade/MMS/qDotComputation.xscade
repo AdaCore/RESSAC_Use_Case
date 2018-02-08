@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="node" name="qDotComputation">
+	<inputs>
+		<Variable name="Input1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4ec2/471E/275C/5914779917c1"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="Output1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4ec3/471E/275C/5914779942ba"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<pragmas>
+		<ed:Operator oid="!ed/4ec0/471E/275C/591477821121" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="qDotComputation_1" landscape="true" format="A4 (210 297)" oid="!ed/4ec1/471E/275C/5914778278de"/>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>
