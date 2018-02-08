@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project id="1" oid_count="30" defaultConfiguration="4">
+	<props>
+		<Prop id="2" name="@STUDIO:PRODUCT">
+			<value>SYSTEM</value>
+		</Prop>
+		<Prop id="3" name="@SYSTEM:VERSION">
+			<value>18.0.0</value>
+		</Prop>
+		<Prop id="6" name="@REPORTER:SCRIPT">
+			<value>Reporter/ScadeArchitectReport.tcl</value>
+			<configuration>5</configuration>
+		</Prop>
+		<Prop id="7" name="@REPORTER:RotateLandscape">
+			<value>true</value>
+			<configuration>5</configuration>
+		</Prop>
+		<Prop id="8" name="@REPORTER:cstDisplayType">
+			<value>Flat</value>
+			<configuration>5</configuration>
+		</Prop>
+		<Prop id="10" name="@REPORTER:SCRIPT">
+			<value>Reporter/ScadeArchitectReport.tcl</value>
+			<configuration>9</configuration>
+		</Prop>
+		<Prop id="11" name="@REPORTER:RotateLandscape">
+			<value>true</value>
+			<configuration>9</configuration>
+		</Prop>
+		<Prop id="12" name="@REPORTER:cstDisplayType">
+			<value>Flat</value>
+			<configuration>9</configuration>
+		</Prop>
+		<Prop id="13" name="@REPORTER:FORMAT">
+			<value>rtf</value>
+			<configuration>9</configuration>
+		</Prop>
+		<Prop id="14" name="@STUDIO:TOOLCONF">
+			<value>Reporter</value>
+			<value>5</value>
+			<value>9</value>
+		</Prop>
+		<Prop id="16" name="@SYSTEM_CHECKER:CONSTRAINT_ENABLEMENT">
+			<value>Predefined rules|flow_ports_uml.ocl|external_output_flow_port_is_produced_only_once|false;Predefined rules|grouped_ports_uml.ocl|connector_between_grouped_port_and_flow_port_has_compatible_name_type_and_dimension|false;Predefined rules|grouped_ports_uml.ocl|connector_between_two_grouped_ports_has_compatible_name_type_and_dimension|false</value>
+			<configuration>15</configuration>
+		</Prop>
+		<Prop id="18" name="@STUDIO:TOOLCONF">
+			<value>Architect Checker</value>
+			<value>15</value>
+			<value>17</value>
+		</Prop>
+		<Prop id="21" name="@SYSTEM:NOTEFILE">
+			<value>$(SCADE)\lib\SyncSystem.aty</value>
+		</Prop>
+		<Prop id="26" name="@STUDIO:TOOLCONF">
+			<value>Architect Checker</value>
+			<value>4</value>
+			<value>5</value>
+			<value>9</value>
+			<value>15</value>
+			<value>17</value>
+		</Prop>
+		<Prop id="27" name="@STUDIO:TOOLCONF">
+			<value>Architect Configurator</value>
+			<value>4</value>
+			<value>5</value>
+			<value>9</value>
+			<value>15</value>
+			<value>17</value>
+		</Prop>
+		<Prop id="28" name="@STUDIO:TOOLCONF">
+			<value>Synchronization</value>
+			<value>4</value>
+			<value>5</value>
+			<value>9</value>
+			<value>15</value>
+			<value>17</value>
+		</Prop>
+	</props>
+	<roots>
+		<Folder id="19" extensions="di;uml;notation;tts" name="SCADE Architect Model Files">
+			<elements>
+				<Folder id="20" extensions="di;uml;notation;tts" name="Separate Files"/>
+				<FileRef id="22" persistAs="Dimensions-and-Units.uml"/>
+				<FileRef id="23" persistAs="Dimensions-and-Units.notation"/>
+				<FileRef id="24" persistAs="Dimensions-and-Units.di">
+					<props>
+						<Prop id="25" name="@SYSTEM:ROOTDIFILE"/>
+					</props>
+				</FileRef>
+				<FileRef id="30" persistAs="Dimensions-and-Units.tts"/>
+			</elements>
+		</Folder>
+		<FileRef id="29" persistAs="Dimensions-and-Units.css"/>
+	</roots>
+	<configurations>
+		<Configuration id="4" name="Default"/>
+		<Configuration id="5" name="HTML"/>
+		<Configuration id="9" name="RTF"/>
+		<Configuration id="15" name="BasicCheck"/>
+		<Configuration id="17" name="ExtendedCheck"/>
+	</configurations>
+</Project>

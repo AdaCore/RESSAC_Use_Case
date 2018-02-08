@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks">
+  <uml:Model xmi:id="_hspaZ9EbEeeGTvO4k61BdA" name="Dimensions-and-Units">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_htGGZ9EbEeeGTvO4k61BdA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://SCADE_LIBRARIES/SCADE_Library.library.uml#_-8LBt6EHEdyt3aizUshLbA"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_FdckMM9vEeeAp88zWN79cg" name="D_T">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_UVyRcM9vEeeAp88zWN79cg" annotatedElement="_FdckMM9vEeeAp88zWN79cg">
+        <body>Time</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_LaoCYM9xEeeAp88zWN79cg" name="u_m.s-1">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_RXQY4M9xEeeAp88zWN79cg" annotatedElement="_LaoCYM9xEeeAp88zWN79cg">
+        <body>Velocity unit</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Cj-csM9vEeeAp88zWN79cg" name="u_s">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_WXJsQM9vEeeAp88zWN79cg" annotatedElement="_Cj-csM9vEeeAp88zWN79cg">
+        <body>second</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_R6Za0M90EeeAp88zWN79cg" name="D_Torque">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_B25h0NaiEeeWcp9evwpQqw" annotatedElement="_R6Za0M90EeeAp88zWN79cg">
+        <body>Torque</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_WWMQsM90EeeAp88zWN79cg" name="u_N.m">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_rtPGwM90EeeAp88zWN79cg" annotatedElement="_WWMQsM90EeeAp88zWN79cg">
+        <body>u_N.m = u_N . u_m = u_m-2 . u_kg . u_s-2 (Newton meter = joule per radian = torque unit)</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_sGLdIM9yEeeAp88zWN79cg" name="u_Pa">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_LzOdsM9zEeeAp88zWN79cg" annotatedElement="_sGLdIM9yEeeAp88zWN79cg">
+        <body>u_Pa = u_N . u_m-2 = u_kg . m-1 . s-2 (Pascal)</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_SVMvMM9uEeeAp88zWN79cg" name="D_L">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_SzzhUM9vEeeAp88zWN79cg" annotatedElement="_SVMvMM9uEeeAp88zWN79cg">
+        <body>Length</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_1WOB8M9uEeeAp88zWN79cg" name="u_kg">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_XpRbcM9vEeeAp88zWN79cg" annotatedElement="_1WOB8M9uEeeAp88zWN79cg">
+        <body>kilogram</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_CA1BcM9xEeeAp88zWN79cg" name="D_Velocity">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_Ksd74M9xEeeAp88zWN79cg" annotatedElement="_CA1BcM9xEeeAp88zWN79cg">
+        <body>Derived dimension = D_L / D_T</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_uq3c4M9xEeeAp88zWN79cg" name="u_N">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_62NYYM9xEeeAp88zWN79cg" annotatedElement="_uq3c4M9xEeeAp88zWN79cg">
+        <body>u_N = u_kg . u_m.s-2 (Newton)</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_SZQBYM9xEeeAp88zWN79cg" name="D_Acceleration">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_C9JYMNaiEeeWcp9evwpQqw" annotatedElement="_SZQBYM9xEeeAp88zWN79cg">
+        <body>Acceleration</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_hHh7EM9uEeeAp88zWN79cg" name="D_M">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_TjIsgM9vEeeAp88zWN79cg" annotatedElement="_hHh7EM9uEeeAp88zWN79cg">
+        <body>Mass</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_O7WCAM9vEeeAp88zWN79cg" name="u_A">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_cXF1cM9vEeeAp88zWN79cg" annotatedElement="_O7WCAM9vEeeAp88zWN79cg">
+        <body>Ampere</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ujVjcM9vEeeAp88zWN79cg" name="D_1">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_9uIdMM9wEeeAp88zWN79cg" annotatedElement="_ujVjcM9vEeeAp88zWN79cg">
+        <body>Dimensionless number  (e.g. angles = length / length).</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_pgQ1sM9wEeeAp88zWN79cg" name="u_rad">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_vZR3gM9wEeeAp88zWN79cg" annotatedElement="_pgQ1sM9wEeeAp88zWN79cg">
+        <body>radian</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_iOKzAM9uEeeAp88zWN79cg" name="u_m">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_YfKhoM9vEeeAp88zWN79cg" annotatedElement="_iOKzAM9uEeeAp88zWN79cg">
+        <body>meter</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_V30aAM9xEeeAp88zWN79cg" name="u_m.s-2">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_QGRKkNaiEeeWcp9evwpQqw" annotatedElement="_V30aAM9xEeeAp88zWN79cg">
+        <body>meter . second-2</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Mh1M8M9vEeeAp88zWN79cg" name="D_I">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_VLWngM9vEeeAp88zWN79cg" annotatedElement="_Mh1M8M9vEeeAp88zWN79cg">
+        <body>Current</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_DC868NEgEeegJfrLpIc08Q" name="Types">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_IbDoENEgEeegJfrLpIc08Q" name="t_Length">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_55jQwNahEeeWcp9evwpQqw" annotatedElement="_IbDoENEgEeegJfrLpIc08Q">
+          <body>meter</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_PwhZwNEgEeegJfrLpIc08Q" name="t_Velocity">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_5MJYMNahEeeWcp9evwpQqw" annotatedElement="_PwhZwNEgEeegJfrLpIc08Q">
+          <body>meter / second</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_GkcOENN4EeegJfrLpIc08Q" name="t_Angle">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_4FAJ8NahEeeWcp9evwpQqw" annotatedElement="_GkcOENN4EeegJfrLpIc08Q">
+          <body>radian</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_kHgDUNN4EeegJfrLpIc08Q" name="t_AngularVelocity">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_0-cosNahEeeWcp9evwpQqw" annotatedElement="_kHgDUNN4EeegJfrLpIc08Q">
+          <body>radian / second</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_oS7qINW2EeegJfrLpIc08Q" name="t_Energy">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_2BUFsNW2EeegJfrLpIc08Q" annotatedElement="_oS7qINW2EeegJfrLpIc08Q">
+          <body>Joule (also kg.m2.s-2 as in E = 1/2mV2)</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_PCOBkNW7EeegJfrLpIc08Q" name="t_Mass">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_x8ghtdahEeeWcp9evwpQqw" annotatedElement="_PCOBkNW7EeegJfrLpIc08Q">
+          <body>kilogram</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_njhkYNaQEeegJfrLpIc08Q" name="t_Torque">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_zVV84NahEeeWcp9evwpQqw" annotatedElement="_njhkYNaQEeegJfrLpIc08Q">
+          <body>Newton x meter</body>
+        </ownedComment>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_s2HZQNN4EeegJfrLpIc08Q" name="D_T-1">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_19qzoNN4EeegJfrLpIc08Q" annotatedElement="_s2HZQNN4EeegJfrLpIc08Q">
+        <body>1 / Time</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_vGe5YNN4EeegJfrLpIc08Q" name="u_s-1">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_0Y4nINN4EeegJfrLpIc08Q" annotatedElement="_vGe5YNN4EeegJfrLpIc08Q">
+        <body>1 / second</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_c8-9YNN4EeegJfrLpIc08Q" name="u_rad.s-1">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_Ra0isNaiEeeWcp9evwpQqw" annotatedElement="_c8-9YNN4EeegJfrLpIc08Q">
+        <body>radian / second</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ga0eYNW2EeegJfrLpIc08Q" name="D_Energy">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_DomI8NaiEeeWcp9evwpQqw" annotatedElement="_ga0eYNW2EeegJfrLpIc08Q">
+        <body>Energy</body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_kX9CUNW2EeegJfrLpIc08Q" name="u_J">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_mjLjwNW2EeegJfrLpIc08Q" annotatedElement="_kX9CUNW2EeegJfrLpIc08Q">
+        <body>Joule</body>
+      </ownedComment>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_hs8VndEbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGUNEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_TZ_nULU5EduiKqCzJMWbGw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_htGGUdEbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGUtEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//activities"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_C2zXMLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_htGGU9EbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGVNEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//allocations"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_NxdG4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_htGGVdEbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGVtEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_htGGV9EbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGWNEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_5WYJ0LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_htGGWdEbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGWtEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//interactions"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_meOioLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_htGGW9EbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGXNEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//modelelements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_htGGXdEbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGXtEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_rpx28LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_htGGX9EbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGYNEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_htGGYdEbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGYtEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//statemachines"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_nAF5kLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_htGGY9EbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGZNEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//usecases"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_htGGZdEbEeeGTvO4k61BdA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_htGGZtEbEeeGTvO4k61BdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://SCADE_PROFILES/SCADE.profile.uml#_88hEQTtDEd-Aqb9iwhjfmA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SCADE_PROFILES/SCADE.profile.uml#_Cv7moDs_Ed-XMcE3Rb1Iow"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="__4UyB9EfEeegJfrLpIc08Q">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__4UyCNEfEeegJfrLpIc08Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://SCADE_ANNOTATIONS/SyncSystem.profile.uml#SCADE_ANNOTATIONS__SyncSystem__0"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SCADE_ANNOTATIONS/SyncSystem.profile.uml#SCADE_ANNOTATIONS__SyncSystem"/>
+    </profileApplication>
+  </uml:Model>
+  <Blocks:Dimension xmi:id="_FdckMc9vEeeAp88zWN79cg" base_InstanceSpecification="_FdckMM9vEeeAp88zWN79cg"/>
+  <Blocks:Unit xmi:id="_LaoCYc9xEeeAp88zWN79cg" base_InstanceSpecification="_LaoCYM9xEeeAp88zWN79cg"/>
+  <Blocks:Unit xmi:id="_Cj-csc9vEeeAp88zWN79cg" base_InstanceSpecification="_Cj-csM9vEeeAp88zWN79cg"/>
+  <Blocks:Dimension xmi:id="_R6Za0c90EeeAp88zWN79cg" base_InstanceSpecification="_R6Za0M90EeeAp88zWN79cg"/>
+  <Blocks:Unit xmi:id="_WWMQsc90EeeAp88zWN79cg" base_InstanceSpecification="_WWMQsM90EeeAp88zWN79cg" dimension="_R6Za0c90EeeAp88zWN79cg"/>
+  <Blocks:Unit xmi:id="_sGLdIc9yEeeAp88zWN79cg" base_InstanceSpecification="_sGLdIM9yEeeAp88zWN79cg"/>
+  <Blocks:Dimension xmi:id="_SVMvMc9uEeeAp88zWN79cg" base_InstanceSpecification="_SVMvMM9uEeeAp88zWN79cg"/>
+  <Blocks:Unit xmi:id="_1WOB8c9uEeeAp88zWN79cg" base_InstanceSpecification="_1WOB8M9uEeeAp88zWN79cg"/>
+  <Blocks:Dimension xmi:id="_CA1Bcc9xEeeAp88zWN79cg" base_InstanceSpecification="_CA1BcM9xEeeAp88zWN79cg"/>
+  <Blocks:Unit xmi:id="_uq3c4c9xEeeAp88zWN79cg" base_InstanceSpecification="_uq3c4M9xEeeAp88zWN79cg"/>
+  <Blocks:Dimension xmi:id="_SZQBYc9xEeeAp88zWN79cg" base_InstanceSpecification="_SZQBYM9xEeeAp88zWN79cg"/>
+  <Blocks:Dimension xmi:id="_hHh7Ec9uEeeAp88zWN79cg" base_InstanceSpecification="_hHh7EM9uEeeAp88zWN79cg"/>
+  <Blocks:Unit xmi:id="_O7WCAc9vEeeAp88zWN79cg" base_InstanceSpecification="_O7WCAM9vEeeAp88zWN79cg"/>
+  <Blocks:Dimension xmi:id="_ujVjcc9vEeeAp88zWN79cg" base_InstanceSpecification="_ujVjcM9vEeeAp88zWN79cg"/>
+  <Blocks:Unit xmi:id="_pgQ1sc9wEeeAp88zWN79cg" base_InstanceSpecification="_pgQ1sM9wEeeAp88zWN79cg"/>
+  <Blocks:Unit xmi:id="_iOKzAc9uEeeAp88zWN79cg" base_InstanceSpecification="_iOKzAM9uEeeAp88zWN79cg"/>
+  <Blocks:Unit xmi:id="_V30aAc9xEeeAp88zWN79cg" base_InstanceSpecification="_V30aAM9xEeeAp88zWN79cg"/>
+  <Blocks:Dimension xmi:id="_Mh1M8c9vEeeAp88zWN79cg" base_InstanceSpecification="_Mh1M8M9vEeeAp88zWN79cg"/>
+  <Blocks:ValueType xmi:id="_MmV8wNEgEeegJfrLpIc08Q" base_DataType="_IbDoENEgEeegJfrLpIc08Q" unit="_iOKzAc9uEeeAp88zWN79cg" dimension="_SVMvMc9uEeeAp88zWN79cg"/>
+  <Blocks:ValueType xmi:id="_UBk_QNEgEeegJfrLpIc08Q" base_DataType="_PwhZwNEgEeegJfrLpIc08Q" unit="_LaoCYc9xEeeAp88zWN79cg" dimension="_CA1Bcc9xEeeAp88zWN79cg"/>
+  <Blocks:ValueType xmi:id="_JqR9oNN4EeegJfrLpIc08Q" base_DataType="_GkcOENN4EeegJfrLpIc08Q" unit="_pgQ1sc9wEeeAp88zWN79cg" dimension="_ujVjcc9vEeeAp88zWN79cg"/>
+  <Blocks:Unit xmi:id="_c8-9YdN4EeegJfrLpIc08Q" base_InstanceSpecification="_c8-9YNN4EeegJfrLpIc08Q"/>
+  <Blocks:Dimension xmi:id="_s2RKQNN4EeegJfrLpIc08Q" base_InstanceSpecification="_s2HZQNN4EeegJfrLpIc08Q"/>
+  <Blocks:Unit xmi:id="_vGe5YdN4EeegJfrLpIc08Q" base_InstanceSpecification="_vGe5YNN4EeegJfrLpIc08Q"/>
+  <Blocks:ValueType xmi:id="_79yjANN4EeegJfrLpIc08Q" base_DataType="_kHgDUNN4EeegJfrLpIc08Q" unit="_c8-9YdN4EeegJfrLpIc08Q" dimension="_s2RKQNN4EeegJfrLpIc08Q"/>
+  <Blocks:Dimension xmi:id="_ga1FcNW2EeegJfrLpIc08Q" base_InstanceSpecification="_ga0eYNW2EeegJfrLpIc08Q"/>
+  <Blocks:Unit xmi:id="_kX9pYNW2EeegJfrLpIc08Q" base_InstanceSpecification="_kX9CUNW2EeegJfrLpIc08Q"/>
+  <Blocks:ValueType xmi:id="_ra4SgNW2EeegJfrLpIc08Q" base_DataType="_oS7qINW2EeegJfrLpIc08Q" unit="_kX9pYNW2EeegJfrLpIc08Q" dimension="_ga1FcNW2EeegJfrLpIc08Q"/>
+  <Blocks:ValueType xmi:id="_Sf7ekNW7EeegJfrLpIc08Q" base_DataType="_PCOBkNW7EeegJfrLpIc08Q" unit="_1WOB8c9uEeeAp88zWN79cg" dimension="_hHh7Ec9uEeeAp88zWN79cg"/>
+  <Blocks:ValueType xmi:id="_sKnrUNaQEeegJfrLpIc08Q" base_DataType="_njhkYNaQEeegJfrLpIc08Q" unit="_WWMQsc90EeeAp88zWN79cg" dimension="_R6Za0c90EeeAp88zWN79cg"/>
+</xmi:XMI>

@@ -1,0 +1,58 @@
+[Files]
+Names=muXAV Multi System Specification,MMS Func Reqs allocated to SW,SysML MMS Functional Architecture,MMS Intf Reqs allocated to SW,MMS Arch Reqs allocated to SW,MMS SW Model
+RepositoryTool=Boost
+
+[muXAV Multi System Specification]
+Cover1=SysML MMS Functional Architecture
+Cover1Position=1670@1820
+Cover1AnnotationPosition=1670@1820
+GraphicPosition=1680@590
+Type=Word
+Path=..\..\Requirements\RESSAC_CaseStudy_muXAV_Specification_OP_oriented.v2.docx
+AbsolutePath=C:\Repository\microXAV\trunk\designXAV-sd\Requirements\RESSAC_CaseStudy_muXAV_Specification_OP_oriented.v2.docx
+
+[MMS Func Reqs allocated to SW]
+Cover1=SysML MMS Functional Architecture
+Cover1Position=6690@1670
+Cover1AnnotationPosition=6690@1670
+GraphicPosition=6670@1040
+Type=MMS FUNC Reqs
+Path=..\..\Requirements\MMS-SRATS.docx
+AbsolutePath=C:\Repository\microXAV\trunk\designXAV-sd\Requirements\MMS-SRATS.docx
+
+[SysML MMS Functional Architecture]
+Cover1=MMS SW Model
+Cover1Position=5272@3175
+GraphicPosition=5385@2760
+Variable1Name=dateFiles
+Variable1Value=muXAV_v3.di¥muXAV_v3.uml¥muXAV_v3.notation¥muXAV_v3.css¥muXAV_v3.trace
+Variable2Name=icon
+Variable2Value=./icons/Architect/Architect.png
+Type=SCADE
+Path=muXAV_v3.etp
+AbsolutePath=C:\Repository\microXAV\trunk\designXAV-sd\System\muXAV_v3\muXAV_v3.etp
+
+[MMS Intf Reqs allocated to SW]
+Cover1=SysML MMS Functional Architecture
+Cover1Position=4430@1560
+Cover1AnnotationPosition=4430@1560
+GraphicPosition=4460@440
+Type=MMS INTF Reqs
+Path=..\..\Requirements\MMS-SRATS.docx
+AbsolutePath=C:\Repository\microXAV\trunk\designXAV-sd\Requirements\MMS-SRATS.docx
+
+[MMS Arch Reqs allocated to SW]
+Cover1=SysML MMS Functional Architecture
+Cover1Position=5540@1620
+Cover1AnnotationPosition=5540@1620
+GraphicPosition=5570@750
+Type=MMS ARCH Reqs
+Path=..\..\Requirements\MMS-SRATS.docx
+AbsolutePath=C:\Repository\microXAV\trunk\designXAV-sd\Requirements\MMS-SRATS.docx
+
+[MMS SW Model]
+GraphicPosition=5160@3590
+Type=SCADE
+Path=..\..\Suite\MMS\MMS.etp
+AbsolutePath=C:\Repository\microXAV\trunk\designXAV-sd\Suite\MMS\MMS.etp
+

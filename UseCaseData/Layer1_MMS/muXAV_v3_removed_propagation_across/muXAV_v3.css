@@ -1,0 +1,296 @@
+@charset "UTF-8";
+
+
+
+
+
+
+
+
+
+
+
+
+
+Connector {
+	fontName:"Segoe UI";
+	routing:Manual;
+	lineColor:#000000
+}
+
+Connector>Label:Name {
+	visible:false;
+	textAlignment:"left"
+}
+
+Connector>Label:SourceMultiplicity {
+	visible:false;
+	textAlignment:"left"
+}
+
+Connector>Label:TargetMultiplicity {
+	visible:false;
+	textAlignment:"left"
+}
+
+Property.QuestionStyle {
+	fontName:"Segoe UI";
+	fillColor:#E3A49C;
+	transparency:0.0;
+	lineColor:#000000;
+	maskLabel:name
+}
+
+
+
+InternalBlockDiagram Property.QuestionStyle>Compartment {
+	visible:false
+}
+
+Port[appliedStereotypes~=FlowPort].QuestionStyle {
+	fontColor:#E3A49C;
+	fontName:"Segoe UI";
+	bold:true;
+	fillColor:#E3A49C;
+	transparency:0.0;
+	lineColor:#000000
+}
+
+Port[appliedStereotypes~=FlowPort].QuestionStylePort {
+	fontColor:#E3A49C;
+	fontName:"Segoe UI";
+	bold:true;
+	fillColor:#E3A49C;
+	transparency:0.0;
+	lineColor:#000000
+}
+
+Port[appliedStereotypes~=FlowPort].QuestionStylePort>Label:Name {
+	visible:true;
+	maskLabel:multiplicity name;
+	textAlignment:"left"
+}
+
+Property.ConstantData {
+	fontName:"Segoe UI";
+	fillColor:#E4B3E5;
+	transparency:0.0;
+	lineColor:#000000;
+	maskLabel:name
+}
+
+InternalBlockDiagram Property.ConstantData>Compartment {
+	visible:false
+}
+
+
+
+Port[appliedStereotypes~=FlowPort].QuestionStyle>Label:Name {
+	visible:true;
+	maskLabel:multiplicity name;
+	textAlignment:"left"
+}
+
+Property.RoutedDataStyle {
+	fontName:"Segoe UI";
+	fillColor:#A6C198;
+	transparency:0.0;
+	lineColor:#000000;
+	maskLabel:name
+}
+
+InternalBlockDiagram Property.RoutedDataStyle>Compartment {
+	visible:false
+}
+
+Port[appliedStereotypes~=FlowPort].AnalogStyle {
+	fontName:"Segoe UI";
+	fillColor:#E3A49C;
+	transparency:0.0;
+	lineColor:#000000
+}
+
+Port[appliedStereotypes~=FlowPort].AnalogStyle>Label:Name {
+	visible:true;
+	maskLabel:multiplicity name;
+	textAlignment:"left"
+}
+
+Connector.AnalogStyle {
+	fontName:"Segoe UI";
+	routing:Rectilinear;
+	lineColor:#E3A49C;
+	lineWidth:3.0
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Port[appliedStereotypes~=FlowPort].PowerStyle {
+	fontName:"Segoe UI";
+	fillColor:#EDC97A;
+	transparency:0.0;
+	lineColor:#000000
+}
+
+Port[appliedStereotypes~=FlowPort].PowerStyle>Label:Name {
+	visible:true;
+	maskLabel:multiplicity name;
+	textAlignment:"left"
+}
+
+Connector.PowerStyle {
+	fontName:"Segoe UI";
+	routing:Rectilinear;
+	lineColor:#EDC97A;
+	lineWidth:3.0
+}
+
+
+
+
+
+
+
+Connector.PowerStyle>Label:Name {
+	visible:false;
+	textAlignment:"left"
+}
+
+Connector.PowerStyle>Label:SourceMultiplicity {
+	visible:false;
+	textAlignment:"left"
+}
+
+Connector.PowerStyle>Label:TargetMultiplicity {
+	visible:false;
+	textAlignment:"left"
+}
+
+Class[appliedStereotypes~=Block].DigitalStyle {
+	fontName:"Segoe UI";
+	fillColor:#A6C198;
+	transparency:0.0;
+	lineColor:#000000;
+	maskLabel:name
+}
+
+InternalBlockDiagram Class[appliedStereotypes~=Block].DigitalStyle>Compartment {
+	visible:false
+}
+
+Port[appliedStereotypes~=FlowPort].DigitalStyle {
+	fontName:"Segoe UI";
+	fillColor:#A6C198;
+	transparency:0.0;
+	lineColor:#000000
+}
+
+Port[appliedStereotypes~=FlowPort].DigitalStyle>Label:Name {
+	visible:true;
+	maskLabel:multiplicity name;
+	textAlignment:"left"
+}
+
+Connector.DigitalStyle {
+	fontName:"Segoe UI";
+	routing:Rectilinear;
+	lineColor:#A6C198;
+	lineWidth:3.0
+}
+
+
+
+
+
+
+
+Connector.DigitalStyle>Label:Name {
+	visible:false;
+	textAlignment:"left"
+}
+
+Connector.DigitalStyle>Label:SourceMultiplicity {
+	visible:false;
+	textAlignment:"left"
+}
+
+Connector.DigitalStyle>Label:TargetMultiplicity {
+	visible:false;
+	textAlignment:"left"
+}
+
+
+
+
+
+
+
+Class[appliedStereotypes~=Block].DownSt {
+	fontName:"Segoe UI";
+	fillColor:#9BC7CC;
+	transparency:0.0;
+	lineColor:#000000;
+	maskLabel:name
+}
+
+InternalBlockDiagram Class[appliedStereotypes~=Block].DownSt>Compartment {
+	visible:false
+}
+
+InternalBlockDiagram Class[appliedStereotypes~=Block].DownSt>Compartment[kind=structure] {
+	visible:true;
+	collapsed:false;
+	showTitle:false
+}
+
+
+
+Connector.AnalogStyle>Label:Name {
+	visible:false;
+	textAlignment:"left"
+}
+
+Connector.AnalogStyle>Label:SourceMultiplicity {
+	visible:false;
+	textAlignment:"left"
+}
+
+Connector.AnalogStyle>Label:TargetMultiplicity {
+	visible:false;
+	textAlignment:"left"
+}
+
+Class[appliedStereotypes~=Block].DefaultBlockStyle {
+	fontName:"Segoe UI";
+	fillColor:#DFDFDF;
+	transparency:0.0;
+	lineColor:#000000;
+	maskLabel:name
+}
+
+InternalBlockDiagram Class[appliedStereotypes~=Block].DefaultBlockStyle>Compartment {
+	visible:false
+}
+
+InternalBlockDiagram Class[appliedStereotypes~=Block].DefaultBlockStyle>Compartment[kind=structure] {
+	visible:true;
+	collapsed:false;
+	showTitle:false
+}
+

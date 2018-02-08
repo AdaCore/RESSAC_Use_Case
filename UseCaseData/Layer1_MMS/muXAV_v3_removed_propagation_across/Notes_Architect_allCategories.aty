@@ -1,0 +1,351 @@
+-- ######################################################################
+-- ##
+-- ##          DEFINITION FILE OF NOTES TYPES AND CATEGORIES 
+-- ##
+-- ######################################################################
+
+
+
+-- ######################################################################
+-- ##
+-- ##  DEFINITION OF NOTES TYPES
+-- ##
+-- ######################################################################
+
+Notes-Types { Esterel-Technologies }  DEFINITIONS ::=
+
+BEGIN
+
+GdC1 ::=
+    SEQUENCE OF {
+    SEQUENCE {
+       annot_object OID,
+       name STRING,
+       information {
+         Author TEXT {
+            NT_DEFAULT_VALUE "Author : ",
+            NT_FIELD_HEIGHT 1,
+            NT_FIELD_WIDTH  60},
+         DateC TEXT {
+            NT_DEFAULT_VALUE "Created : ",
+            NT_FIELD_HEIGHT 1,
+            NT_FIELD_WIDTH  20},
+         DateM TEXT {
+            NT_DEFAULT_VALUE "Modified : ",
+            NT_FIELD_HEIGHT 1,
+            NT_FIELD_WIDTH  20},
+         Version TEXT {
+            NT_DEFAULT_VALUE "Version : ",
+            NT_FIELD_HEIGHT 1,
+            NT_FIELD_WIDTH  20}
+} } }
+
+Note1 ::= 
+    SEQUENCE OF { 
+	SEQUENCE {
+	    annot_object OID,
+	    name STRING,
+	    information {
+		Description TEXT {
+			NT_FIELD_HEIGHT 20,
+			NT_FIELD_WIDTH  60 } 
+} } }
+
+
+
+
+Range1 ::= 
+    SEQUENCE OF { 
+	SEQUENCE {
+	    annot_object OID,
+	    name STRING,
+	    information {
+			IIII INTEGER,
+			RRRR REAL,
+			BBBB BOOLEAN,
+			Connect ENUM {
+			NT_ENUM_VALUES { "Terminator", "Scope", "Display", "OutPort", "ToFile", "ToWorkspace" }},
+			SSSS STRING
+} } }
+
+
+Range ::= 
+    SEQUENCE OF { 
+	SEQUENCE {
+	    annot_object OID,
+	    name STRING,
+	    information {
+			Min REAL,
+			Max REAL
+} } }
+
+
+Traceability ::= 
+    SEQUENCE OF { 
+	SEQUENCE {
+	    annot_object OID,
+	    name STRING,
+	    information {
+			Req STRING,
+			Desc STRING
+} } }
+
+END
+
+-- #################################
+-- End of the Definition of the Types of Notes
+-- #################################
+
+-- ######################################################################
+-- ##
+-- ##  DEFINITION OF DIFFERENT CATEGORIES OF NOTE TYPES 
+-- ##
+-- ######################################################################
+
+
+Annotation-Rules { Esterel-Technologies }  DEFINITIONS ::=
+BEGIN
+
+-- #################################
+-- ## Categories associated to entities out from net views
+-- #################################
+
+    Property ::= {
+		{Range F 0 1}
+		{Traceability F 0 1}
+    }
+
+	Block ::= {
+		{Range F 0 1}
+		{Traceability F 0 1}
+    }
+
+-- #################################
+
+    Actor ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+
+-- #################################
+	Allocation ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+	
+-- #################################
+   Array ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+   Association ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+	
+-- #################################
+   AtomicFlowPort ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+	
+-- #################################
+   Block ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+	
+-- #################################
+    Comment ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+
+-- #################################
+    Connector ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    ConnectorEnd ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+   Constant ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################s
+    DataType ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    Declaration ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+	
+-- #################################
+    Dimension ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+	
+-- #################################
+   Element ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    Enumeration ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    EnumerationLiteral ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+	Expression ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    FlowPort ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    FlowType ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    FlowProperty ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    FlowSpecification ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    Model ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    NamedElement ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    NonAtomicFlowPort ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    Package ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+	Part::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    Port ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    PortType ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    Primitive ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    Property ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    Signal ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    StructuralFeature ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    Type ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    TypedElement ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+-- #################################
+    Unit ::= {
+		{Remark1 F 0 99},
+		{GdC1 F 0 1}
+		
+    }
+
+
+END
+
+-- #################################
+-- END OF DEFINITION OF CATEGORIES OF NOTE TYPES
+-- #################################
+
+
+-- ######################################################################

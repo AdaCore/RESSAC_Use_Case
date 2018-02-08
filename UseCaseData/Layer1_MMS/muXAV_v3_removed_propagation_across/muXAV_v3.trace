@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<traceability version="1.3">
+    <object id="platform:/resource/muXAV_v3/SCADE%20Architect%20Model%20Files/muXAV_v3.uml#_MeJLgM-KEeeGTvO4k61BdA">
+        <requirement id="[MMS_F_PT_ARCH_14]"/>
+    </object>
+    <object id="platform:/resource/muXAV_v3/SCADE%20Architect%20Model%20Files/muXAV_v3.uml#_WFYaQc-EEeeAp88zWN79cg">
+        <requirement id="[MMS_ARCH_07]"/>
+        <requirement id="[MMS_ARCH_08]"/>
+    </object>
+</traceability>

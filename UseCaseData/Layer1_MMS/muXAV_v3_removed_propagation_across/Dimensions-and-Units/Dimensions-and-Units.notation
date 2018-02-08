@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:nattable="http://www.eclipse.org/papyrus/nattable/model" xmlns:nattableaxis="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis" xmlns:nattableaxisconfiguration="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration" xmlns:nattableaxisprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider" xmlns:nattableconfiguration="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration" xmlns:nattablelabelprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider" xmlns:nattablestyle="http://www.eclipse.org/papyrus/nattable/model/table/nattablestyle" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis http://www.eclipse.org/papyrus/nattable/model#//nattableaxis http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration http://www.eclipse.org/papyrus/nattable/model#//nattableaxisconfiguration http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider http://www.eclipse.org/papyrus/nattable/model#//nattableaxisprovider http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration http://www.eclipse.org/papyrus/nattable/model#//nattableconfiguration http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider http://www.eclipse.org/papyrus/nattable/model#//nattablelabelprovider http://www.eclipse.org/papyrus/nattable/model/table/nattablestyle http://www.eclipse.org/papyrus/nattable/model#//nattablestyle">
+  <nattable:Table xmi:id="_qFmQAM9zEeeAp88zWN79cg" name="Dimension and Unit Table_Dimensions-and-Units_1" currentRowAxisProvider="_qFmQBc9zEeeAp88zWN79cg" currentColumnAxisProvider="_qFmQA89zEeeAp88zWN79cg">
+    <styles xmi:type="nattablestyle:StringValueStyle" xmi:id="_qFmQAc9zEeeAp88zWN79cg" name="table_style" stringValue="Package.DimensionUnit"/>
+    <styles xmi:type="nattablestyle:TableDisplayStyle" xmi:id="_qFmQAs9zEeeAp88zWN79cg" displayStyle="HIERARCHIC_SINGLE_TREE_COLUMN"/>
+    <context xmi:type="uml:Model" href="Dimensions-and-Units.uml#_hspaZ9EbEeeGTvO4k61BdA"/>
+    <tableConfiguration xmi:type="nattableconfiguration:TableConfiguration" href="Dimensions-and-Units.tts#_zD5r5NalEeeWcp9evwpQqw"/>
+    <columnAxisProvidersHistory xmi:type="nattableaxisprovider:SlaveObjectAxisProvider" xmi:id="_qFmQA89zEeeAp88zWN79cg" description="This axis provider provides available columns according to the rows of the table (features of the object displayed on the other axis)" name="UML Feature axis provider">
+      <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_PogtANahEeeWcp9evwpQqw" manager="_qFmQGs9zEeeAp88zWN79cg">
+        <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_ddkYUNahEeeWcp9evwpQqw" name="axisWidth" intValue="208"/>
+        <element xmi:type="ecore:EReference" href="http://www.esterel-technologies.com/ns/system/3#//Element/comment"/>
+      </axis>
+    </columnAxisProvidersHistory>
+    <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_qFmQBc9zEeeAp88zWN79cg" description="This axis provider manages the rows, according to the wanted hierarchy" name="HierarchicalRowaAxisManager" disconnectSlave="true"/>
+    <localRowHeaderAxisConfiguration xmi:type="nattableaxisconfiguration:LocalTableHeaderAxisConfiguration" xmi:id="_qFmQBs9zEeeAp88zWN79cg" indexStyle="NUMERIC">
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_qFmQB89zEeeAp88zWN79cg" name="rowIndexWidth" intValue="50"/>
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_qFmQCM9zEeeAp88zWN79cg" name="rowLabelWidth" intValue="190"/>
+      <ownedLabelConfigurations xmi:type="nattablelabelprovider:ObjectLabelProviderConfiguration" xmi:id="_qFmQCc9zEeeAp88zWN79cg"/>
+      <ownedLabelConfigurations xmi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" xmi:id="_qFmQCs9zEeeAp88zWN79cg" displayType="false" displayMultiplicity="false"/>
+      <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:TreeFillingConfiguration" xmi:id="_qFmQC89zEeeAp88zWN79cg" pasteConfiguration="_qFmQD89zEeeAp88zWN79cg" labelProvider="_qFmQCs9zEeeAp88zWN79cg">
+        <axisUsedAsAxisProvider xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_qFmQDM9zEeeAp88zWN79cg">
+          <element xmi:type="ecore:EReference" href="http://www.esterel-technologies.com/ns/system/3#//Package/dimension"/>
+        </axisUsedAsAxisProvider>
+      </ownedAxisConfigurations>
+      <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:TreeFillingConfiguration" xmi:id="_qFmQDc9zEeeAp88zWN79cg" pasteConfiguration="_qFmQEM9zEeeAp88zWN79cg" labelProvider="_qFmQCs9zEeeAp88zWN79cg">
+        <axisUsedAsAxisProvider xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_qFmQDs9zEeeAp88zWN79cg">
+          <element xmi:type="ecore:EReference" href="http://www.esterel-technologies.com/ns/system/3#//Package/unit"/>
+        </axisUsedAsAxisProvider>
+      </ownedAxisConfigurations>
+      <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_qFmQD89zEeeAp88zWN79cg" detachedMode="false" pastedElementId="org.eclipse.papyrus.sysml.Dimension" axisIdentifier="_PogtANahEeeWcp9evwpQqw">
+        <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+      </ownedAxisConfigurations>
+      <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_qFmQEM9zEeeAp88zWN79cg" detachedMode="false" pastedElementId="org.eclipse.papyrus.sysml.Unit" axisIdentifier="_PogtANahEeeWcp9evwpQqw">
+        <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+      </ownedAxisConfigurations>
+      <axisManagerConfigurations xmi:type="nattableaxisconfiguration:AxisManagerConfiguration" xmi:id="_qFmQEc9zEeeAp88zWN79cg" localHeaderLabelConfiguration="_qFmQCc9zEeeAp88zWN79cg" localSpecificConfigurations="_qFmQC89zEeeAp88zWN79cg _qFmQDc9zEeeAp88zWN79cg">
+        <axisManager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" xmi:id="_qFmQEs9zEeeAp88zWN79cg" axisManagerId="com.esterel.scsys.table.tree.generic.manager.axis.rowfeature" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="_qFmQCc9zEeeAp88zWN79cg" specificAxisConfigurations="_qFmQC89zEeeAp88zWN79cg _qFmQDc9zEeeAp88zWN79cg"/>
+      </axisManagerConfigurations>
+    </localRowHeaderAxisConfiguration>
+    <localColumnHeaderAxisConfiguration xmi:type="nattableaxisconfiguration:LocalTableHeaderAxisConfiguration" xmi:id="_qFmQE89zEeeAp88zWN79cg">
+      <ownedLabelConfigurations xmi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" xmi:id="_qFmQFM9zEeeAp88zWN79cg" displayIsDerived="false" displayType="false" displayMultiplicity="false"/>
+      <axisManagerConfigurations xmi:type="nattableaxisconfiguration:AxisManagerConfiguration" xmi:id="_qFmQFc9zEeeAp88zWN79cg" localHeaderLabelConfiguration="_qFmQFM9zEeeAp88zWN79cg">
+        <axisManager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" xmi:id="_qFmQFs9zEeeAp88zWN79cg" axisManagerId="com.esterel.scsys.table.tree.generic.manager.axis.systemstereotype" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="_qFmQFM9zEeeAp88zWN79cg"/>
+      </axisManagerConfigurations>
+      <axisManagerConfigurations xmi:type="nattableaxisconfiguration:AxisManagerConfiguration" xmi:id="_qFmQF89zEeeAp88zWN79cg" localHeaderLabelConfiguration="_qFmQFM9zEeeAp88zWN79cg">
+        <axisManager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" xmi:id="_qFmQGM9zEeeAp88zWN79cg" axisManagerId="com.esterel.scsys.table.tree.generic.manager.axis.umlfeature" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="_qFmQFM9zEeeAp88zWN79cg"/>
+      </axisManagerConfigurations>
+      <axisManagerConfigurations xmi:type="nattableaxisconfiguration:AxisManagerConfiguration" xmi:id="_qFmQGc9zEeeAp88zWN79cg" localHeaderLabelConfiguration="_qFmQFM9zEeeAp88zWN79cg">
+        <axisManager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" xmi:id="_qFmQGs9zEeeAp88zWN79cg" axisManagerId="com.esterel.scsys.table.tree.generic.manager.axis.systemfeature" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="_qFmQFM9zEeeAp88zWN79cg"/>
+      </axisManagerConfigurations>
+      <axisManagerConfigurations xmi:type="nattableaxisconfiguration:AxisManagerConfiguration" xmi:id="_qFmQG89zEeeAp88zWN79cg" localHeaderLabelConfiguration="_qFmQFM9zEeeAp88zWN79cg">
+        <axisManager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" xmi:id="_qFmQHM9zEeeAp88zWN79cg" axisManagerId="com.esterel.scsys.table.tree.generic.manager.axis.systemquery" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="_qFmQFM9zEeeAp88zWN79cg"/>
+      </axisManagerConfigurations>
+    </localColumnHeaderAxisConfiguration>
+  </nattable:Table>
+  <nattable:Table xmi:id="_gN3VsNahEeeWcp9evwpQqw" name="Type Table_Types_1" currentRowAxisProvider="_gN3Vv9ahEeeWcp9evwpQqw" currentColumnAxisProvider="_gN3VtNahEeeWcp9evwpQqw">
+    <styles xmi:type="nattablestyle:StringValueStyle" xmi:id="_gN3VsdahEeeWcp9evwpQqw" name="table_style" stringValue="Package.Type"/>
+    <styles xmi:type="nattablestyle:TableDisplayStyle" xmi:id="_gN3VstahEeeWcp9evwpQqw" displayStyle="HIERARCHIC_SINGLE_TREE_COLUMN"/>
+    <styles xmi:type="nattablestyle:IntListValueStyle" xmi:id="_gN3Vs9ahEeeWcp9evwpQqw" name="hiddenCategoriesByDepth">
+      <intListValue>0</intListValue>
+      <intListValue>1</intListValue>
+    </styles>
+    <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_7NQ7YNahEeeWcp9evwpQqw" name="rowHeaderWidth" intValue="200"/>
+    <context xmi:type="uml:Package" href="Dimensions-and-Units.uml#_DC868NEgEeegJfrLpIc08Q"/>
+    <tableConfiguration xmi:type="nattableconfiguration:TableConfiguration" href="Dimensions-and-Units.tts#_zD5rvtalEeeWcp9evwpQqw"/>
+    <columnAxisProvidersHistory xmi:type="nattableaxisprovider:SlaveObjectAxisProvider" xmi:id="_gN3VtNahEeeWcp9evwpQqw" description="This axis provider provides available columns according to the rows of the table (features of the object displayed on the other axis)" name="UML Feature axis provider">
+      <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_gN3VvtahEeeWcp9evwpQqw" manager="_gN3V19ahEeeWcp9evwpQqw">
+        <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_7vYJ8NahEeeWcp9evwpQqw" name="axisWidth" intValue="104"/>
+        <element xmi:type="ecore:EReference" href="http://www.esterel-technologies.com/ns/system/3#//DataType/dimension"/>
+      </axis>
+      <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_gN3VvdahEeeWcp9evwpQqw" manager="_gN3V19ahEeeWcp9evwpQqw">
+        <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_8V6lgNahEeeWcp9evwpQqw" name="axisWidth" intValue="125"/>
+        <element xmi:type="ecore:EReference" href="http://www.esterel-technologies.com/ns/system/3#//DataType/unit"/>
+      </axis>
+      <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_uzKyMNahEeeWcp9evwpQqw" manager="_gN3V19ahEeeWcp9evwpQqw">
+        <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_viHi4NahEeeWcp9evwpQqw" name="axisWidth" intValue="253"/>
+        <element xmi:type="ecore:EReference" href="http://www.esterel-technologies.com/ns/system/3#//Element/comment"/>
+      </axis>
+    </columnAxisProvidersHistory>
+    <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_gN3Vv9ahEeeWcp9evwpQqw" description="This axis provider manages the rows, according to the wanted hierarchy" name="HierarchicalRowaAxisManager" disconnectSlave="true"/>
+    <localRowHeaderAxisConfiguration xmi:type="nattableaxisconfiguration:LocalTableHeaderAxisConfiguration" xmi:id="_gN3VwNahEeeWcp9evwpQqw" indexStyle="NUMERIC">
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_gN3VwdahEeeWcp9evwpQqw" name="rowIndexWidth" intValue="50"/>
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_gN3VwtahEeeWcp9evwpQqw" name="rowLabelWidth" intValue="250"/>
+      <ownedLabelConfigurations xmi:type="nattablelabelprovider:ObjectLabelProviderConfiguration" xmi:id="_gN3Vw9ahEeeWcp9evwpQqw"/>
+      <ownedLabelConfigurations xmi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" xmi:id="_gN3VxNahEeeWcp9evwpQqw" displayType="false" displayMultiplicity="false"/>
+      <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:TreeFillingConfiguration" xmi:id="_gN3VxdahEeeWcp9evwpQqw" pasteConfiguration="_gN3Vy9ahEeeWcp9evwpQqw" labelProvider="_gN3VxNahEeeWcp9evwpQqw">
+        <axisUsedAsAxisProvider xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_gN3VxtahEeeWcp9evwpQqw">
+          <element xmi:type="ecore:EReference" href="http://www.esterel-technologies.com/ns/system/3#//Package/type"/>
+        </axisUsedAsAxisProvider>
+      </ownedAxisConfigurations>
+      <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:TreeFillingConfiguration" xmi:id="_gN3Vx9ahEeeWcp9evwpQqw" depth="1" labelProvider="_gN3VxNahEeeWcp9evwpQqw">
+        <axisUsedAsAxisProvider xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_gN3VyNahEeeWcp9evwpQqw">
+          <element xmi:type="ecore:EReference" href="http://www.esterel-technologies.com/ns/system/3#//Enumeration/literal"/>
+        </axisUsedAsAxisProvider>
+      </ownedAxisConfigurations>
+      <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:TreeFillingConfiguration" xmi:id="_gN3VydahEeeWcp9evwpQqw" pasteConfiguration="_gN3VzdahEeeWcp9evwpQqw" depth="1" labelProvider="_gN3VxNahEeeWcp9evwpQqw">
+        <axisUsedAsAxisProvider xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_gN3VytahEeeWcp9evwpQqw">
+          <element xmi:type="ecore:EReference" href="http://www.esterel-technologies.com/ns/system/3#//Struct/field"/>
+        </axisUsedAsAxisProvider>
+      </ownedAxisConfigurations>
+      <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_gN3Vy9ahEeeWcp9evwpQqw" detachedMode="false" pastedElementId="org.eclipse.papyrus.uml.Classifier" axisIdentifier="_gN3VvtahEeeWcp9evwpQqw">
+        <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+      </ownedAxisConfigurations>
+      <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_gN3VzNahEeeWcp9evwpQqw" detachedMode="false" axisIdentifier="_gN3VvtahEeeWcp9evwpQqw">
+        <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Enumeration/ownedLiteral"/>
+      </ownedAxisConfigurations>
+      <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_gN3VzdahEeeWcp9evwpQqw" detachedMode="false" pastedElementId="com.esterel.system.api.Field" axisIdentifier="_gN3VvtahEeeWcp9evwpQqw">
+        <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class/ownedAttribute"/>
+      </ownedAxisConfigurations>
+      <axisManagerConfigurations xmi:type="nattableaxisconfiguration:AxisManagerConfiguration" xmi:id="_gN3VztahEeeWcp9evwpQqw" localHeaderLabelConfiguration="_gN3Vw9ahEeeWcp9evwpQqw" localSpecificConfigurations="_gN3VxdahEeeWcp9evwpQqw _gN3Vx9ahEeeWcp9evwpQqw _gN3VydahEeeWcp9evwpQqw">
+        <axisManager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" xmi:id="_gN3Vz9ahEeeWcp9evwpQqw" axisManagerId="com.esterel.scsys.table.tree.generic.manager.axis.rowfeature" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="_gN3Vw9ahEeeWcp9evwpQqw" specificAxisConfigurations="_gN3VxdahEeeWcp9evwpQqw _gN3Vx9ahEeeWcp9evwpQqw _gN3VydahEeeWcp9evwpQqw"/>
+      </axisManagerConfigurations>
+    </localRowHeaderAxisConfiguration>
+    <localColumnHeaderAxisConfiguration xmi:type="nattableaxisconfiguration:LocalTableHeaderAxisConfiguration" xmi:id="_gN3V0NahEeeWcp9evwpQqw">
+      <ownedLabelConfigurations xmi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" xmi:id="_gN3V0dahEeeWcp9evwpQqw" displayIsDerived="false" displayType="false" displayMultiplicity="false"/>
+      <axisManagerConfigurations xmi:type="nattableaxisconfiguration:AxisManagerConfiguration" xmi:id="_gN3V0tahEeeWcp9evwpQqw" localHeaderLabelConfiguration="_gN3V0dahEeeWcp9evwpQqw">
+        <axisManager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" xmi:id="_gN3V09ahEeeWcp9evwpQqw" axisManagerId="com.esterel.scsys.table.tree.generic.manager.axis.systemstereotype" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="_gN3V0dahEeeWcp9evwpQqw"/>
+      </axisManagerConfigurations>
+      <axisManagerConfigurations xmi:type="nattableaxisconfiguration:AxisManagerConfiguration" xmi:id="_gN3V1NahEeeWcp9evwpQqw" localHeaderLabelConfiguration="_gN3V0dahEeeWcp9evwpQqw">
+        <axisManager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" xmi:id="_gN3V1dahEeeWcp9evwpQqw" axisManagerId="com.esterel.scsys.table.tree.generic.manager.axis.umlfeature" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="_gN3V0dahEeeWcp9evwpQqw"/>
+      </axisManagerConfigurations>
+      <axisManagerConfigurations xmi:type="nattableaxisconfiguration:AxisManagerConfiguration" xmi:id="_gN3V1tahEeeWcp9evwpQqw" localHeaderLabelConfiguration="_gN3V0dahEeeWcp9evwpQqw">
+        <axisManager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" xmi:id="_gN3V19ahEeeWcp9evwpQqw" axisManagerId="com.esterel.scsys.table.tree.generic.manager.axis.systemfeature" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="_gN3V0dahEeeWcp9evwpQqw"/>
+      </axisManagerConfigurations>
+      <axisManagerConfigurations xmi:type="nattableaxisconfiguration:AxisManagerConfiguration" xmi:id="_gN3V2NahEeeWcp9evwpQqw" localHeaderLabelConfiguration="_gN3V0dahEeeWcp9evwpQqw">
+        <axisManager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" xmi:id="_gN3V2dahEeeWcp9evwpQqw" axisManagerId="com.esterel.scsys.table.tree.generic.manager.axis.systemquery" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="_gN3V0dahEeeWcp9evwpQqw"/>
+      </axisManagerConfigurations>
+    </localColumnHeaderAxisConfiguration>
+  </nattable:Table>
+</xmi:XMI>

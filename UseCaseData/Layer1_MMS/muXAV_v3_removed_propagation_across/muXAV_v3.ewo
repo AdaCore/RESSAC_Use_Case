@@ -1,0 +1,56 @@
+
+[STUDIO\TOOLS\CONFIGURATIONS\Reporter]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\muXAV_v3.etp"="RTF" 
+"C:\\ALG\\My Projects\\Dissoubray\\muXAV_v3\\muXAV_v3.etp"="HTML" 
+"C:\\Users\\cglitia\\Downloads\\muXAV_v3_ALG\\muXAV_v3\\muXAV_v3.etp"="HTML" 
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3_removed_propagation_across\\muXAV_v3.etp"="HTML" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Architect Checker]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\muXAV_v3.etp"="BasicCheck" 
+"C:\\ALG\\My Projects\\Dissoubray\\muXAV_v3\\muXAV_v3.etp"="BasicCheck" 
+"C:\\Users\\cglitia\\Downloads\\muXAV_v3_ALG\\muXAV_v3\\muXAV_v3.etp"="BasicCheck" 
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3_removed_propagation_across\\muXAV_v3.etp"="BasicCheck" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Architect Configurator]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\muXAV_v3.etp"="Default" 
+"C:\\ALG\\My Projects\\Dissoubray\\muXAV_v3\\muXAV_v3.etp"="Default" 
+"C:\\Users\\cglitia\\Downloads\\muXAV_v3_ALG\\muXAV_v3\\muXAV_v3.etp"="Default" 
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3_removed_propagation_across\\muXAV_v3.etp"="Default" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Synchronization]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\muXAV_v3.etp"="Synchronization" 
+"C:\\ALG\\My Projects\\Dissoubray\\muXAV_v3\\muXAV_v3.etp"="Synchronization" 
+"C:\\Users\\cglitia\\Downloads\\muXAV_v3_ALG\\muXAV_v3\\muXAV_v3.etp"="Synchronization" 
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3_removed_propagation_across\\muXAV_v3.etp"="Synchronization" 
+
+[STUDIO\Workspace]
+
+"ActiveProject"="C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3_removed_propagation_across\\muXAV_v3.etp" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Design Verifier]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\muXAV_v3.etp"="Default" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Timing and Stack Analysis Tools]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\muXAV_v3.etp"="Default" 
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3_removed_propagation_across\\muXAV_v3.etp"="Default" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\DiffAnalyzer]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\muXAV_v3.etp"="Default" 
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3_removed_propagation_across\\muXAV_v3.etp"="Default" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Code Generator]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\muXAV_v3.etp"="Default" 
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3_removed_propagation_across\\muXAV_v3.etp"="Default" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Instrumenter]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\muXAV_v3.etp"="Default" 
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3_removed_propagation_across\\muXAV_v3.etp"="Default" 

@@ -1,0 +1,20 @@
+
+[STUDIO\TOOLS\CONFIGURATIONS\Reporter]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\Dimensions-and-Units\\Dimensions-and-Units.etp"="HTML" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Architect Checker]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\Dimensions-and-Units\\Dimensions-and-Units.etp"="BasicCheck" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Architect Configurator]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\Dimensions-and-Units\\Dimensions-and-Units.etp"="Default" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Synchronization]
+
+"C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\Dimensions-and-Units\\Dimensions-and-Units.etp"="Default" 
+
+[STUDIO\Workspace]
+
+"ActiveProject"="C:\\Repository\\microXAV\\trunk\\designXAV-sd\\System\\muXAV_v3\\Dimensions-and-Units\\Dimensions-and-Units.etp" 

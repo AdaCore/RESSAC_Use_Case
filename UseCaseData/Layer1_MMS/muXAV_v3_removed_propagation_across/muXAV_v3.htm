@@ -1,0 +1,805 @@
+<HTML>
+<HEAD>
+<TITLE>muXAV_v3</TITLE>
+<STYLE type="text/css">
+.Normal { 
+font-family: Verdana;
+font-size: 11pt;}
+.BodyText { 
+font-family: Verdana;
+font-size: 11pt;}
+.Title { 
+text-align: center;
+font-family: Verdana;
+font-size: 20pt;
+font-weight: bold;
+padding-bottom: 16pt;}
+.Subtitle { 
+text-align: center;
+font-family: Verdana;
+font-size: 16pt;
+font-style: italic;
+padding-bottom: 16pt;}
+.DocumentInfo { 
+font-family: Verdana;
+font-size: 11pt;}
+.ListNumber2 { 
+font-family: Verdana;
+font-size: 11pt;}
+.Heading1 { 
+margin-top: 12pt;
+border-top-style: dotted;page-break-before: always;
+font-family: Verdana;
+font-size: 16pt;
+font-weight: bold;
+padding-top: 12pt;
+padding-bottom: 12pt;}
+.Heading2 { 
+font-family: Verdana;
+font-size: 14pt;
+padding-top: 6pt;
+padding-bottom: 6pt;}
+.Heading3 { 
+font-family: Verdana;
+font-size: 12pt;
+padding-top: 6pt;
+padding-bottom: 6pt;}
+.Heading4 { 
+font-family: Verdana;
+font-size: 11pt;
+padding-top: 6pt;
+padding-bottom: 6pt;}
+.TableCell { 
+text-align: left;
+vertical-align:middle;
+font-family: Verdana;
+font-size: 9pt;
+padding-left: 0.1cm;
+padding-right: 0.1cm;}
+.TableHeadingCell { 
+text-align: left;
+vertical-align:middle;
+color: rgb(255,255,255);
+background-color: rgb(0,0,128);
+font-family: Verdana;
+font-size: 9pt;
+font-weight: bold;
+padding-left: 0.1cm;}
+.TOC1 { 
+font-family: Verdana;
+font-size: 12pt;
+font-weight: bold;
+padding-top: 12pt;}
+.TOC2 { 
+font-family: Verdana;
+font-size: 12pt;
+padding-left: 0.35cm;
+padding-top: 12pt;}
+.TOC3 { 
+font-family: Verdana;
+font-size: 11pt;
+font-style: italic;
+padding-left: 0.7cm;
+padding-top: 6pt;}
+.TOC4 { 
+font-family: Verdana;
+font-size: 9pt;
+padding-left: 1cm;}
+.Header { 
+font-family: Tahoma;
+font-size: 9pt;
+font-weight: bold;}
+.Footer { 
+font-family: Tahoma;
+font-size: 9pt;}
+.Caption { 
+text-align: center;
+font-family: Verdana;
+font-size: 8pt;
+font-weight: bold;
+padding-top: 6pt;
+padding-bottom: 12pt;}
+.TableCaption { 
+text-align: left;
+font-family: Verdana;
+font-size: 8pt;
+font-weight: bold;
+padding-bottom: 6pt;}
+.ListOfFigures { 
+font-family: Verdana;
+font-size: 11pt;
+font-weight: bold;}
+.Hyperlink { 
+color: rgb(0,0,255);
+font-family: Verdana;
+font-size: 11pt;
+text-decoration: underline;}
+.DocumentClass { 
+text-align: center;
+font-family: Verdana;
+font-size: 11pt;}
+.TableCellAnnot { 
+text-align: left;
+vertical-align:middle;
+font-family: Verdana;
+font-size: 9pt;
+padding-left: 0.1cm;
+padding-right: 0.1cm;}
+.TableHeadingCellAnnot { 
+text-align: left;
+vertical-align:middle;
+color: rgb(255,255,255);
+background-color: rgb(0,0,128);
+font-family: Verdana;
+font-size: 9pt;
+font-weight: bold;
+padding-left: 0.1cm;}
+.TextualCode { 
+font-family: Courier;
+font-size: 9pt;
+margin-bottom: 12pt;
+border-style: solid;
+border-width: 1pt;
+padding-left: 3pt;
+padding-top: 3pt;
+padding-bottom: 3pt;
+padding-right: 3pt;
+min-width: 160mm;
+width: 80%;
+white-space: nowrap;}
+.EndOfDocument { 
+text-align: center;
+color: rgb(192,192,192);
+font-family: Verdana;
+font-size: 7pt;}
+.ListTitle { 
+font-family: Verdana;
+font-size: 8pt;
+font-weight: bold;}
+.ListOfTables { 
+font-family: Verdana;
+font-size: 11pt;
+font-weight: bold;}
+.Heading5 { 
+font-family: Verdana;
+font-size: 10pt;
+padding-top: 6pt;
+padding-bottom: 6pt;}
+.Heading6 { 
+font-family: Verdana;
+font-size: 10pt;
+padding-top: 6pt;
+padding-bottom: 6pt;}
+.Heading7 { 
+font-family: Verdana;
+font-size: 10pt;
+padding-top: 6pt;
+padding-bottom: 6pt;}
+.TOC5 { 
+font-family: Verdana;
+font-size: 9pt;
+padding-left: 1.3cm;}
+.TOC6 { 
+font-family: Verdana;
+font-size: 9pt;
+padding-left: 1.6cm;}
+.TOC7 { 
+font-family: Verdana;
+font-size: 9pt;
+padding-left: 2cm;}
+table{
+border:1px solid rgb(0, 0, 0);
+border-spacing: 0px;
+border-collapse: collapse;
+}
+td{
+border:1px solid rgb(0, 0, 0);
+border-collapse: collapse;
+ min-height: 0.5cm;
+height: 0.5cm;
+}
+th{
+border:1px solid rgb(0, 0, 0);
+border-collapse: collapse;
+ min-height: 0.5cm;
+height: 0.5cm;
+}
+</STYLE>
+</HEAD>
+<BODY>
+
+<DIV class="DocumentClass">&lt;document classification&gt;</DIV><HR style="width: 14cm; text-align: center;">
+<DIV class="Title">Micro UAV</DIV>
+<DIV class="Subtitle">&lt;subtitle&gt;</DIV>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<DIV class="DocumentInfo">
+<B>Summary:</B></DIV>
+<DIV style="height:35mm;"><DIV class="DocumentInfo">
+&lt;summary&gt;</DIV>
+</DIV>
+<DIV class="DocumentInfo">
+<B>Company: </B>Copyright ANSYS 2017<BR>
+<B>Authors: </B>Mathieu Viala - Sylvan Dissoubray<BR>
+<B>Reference: </B>&lt;reference&gt;<BR>
+<B>Index: </B>&lt;index&gt;<BR>
+<B>Date: </B>&lt;date&gt;</DIV>
+<DIV class="DocumentInfo"></DIV><DIV class="DocumentInfo"></DIV><DIV class="DocumentInfo"></DIV><DIV class="DocumentInfo"></DIV><HR style="width: 17cm; text-align: center;">
+<DIV class="DocumentInfo">
+<B>Distribution List: </B>&lt;distribution list&gt;</DIV>
+
+<DIV class="Title" style="margin-top: 12pt; border-top-style: dotted;page-break-before: always; padding-top: 12pt;">Table Of Contents</DIV>
+<DIV class="TOC1">1. <A HREF="#_TOC0">General Project Description</A></DIV>
+<DIV class="TOC1">2. <A HREF="#_TOC1">System Architecture</A></DIV>
+<DIV class="TOC2">2.1. <A HREF="#_TOC2">Project Architecture</A></DIV>
+<DIV class="TOC1">3. <A HREF="#_TOC3">muXAV_v3 Project</A></DIV>
+<DIV class="TOC2">3.1. <A HREF="#_TOC4">Root Elements</A></DIV>
+<DIV class="TOC2">3.2. <A HREF="#_TOC5">muXAV_v3::FunctionalArchitecture Package</A></DIV>
+<DIV class="TOC3">3.2.1. <A HREF="#_TOC6">Air_Vehicle Block</A></DIV>
+<DIV class="TOC3">3.2.2. <A HREF="#_TOC7">F_MMS_SW Block</A></DIV>
+<DIV class="TOC3">3.2.3. <A HREF="#_TOC9">F_muXAV Block</A></DIV>
+<DIV class="TOC3">3.2.4. <A HREF="#_TOC11">F_PT Block</A></DIV>
+<DIV class="TOC3">3.2.5. <A HREF="#_TOC13">FunctionalWorld Block</A></DIV>
+<DIV class="TOC3">3.2.6. <A HREF="#_TOC15">Ground_Station Block</A></DIV>
+
+<DIV class="Title" style="margin-top: 12pt; border-top-style: dotted;page-break-before: always; padding-top: 12pt;">List Of Figures</DIV>
+<DIV class="ListOfFigures"><A HREF="#FIGURE1">Figure 1: Internal Block Diagram - IBD_F_MMS_SW_1</A></DIV>
+<DIV class="ListOfFigures"><A HREF="#FIGURE2">Figure 2: Internal Block Diagram - IBD_F_muXAV_1</A></DIV>
+<DIV class="ListOfFigures"><A HREF="#FIGURE3">Figure 3: Internal Block Diagram - IBD_F_PT_1</A></DIV>
+<DIV class="ListOfFigures"><A HREF="#FIGURE4">Figure 4: Internal Block Diagram - IBD_FunctionalWorld_1</A></DIV>
+
+<DIV class="Title" style="margin-top: 12pt; border-top-style: dotted;page-break-before: always; padding-top: 12pt;">List Of Tables</DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE1">Table 1: Air_Vehicle DataSourceTarget: Data Table_Air_Vehicle_1</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE2">Table 2: F_MMS_SW DataSourceTarget: Data Table_F_MMS_SW_1</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE3">Table 3: F_PT DataSourceTarget: Data Table_F_PT_1</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE4">Table 4: Ground_Station DataSourceTarget: Data Table_Ground_Station_1</A></DIV>
+
+<DIV class="Heading1">1. <A NAME="_TOC0">General Project Description</A></DIV>
+<DIV class="BodyText">&lt;description&gt;</DIV>
+<DIV class="Heading1">2. <A NAME="_TOC1">System Architecture</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">
+<DIV class="Heading2">2.1. <A NAME="_TOC2">Project Architecture</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">This section displays the package and block hierarchy of projects.</DIV>Project <A class="Hyperlink" HREF="#Project_muXAV_v3">muXAV_v3</A>
+<BR>
+ &nbsp; &nbsp; <A class="Hyperlink" HREF="#muXAV_v3__FunctionalArchitecture">FunctionalArchitecture</A>
+<BR>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;FunctionalWorld<BR>
+ &nbsp; &nbsp; muXAV-Types
+<BR>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Types
+<BR>
+ &nbsp; &nbsp; OrganicArchitecture
+<BR>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;OrganicWorld<BR>
+ &nbsp; &nbsp; OrganicNew
+<BR>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;OrganicWorld
+</DIV>
+<A NAME='Project_muXAV_v3'></A><DIV class="Heading1">3. <A NAME="_TOC3">muXAV_v3 Project</A></DIV>
+
+<DIV class="BodyText" style="padding-bottom: 12pt;">
+Declared as <SPAN class="BodyText" style="font-family: Courier; font-size: 12pt; font-weight: bold; padding-bottom: 12pt;">public model</SPAN></DIV>
+<DIV class="Heading2">3.1. <A NAME="_TOC4">Root Elements</A></DIV>
+
+<A NAME='muXAV_v3__FunctionalArchitecture'></A><DIV class="Heading2">3.2. <A NAME="_TOC5">muXAV_v3::FunctionalArchitecture Package</A></DIV>
+
+
+<A NAME='muXAV_v3__FunctionalArchitecture__FunctionalWorld__Air_Vehicle'></A><DIV class="Heading3">3.2.1. <A NAME="_TOC6">Air_Vehicle Block</A></DIV>
+
+<DIV class="BodyText">
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE1">1</A>: Air_Vehicle DataSourceTarget: Data Table_Air_Vehicle_1</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCellAnnot" style="width: 35mm;">&nbsp;</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Block Source</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Block Target</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Type</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Min</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Max</TH>
+</TR><TR><TD class="TableCell">p</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">F_EL, F_FC_FlightControl</TD>
+<TD class="TableCell">t_Angle</TD>
+<TD class="TableCell">0.0</TD>
+<TD class="TableCell">100.0</TD>
+</TR><TR><TD class="TableCell">pdot</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">F_EL, F_FC_FlightControl</TD>
+<TD class="TableCell">t_AngularVelocity</TD>
+<TD class="TableCell">22.0</TD>
+<TD class="TableCell">37.0</TD>
+</TR><TR><TD class="TableCell">q</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">F_EL, F_FC_FlightControl</TD>
+<TD class="TableCell">t_Angle</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">PropulsionTorque</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">t_Torque</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">BrakingTorque1</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">t_Torque</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR></TBODY></TABLE></DIV>
+</DIV>
+
+<A NAME='muXAV_v3__FunctionalArchitecture__FunctionalWorld__F_muXAV__F_MMS_SW'></A><DIV class="Heading3">3.2.2. <A NAME="_TOC7">F_MMS_SW Block</A></DIV>
+
+<DIV class="BodyText">
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE2">2</A>: F_MMS_SW DataSourceTarget: Data Table_F_MMS_SW_1</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCellAnnot" style="width: 35mm;">&nbsp;</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Block Source</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Block Target</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Type</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Min</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Max</TH>
+</TR><TR><TD class="TableCell">EL_BrakingTorque???</TD>
+<TD class="TableCell">F_EL</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">EmergencyLanding1</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">F_EL</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">PropulsionTorque</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">t_Torque</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">BrakingTorque</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">t_Torque</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionREADY</TD>
+<TD class="TableCell">F_MM_MissionManagement, F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station, Control_Panel</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionCOMPLETED</TD>
+<TD class="TableCell">F_MM_MissionManagement, F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station, Control_Panel</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionCANCELLED</TD>
+<TD class="TableCell">F_MM_MissionManagement, F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station, Control_Panel</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionABORTED</TD>
+<TD class="TableCell">F_MM_MissionManagement, F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station, Control_Panel</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">p1</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">F_FC_FlightControl, F_EL</TD>
+<TD class="TableCell">t_Angle</TD>
+<TD class="TableCell">0.0</TD>
+<TD class="TableCell">100.0</TD>
+</TR><TR><TD class="TableCell">pdot</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">F_FC_FlightControl, F_EL</TD>
+<TD class="TableCell">t_AngularVelocity</TD>
+<TD class="TableCell">22.0</TD>
+<TD class="TableCell">37.0</TD>
+</TR><TR><TD class="TableCell">q</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">F_FC_FlightControl, F_EL</TD>
+<TD class="TableCell">t_Angle</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_NavControlMode</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">te_NavControlMode</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_NavParameters</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">ts_NavParameters</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_NavRegulOption</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">te_NavRegulOption</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_GO</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_EmergencyLandingCmd</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_ON_OFF_PushButton</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_Bay_Switch</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">te_BaySwitch</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_Rotactor1</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">int</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_Rotactor2</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">int</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_NavControlMode</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">te_NavControlMode</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_USB_Key</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">ts_NavParameters</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_START_PushButton</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_USB_NavRegulOption???</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">te_NavRegulOption</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR></TBODY></TABLE></DIV>
+</DIV>
+
+<DIV class="Heading4">3.2.2.1.   <A NAME="_TOC8">Diagrams</A></DIV>
+
+<A NAME='muXAV_v3__FunctionalArchitecture__FunctionalWorld__F_muXAV__F_MMS_SW__IBD_F_MMS_SW_1'></A><DIV class="BodyText" style="text-align: center;"><IMG SRC='muXAV_v3_img/Figure_0.png'></DIV>
+<DIV class="Caption">Figure <A NAME="FIGURE1">1</A>: Internal Block Diagram - IBD_F_MMS_SW_1</DIV>
+
+<A NAME='muXAV_v3__FunctionalArchitecture__FunctionalWorld__F_muXAV'></A><DIV class="Heading3">3.2.3. <A NAME="_TOC9">F_muXAV Block</A></DIV>
+
+<DIV class="Heading4">3.2.3.1.   <A NAME="_TOC10">Diagrams</A></DIV>
+
+<A NAME='muXAV_v3__FunctionalArchitecture__FunctionalWorld__F_muXAV__IBD_F_muXAV_1'></A><DIV class="BodyText" style="text-align: center;"><IMG SRC='muXAV_v3_img/Figure_1.png'></DIV>
+<DIV class="Caption">Figure <A NAME="FIGURE2">2</A>: Internal Block Diagram - IBD_F_muXAV_1</DIV>
+
+<A NAME='muXAV_v3__FunctionalArchitecture__FunctionalWorld__F_muXAV__F_MMS_SW__F_PT'></A><DIV class="Heading3">3.2.4. <A NAME="_TOC11">F_PT Block</A></DIV>
+
+<DIV class="BodyText">
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE3">3</A>: F_PT DataSourceTarget: Data Table_F_PT_1</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCellAnnot" style="width: 35mm;">&nbsp;</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Block Source</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Block Target</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Type</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Min</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Max</TH>
+</TR><TR><TD class="TableCell">EmergencyLanding1</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">F_EL</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">OperatingAltitude</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">t_Length</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">OperatingSpeed</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">t_Velocity</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">OperatingOption</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">te_NavRegulOption</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">OperatingDistance</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">t_Length</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">OperatingMass</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">t_Mass</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">StartTakeOff</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">StartLanding</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CurrentAltitude</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Length</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CurrentSpeed</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Velocity</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CurrentDistance</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Length</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">PropulsionTorque</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">Air_Vehicle, F_EM_EnergyViability, F_CM_Comm_MMS</TD>
+<TD class="TableCell">t_Torque</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">BrakingTorque</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">Air_Vehicle, F_EM_EnergyViability, F_CM_Comm_MMS</TD>
+<TD class="TableCell">t_Torque</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionREADY</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station, Control_Panel</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionCOMPLETED</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station, Control_Panel</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionCANCELLED</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station, Control_Panel</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionABORTED</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station, Control_Panel</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">p1</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">t_Angle</TD>
+<TD class="TableCell">0.0</TD>
+<TD class="TableCell">100.0</TD>
+</TR><TR><TD class="TableCell">pdot</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">t_AngularVelocity</TD>
+<TD class="TableCell">22.0</TD>
+<TD class="TableCell">37.0</TD>
+</TR><TR><TD class="TableCell">q</TD>
+<TD class="TableCell">Air_Vehicle</TD>
+<TD class="TableCell">F_FC_FlightControl</TD>
+<TD class="TableCell">t_Angle</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_NavControlMode</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">te_NavControlMode</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_NavParameters</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">ts_NavParameters</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_NavRegulOption</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">te_NavRegulOption</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_GO</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_EmergencyLandingCmd</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_ON_OFF_PushButton</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_Bay_Switch</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">te_BaySwitch</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_Rotactor1</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">int</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_Rotactor2</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">int</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_NavControlMode</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">te_NavControlMode</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_USB_Key</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">ts_NavParameters</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_START_PushButton</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">CP_USB_NavRegulOption???</TD>
+<TD class="TableCell">Control_Panel</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">te_NavRegulOption</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR></TBODY></TABLE></DIV>
+</DIV>
+
+<DIV class="Heading4">3.2.4.1.   <A NAME="_TOC12">Diagrams</A></DIV>
+
+<A NAME='muXAV_v3__FunctionalArchitecture__FunctionalWorld__F_muXAV__F_MMS_SW__F_PT__IBD_F_PT_1'></A><DIV class="BodyText" style="text-align: center;"><IMG SRC='muXAV_v3_img/Figure_2.png'></DIV>
+<DIV class="Caption">Figure <A NAME="FIGURE3">3</A>: Internal Block Diagram - IBD_F_PT_1</DIV>
+
+<A NAME='muXAV_v3__FunctionalArchitecture__FunctionalWorld'></A><DIV class="Heading3">3.2.5. <A NAME="_TOC13">FunctionalWorld Block</A></DIV>
+
+<DIV class="Heading4">3.2.5.1.   <A NAME="_TOC14">Diagrams</A></DIV>
+
+<A NAME='muXAV_v3__FunctionalArchitecture__FunctionalWorld__IBD_FunctionalWorld_1'></A><DIV class="BodyText" style="text-align: center;"><IMG SRC='muXAV_v3_img/Figure_3.png'></DIV>
+<DIV class="Caption">Figure <A NAME="FIGURE4">4</A>: Internal Block Diagram - IBD_FunctionalWorld_1</DIV>
+
+<A NAME='muXAV_v3__FunctionalArchitecture__FunctionalWorld__Ground_Station'></A><DIV class="Heading3">3.2.6. <A NAME="_TOC15">Ground_Station Block</A></DIV>
+
+<DIV class="BodyText">
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE4">4</A>: Ground_Station DataSourceTarget: Data Table_Ground_Station_1</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCellAnnot" style="width: 35mm;">GS_NavControlMode</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">Ground_Station</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">F_MM_MissionManagement</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">te_NavControlMode</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">&nbsp;</TH>
+<TH class="TableHeadingCellAnnot" style="width: 35mm;">&nbsp;</TH>
+</TR><TR><TD class="TableCell">GS_NavParameters</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">ts_NavParameters</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_NavRegulOption</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">te_NavRegulOption</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_GO</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">GS_EmergencyLandingCmd</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionREADY</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionCOMPLETED</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionCANCELLED</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR><TR><TD class="TableCell">MissionABORTED</TD>
+<TD class="TableCell">F_MM_MissionManagement</TD>
+<TD class="TableCell">Ground_Station</TD>
+<TD class="TableCell">t_Event</TD>
+<TD class="TableCell">&nbsp;</TD>
+<TD class="TableCell">&nbsp;</TD>
+</TR></TBODY></TABLE></DIV>
+</DIV>
+
+<DIV class="EndOfDocument">End of document.</DIV>
+</BODY>
+</HTML>
+

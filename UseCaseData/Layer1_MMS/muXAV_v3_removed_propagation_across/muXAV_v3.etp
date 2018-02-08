@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project id="1" oid_count="72" defaultConfiguration="2">
+	<props>
+		<Prop id="3" name="@STUDIO:PRODUCT">
+			<value>SYSTEM</value>
+		</Prop>
+		<Prop id="4" name="@SYSTEM:VERSION">
+			<value>18.0.0</value>
+		</Prop>
+		<Prop id="15" name="@REPORTER:SCRIPT">
+			<value>Reporter\ScadeArchitectReport.tcl</value>
+			<configuration>14</configuration>
+		</Prop>
+		<Prop id="16" name="@REPORTER:RotateLandscape">
+			<value>true</value>
+			<configuration>14</configuration>
+		</Prop>
+		<Prop id="17" name="@REPORTER:cstDisplayType">
+			<value>Flat</value>
+			<configuration>14</configuration>
+		</Prop>
+		<Prop id="18" name="@STUDIO:TOOLCONF">
+			<value>Reporter</value>
+			<value>14</value>
+			<value>19</value>
+		</Prop>
+		<Prop id="20" name="@REPORTER:FORMAT">
+			<value>rtf</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="21" name="@REPORTER:SCRIPT">
+			<value>Reporter\ScadeArchitectReport.tcl</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="22" name="@REPORTER:RotateLandscape">
+			<value>true</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="23" name="@REPORTER:cstDisplayType">
+			<value>Flat</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="25" name="@SYSTEM_CHECKER:CONSTRAINT_ENABLEMENT">
+			<value>Predefined rules|Connector path rules|Check connector path for a connector connected to a reference|true;Predefined rules|Connector path rules|Verify if the connector paths of nested connectors are correct|true;Predefined rules|Data propagation rules|Data connected to Flow Port has bound Data in all container Blocks|false;Predefined rules|Data propagation rules|Data connects to Flow Port or is bound to another Data|false;Predefined rules|Data propagation rules|Data is propagated across at least one Connector|false;Predefined rules|Data propagation rules|Data is propagated to final Flow Port|false;Predefined rules|Diagram representation rules|Check the representation on graphical diagrams|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_external_ports_with_compatible_flow_direction|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_external_ports_with_identical_flow_direction|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_ports_with_compatible_flow_direction|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_ports_with_exact_flow_direction|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_ports_with_compatible_datatype_dimension|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_ports_with_compatible_type|true;Predefined rules|connector_compatibility_uml.ocl|connector_connects_only_flow_ports|true;Predefined rules|connector_compatibility_uml.ocl|connector_does_not_connect_external_ports|true;Predefined rules|connector_compatibility_uml.ocl|connector_has_two_connector_ends|true;Predefined rules|datatypes_system.tcl|Check DataType Unit and Dimension consistency|true;Predefined rules|flow_ports_uml.ocl|external_output_flow_port_is_produced_only_once|false;Predefined rules|flow_ports_uml.ocl|flow_port_is_connected|true;Predefined rules|flow_ports_uml.ocl|internal_intput_flow_port_is_produced_only_once|true;Predefined rules|grouped_ports_uml.ocl|connector_between_grouped_port_and_flow_port_has_compatible_name_type_and_dimension|false;Predefined rules|grouped_ports_uml.ocl|connector_between_grouped_port_and_flow_port_has_compatible_type_and_dimension|true;Predefined rules|grouped_ports_uml.ocl|connector_between_grouped_port_without_flowspecification_and_port_with_flow_specification|true;Predefined rules|grouped_ports_uml.ocl|connector_between_two_grouped_ports_has_compatible_name_type_and_dimension|false;Predefined rules|grouped_ports_uml.ocl|connector_between_two_grouped_ports_has_compatible_type_and_dimension|true;Predefined rules|grouped_ports_uml.ocl|grouped_port_should_have_type|true</value>
+			<configuration>24</configuration>
+		</Prop>
+		<Prop id="26" name="@STUDIO:TOOLCONF">
+			<value>Architect Checker</value>
+			<value>24</value>
+			<value>27</value>
+			<value>29</value>
+			<value>31</value>
+			<value>33</value>
+		</Prop>
+		<Prop id="28" name="@SYSTEM_CHECKER:CONSTRAINT_ENABLEMENT">
+			<value>Predefined rules|Connector path rules|Check connector path for a connector connected to a reference|true;Predefined rules|Connector path rules|Verify if the connector paths of nested connectors are correct|true;Predefined rules|Data propagation rules|Data connected to Flow Port has bound Data in all container Blocks|false;Predefined rules|Data propagation rules|Data connects to Flow Port or is bound to another Data|false;Predefined rules|Data propagation rules|Data is propagated across at least one Connector|false;Predefined rules|Data propagation rules|Data is propagated to final Flow Port|false;Predefined rules|Diagram representation rules|Check the representation on graphical diagrams|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_external_ports_with_compatible_flow_direction|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_external_ports_with_identical_flow_direction|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_ports_with_compatible_flow_direction|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_ports_with_exact_flow_direction|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_ports_with_compatible_datatype_dimension|true;Predefined rules|connector_compatibility_uml.ocl|connector_between_ports_with_compatible_type|true;Predefined rules|connector_compatibility_uml.ocl|connector_connects_only_flow_ports|true;Predefined rules|connector_compatibility_uml.ocl|connector_does_not_connect_external_ports|true;Predefined rules|connector_compatibility_uml.ocl|connector_has_two_connector_ends|true;Predefined rules|datatypes_system.tcl|Check DataType Unit and Dimension consistency|true;Predefined rules|flow_ports_uml.ocl|external_output_flow_port_is_produced_only_once|true;Predefined rules|flow_ports_uml.ocl|flow_port_is_connected|true;Predefined rules|flow_ports_uml.ocl|internal_intput_flow_port_is_produced_only_once|true;Predefined rules|grouped_ports_uml.ocl|connector_between_grouped_port_and_flow_port_has_compatible_name_type_and_dimension|true;Predefined rules|grouped_ports_uml.ocl|connector_between_grouped_port_and_flow_port_has_compatible_type_and_dimension|true;Predefined rules|grouped_ports_uml.ocl|connector_between_grouped_port_without_flowspecification_and_port_with_flow_specification|true;Predefined rules|grouped_ports_uml.ocl|connector_between_two_grouped_ports_has_compatible_name_type_and_dimension|true;Predefined rules|grouped_ports_uml.ocl|connector_between_two_grouped_ports_has_compatible_type_and_dimension|true;Predefined rules|grouped_ports_uml.ocl|grouped_port_should_have_type|true</value>
+			<configuration>27</configuration>
+		</Prop>
+		<Prop id="30" name="@SYSTEM_CHECKER:CONSTRAINT_ENABLEMENT">
+			<value>Predefined rules|Connector path rules|Check connector path for a connector connected to a reference|false;Predefined rules|Connector path rules|Verify if the connector paths of nested connectors are correct|false;Predefined rules|Data propagation rules|Data connected to Flow Port has bound Data in all container Blocks|true;Predefined rules|Data propagation rules|Data connects to Flow Port or is bound to another Data|true;Predefined rules|Data propagation rules|Data is propagated across at least one Connector|true;Predefined rules|Data propagation rules|Data is propagated to final Flow Port|true;Predefined rules|Diagram representation rules|Check the representation on graphical diagrams|false;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_external_ports_with_compatible_flow_direction|false;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_external_ports_with_identical_flow_direction|false;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_ports_with_compatible_flow_direction|false;Predefined rules|connector_compatibility_uml.ocl|connector_between_internal_ports_with_exact_flow_direction|false;Predefined rules|connector_compatibility_uml.ocl|connector_between_ports_with_compatible_datatype_dimension|false;Predefined rules|connector_compatibility_uml.ocl|connector_between_ports_with_compatible_type|false;Predefined rules|connector_compatibility_uml.ocl|connector_connects_only_flow_ports|false;Predefined rules|connector_compatibility_uml.ocl|connector_does_not_connect_external_ports|false;Predefined rules|connector_compatibility_uml.ocl|connector_has_two_connector_ends|false;Predefined rules|datatypes_system.tcl|Check DataType Unit and Dimension consistency|false;Predefined rules|flow_ports_uml.ocl|external_output_flow_port_is_produced_only_once|false;Predefined rules|flow_ports_uml.ocl|flow_port_is_connected|false;Predefined rules|flow_ports_uml.ocl|internal_intput_flow_port_is_produced_only_once|false;Predefined rules|grouped_ports_uml.ocl|connector_between_grouped_port_and_flow_port_has_compatible_name_type_and_dimension|false;Predefined rules|grouped_ports_uml.ocl|connector_between_grouped_port_and_flow_port_has_compatible_type_and_dimension|false;Predefined rules|grouped_ports_uml.ocl|connector_between_grouped_port_without_flowspecification_and_port_with_flow_specification|false;Predefined rules|grouped_ports_uml.ocl|connector_between_two_grouped_ports_has_compatible_name_type_and_dimension|false;Predefined rules|grouped_ports_uml.ocl|connector_between_two_grouped_ports_has_compatible_type_and_dimension|false;Predefined rules|grouped_ports_uml.ocl|grouped_port_should_have_type|false</value>
+			<configuration>29</configuration>
+		</Prop>
+		<Prop id="32" name="@SYSTEM_CHECKER:CONSTRAINT_ENABLEMENT">
+			<value>Predefined rules|Inter-level consistency rules|Allocation is between compatible elements|true;Predefined rules|Inter-level consistency rules|Allocation is between primary Data|true;Predefined rules|Inter-level consistency rules|Allocation respects Block structure|true;Predefined rules|Inter-level consistency rules|Allocation respects Data propagation|true;Predefined rules|Inter-level consistency rules|Data propagation respects Allocations|true</value>
+			<configuration>31</configuration>
+		</Prop>
+		<Prop id="34" name="@SYSTEM_CHECKER:CONSTRAINT_ENABLEMENT">
+			<value>Predefined rules|Model consistency rules|Check consistency of configured instances|true</value>
+			<configuration>33</configuration>
+		</Prop>
+		<Prop id="36" name="@STUDIO:TOOLCONF">
+			<value>Synchronization</value>
+			<value>35</value>
+		</Prop>
+		<Prop id="37" name="@STUDIO:TOOLCONF">
+			<value>Architect Configurator</value>
+			<value>2</value>
+			<value>14</value>
+			<value>19</value>
+			<value>24</value>
+			<value>27</value>
+			<value>29</value>
+			<value>31</value>
+			<value>33</value>
+			<value>35</value>
+		</Prop>
+		<Prop id="39" name="@STUDIO:TITLE">
+			<value>Micro UAV</value>
+		</Prop>
+		<Prop id="40" name="@STUDIO:AUTHORS">
+			<value>Mathieu Viala - Sylvan Dissoubray</value>
+		</Prop>
+		<Prop id="41" name="@STUDIO:COMPAGNY">
+			<value>Copyright ANSYS 2017</value>
+		</Prop>
+		<Prop id="45" name="@SYSTEM:NOTEFILE">
+			<value>$(SCADE)/lib/Notes_Architect_allCategories.aty</value>
+		</Prop>
+		<Prop id="46" name="@REPORTER:FORMAT">
+			<value>rtf</value>
+			<configuration>14</configuration>
+		</Prop>
+		<Prop id="47" name="@REPORTER:DOCUMENT">
+			<value>muXAV_v3.rtf</value>
+			<configuration>14</configuration>
+		</Prop>
+		<Prop id="48" name="@REPORTER:IssueNr">
+			<value>Rev test-reporter</value>
+			<configuration>14</configuration>
+		</Prop>
+		<Prop id="49" name="@REPORTER:Classification">
+			<value>Copyright ANSYS</value>
+			<configuration>14</configuration>
+		</Prop>
+		<Prop id="50" name="@REPORTER:Distribution">
+			<value>&lt;RESSAC Project&gt;</value>
+			<configuration>14</configuration>
+		</Prop>
+		<Prop id="51" name="@REPORTER:LIBRARIES">
+			<value>t</value>
+			<configuration>14</configuration>
+		</Prop>
+		<Prop id="52" name="@REPORTER:LibrariesList">
+			<value>Dimensions-and-Units</value>
+			<configuration>14</configuration>
+		</Prop>
+		<Prop id="53" name="@REPORTER:LIBRARIES">
+			<value>t</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="54" name="@REPORTER:LibrariesList">
+			<value>Dimensions-and-Units</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="56" name="@REPORTER:IssueNr">
+			<value>0.1</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="57" name="@REPORTER:ReferenceNr">
+			<value>muXAV-MMS-Functional-Architecture</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="58" name="@REPORTER:CorporateLogo">
+			<value>C:\Users\SDISSOUB\Desktop\logo-ansys.jpg</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="59" name="@REPORTER:Classification">
+			<value>RESSAC Project Draft</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="60" name="@REPORTER:Summary">
+			<value>This  is the preliminary Functional Architecture  for muXAV use case of RESSAC project showing the Mission Management System (MMS) generated using SCADE Architect, a SysML tool.</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="61" name="@REPORTER:Distribution">
+			<value>RESSAC Team</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="62" name="@REPORTER:Title">
+			<value>Micro UAV (muXAV)</value>
+			<configuration>19</configuration>
+		</Prop>
+		<Prop id="64" name="@STUDIO:SUBTITLE">
+			<value>Manned/Unmaned Air Vehicle</value>
+		</Prop>
+		<Prop id="65" name="@STUDIO:DESCRIPTION">
+			<value>This  is the preliminary Functional Architecture  for muXAV use case of RESSAC project showing the Mission Management System (MMS) generated using SCADE Architect, a SysML tool.</value>
+		</Prop>
+		<Prop id="66" name="@STUDIO:DATE">
+			<value>2017-12-08</value>
+		</Prop>
+		<Prop id="67" name="@STUDIO:REFERENCE">
+			<value>N/A</value>
+		</Prop>
+		<Prop id="68" name="@SYSTEM:CHECKERFILTER">
+			<value>2</value>
+		</Prop>
+		<Prop id="69" name="@STUDIO:TOOLCONF">
+			<value>Code Generator</value>
+			<value>2</value>
+			<value>14</value>
+			<value>19</value>
+			<value>24</value>
+			<value>27</value>
+			<value>29</value>
+			<value>31</value>
+			<value>33</value>
+			<value>35</value>
+		</Prop>
+		<Prop id="70" name="@STUDIO:TOOLCONF">
+			<value>Timing and Stack Analysis Tools</value>
+			<value>2</value>
+			<value>14</value>
+			<value>19</value>
+			<value>24</value>
+			<value>27</value>
+			<value>29</value>
+			<value>31</value>
+			<value>33</value>
+			<value>35</value>
+		</Prop>
+		<Prop id="71" name="@STUDIO:TOOLCONF">
+			<value>DiffAnalyzer</value>
+			<value>2</value>
+			<value>14</value>
+			<value>19</value>
+			<value>24</value>
+			<value>27</value>
+			<value>29</value>
+			<value>31</value>
+			<value>33</value>
+			<value>35</value>
+		</Prop>
+		<Prop id="72" name="@STUDIO:TOOLCONF">
+			<value>Instrumenter</value>
+			<value>2</value>
+			<value>14</value>
+			<value>19</value>
+			<value>24</value>
+			<value>27</value>
+			<value>29</value>
+			<value>31</value>
+			<value>33</value>
+			<value>35</value>
+		</Prop>
+	</props>
+	<roots>
+		<Folder id="6" extensions="di;uml;notation" name="SCADE Architect Model Files">
+			<elements>
+				<Folder id="7" extensions="di;uml;notation" name="Separate Files"/>
+				<FileRef id="8" persistAs="muXAV_v3.di">
+					<props>
+						<Prop id="9" name="@SYSTEM:ROOTDIFILE"/>
+					</props>
+				</FileRef>
+				<FileRef id="10" persistAs="muXAV_v3.uml"/>
+				<FileRef id="11" persistAs="muXAV_v3.notation"/>
+				<FileRef id="13" persistAs="muXAV_v3.tts"/>
+			</elements>
+		</Folder>
+		<FileRef id="12" persistAs="muXAV_v3.css"/>
+		<FileRef id="38" persistAs="Dimensions-and-Units\Dimensions-and-Units.etp"/>
+	</roots>
+	<configurations>
+		<Configuration id="2" name="Default"/>
+		<Configuration id="14" name="HTML"/>
+		<Configuration id="19" name="RTF"/>
+		<Configuration id="24" name="BasicCheck"/>
+		<Configuration id="27" name="ExtendedCheck"/>
+		<Configuration id="29" name="DataPropCheck"/>
+		<Configuration id="31" name="InterLevelCheck"/>
+		<Configuration id="33" name="ModelConsistencyCheck"/>
+		<Configuration id="35" name="Synchronization"/>
+	</configurations>
+</Project>
